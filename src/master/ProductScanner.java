@@ -13,24 +13,13 @@ public class ProductScanner extends POSRegister {
 	productDatabase db = new productDatabase();
 
 	//Generate Random number of items that will be in cart
-	Random rdm = new Random();
-	int numItemsInCart = rdm.nextInt(maxItemsInCart) + 1;
-	int numToSend = numItemsInCart; 
-	
+
+	int numToSend = 0;
 	
 	//Send back random items till all are sent.
 	
-	Items sendItem(){
-		if (numToSend != 0){
-			numToSend -= 1;
-			
-			return db.getItemByID(rdm.nextInt(db.numItems));
-			
-			
-		}
-		else
-			throw new EmptyStackException();
-		
+	Items[] sendItem(Items [] cart){
+		return cart;	
 	}
 	
 }

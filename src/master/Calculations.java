@@ -1,4 +1,4 @@
-package master;
+package master;	
 
 import java.util.EmptyStackException;
 
@@ -11,25 +11,21 @@ public class Calculations {
 	Scale scale = new Scale();
 	ProductScanner scanner = new ProductScanner();
 	
-	Items[] getCart(){
-		Items[] cart = new Items[]{};
-		try {
-			for (int i = 0; i < scanner.numItemsInCart; i++){
-				cart[i] = scanner.sendItem();
-			}
-		}
-		catch (EmptyStackException emptyCart){
-		}
-		return cart;
-	}
-	
 	boolean areTheWeightsTheSame(Items[] cart){
 		float actualWeight = scale.weight;
 		float expectedWeight = 0;
 		for(int i = 0; i < cart.length; i++){
 			expectedWeight += cart[i].w;
-		}
-		
-		
+		}		
 	}
+	
+	float getTotal(Items[] cart){
+		float totalCost = 0;
+		for (int i = 0; i < cart.length; i++ ){
+			totalCost += cart[i].p;
+		}
+		return totalCost;
+	}
+	
+	
 }
