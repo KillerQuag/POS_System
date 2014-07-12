@@ -32,7 +32,8 @@ public class Main {
 		}
 		//Cart populated with items.
 		
-		float totalPrice = Calculations.getTotal(cart);
+		float totalPrice = 0;
+		totalPrice = Calculations.getTotal(cart);
 		
 		
 

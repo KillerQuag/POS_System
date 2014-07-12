@@ -15,14 +15,18 @@ public class Calculations {
 		float actualWeight = scale.weight;
 		float expectedWeight = 0;
 		for(int i = 0; i < cart.length; i++){
-			expectedWeight += cart[i].w;
-		}		
+			expectedWeight += cart[i].getWeight();
+		}
+		if (actualWeight == expectedWeight) 
+			return true;
+		else
+			return false;
 	}
 	
-	float getTotal(Items[] cart){
+	static float getTotal(Items[] cart){
 		float totalCost = 0;
 		for (int i = 0; i < cart.length; i++ ){
-			totalCost += cart[i].p;
+			totalCost += cart[i].getPrice();
 		}
 		return totalCost;
 	}
