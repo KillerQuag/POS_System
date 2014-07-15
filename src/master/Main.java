@@ -21,10 +21,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		 = System.console().printf("Hello");
-		
-=======
+
+		//System.console().printf("Hello");
 		
 		int maxItemsInCart = 20;
 		productDatabase db = new productDatabase();
@@ -43,9 +41,7 @@ public class Main {
 		float totalPrice = 0;
 		totalPrice = Calculations.getTotal(cart);
 		
-		
 
->>>>>>> origin/John
 	}
 
 }
