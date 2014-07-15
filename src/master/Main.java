@@ -3,11 +3,7 @@
  */
 package master;
 
-<<<<<<< HEAD
-
-=======
 import java.util.Random;
->>>>>>> origin/John
 
 /**
  * @author John
