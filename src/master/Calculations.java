@@ -40,6 +40,7 @@ public class Calculations {
 		totalCost = Calculations.round(totalCost, 2);
 		return totalCost;
 	}
+
 	static double getTotalWeight(Items[] cart){
 		double totalWeight = 0;
 		for (int i = 0; i < cart.length; i++ ){
