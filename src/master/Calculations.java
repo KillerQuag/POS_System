@@ -30,6 +30,6 @@ public class Calculations {
 		}
 		return totalCost;
 	}
-	
+	//a line of comments.
 	
 }
