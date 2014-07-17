@@ -23,12 +23,19 @@ public class Calculations {
 			return false;
 	}
 	
-	static float getTotal(Items[] cart){
+	static float getTotalPrice(Items[] cart){
 		float totalCost = 0;
 		for (int i = 0; i < cart.length; i++ ){
 			totalCost += cart[i].getPrice();
 		}
 		return totalCost;
+	}
+	static float getTotalWeight(Items[] cart){
+		float totalWeight = 0;
+		for (int i = 0; i < cart.length; i++ ){
+			totalWeight += cart[i].getWeight();
+		}
+		return totalWeight;
 	}
 	
 	
