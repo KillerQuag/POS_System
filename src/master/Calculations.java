@@ -1,3 +1,4 @@
+
 package master;	
 
 import java.util.EmptyStackException;
@@ -12,8 +13,8 @@ public class Calculations {
 	ProductScanner scanner = new ProductScanner();
 	
 	boolean areTheWeightsTheSame(Items[] cart){
-		float actualWeight = scale.weight;
-		float expectedWeight = 0;
+		double actualWeight = scale.weight;
+		double expectedWeight = 0;
 		for(int i = 0; i < cart.length; i++){
 			expectedWeight += cart[i].getWeight();
 		}
@@ -22,14 +23,32 @@ public class Calculations {
 		else
 			return false;
 	}
-	
-	static float getTotal(Items[] cart){
-		float totalCost = 0;
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    double factor = (double) Math.pow(10, places);
+	    value = value * factor;
+	    double tmp = Math.round(value);
+	    return (double) tmp / factor;
+	}
+	 
+	static double getTotalPrice(Items[] cart){
+		double totalCost = 0.0;
 		for (int i = 0; i < cart.length; i++ ){
 			totalCost += cart[i].getPrice();
 		}
+		totalCost = Calculations.round(totalCost, 2);
 		return totalCost;
+	}
+	static double getTotalWeight(Items[] cart){
+		double totalWeight = 0;
+		for (int i = 0; i < cart.length; i++ ){
+			totalWeight += cart[i].getWeight();
+		}
+		totalWeight = Calculations.round(totalWeight, 2);
+		return totalWeight;
 	}
 	
 	
 }
+
