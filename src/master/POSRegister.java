@@ -4,6 +4,7 @@
 package master;
 
 import java.util.Random;
+import java.text.DecimalFormat;
 
 /**
  * @author John
@@ -11,10 +12,15 @@ import java.util.Random;
  */
 public class POSRegister extends POSOverwatch {
 	
-	
+	POSRegister(){
+		
+	}
 	public static void startTransaction(){
 		
+	double totalPrice = 0;
+	double totalWeight = 0;	
 	int maxItemsInCart = 20;
+	
 	productDatabase db = new productDatabase();
 	
 	Random rdm = new Random();
@@ -25,23 +31,22 @@ public class POSRegister extends POSOverwatch {
 	for (int i = 0; i < numItemsInCart; i++){
 		cart[i] = db.getItemByID(rdm.nextInt(db.numItems));
 	}
-	//Cart populated with items.
-	
-	float totalPrice = 0;
-	float totalWeight = 0;
+	//Cart now has (random) items inside it.
 	
 	String newLine = System.getProperty("line.separator");
 	
 	for(int i = 0; i < cart.length; i++){
-		System.out.format("%-20s",cart[i].getItemName());
+		System.out.format("%-20s",(i+1) + ". " + cart[i].getItemName());
 		System.out.format("%15s", cart[i].getPrice());
 		System.out.print(newLine);
 	}
-	totalPrice = Calculations.getTotalPrice(cart);
-	totalWeight = Calculations.getTotalWeight(cart);
-	System.out.println("Number Items in Cart: " + numItemsInCart);
-	System.out.println("Total Price: " + "$"+ totalPrice);
-	System.out.println("Total Weight:  " + totalWeight);
+	//get totalPrice & totalWeight from Calculations
+	//totalWeight displayed for debugging purposes
+		totalPrice = Calculations.getTotalPrice(cart);
+		totalWeight = Calculations.getTotalWeight(cart);
+		System.out.println("Number Items in Cart: " + numItemsInCart);
+		System.out.println("Total Price: " + "$"+totalPrice);
+		System.out.println("Total Weight:  " + totalWeight);
 	}
-	
+	//send cart[] to mainframe
 }

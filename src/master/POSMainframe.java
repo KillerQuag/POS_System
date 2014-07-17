@@ -8,5 +8,6 @@ package master;
  *
  */
 public class POSMainframe {
-
+	
+	
 }

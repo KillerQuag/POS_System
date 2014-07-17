@@ -1,16 +1,17 @@
+
 package master;
 
 import master.Items;
 
 /**
- * @author John
- * I can't figure out this call shit for line 13.  It's supposed to setup a new 
- * array of Items with size numItems.  
+ * @author Matt
+ * List of items currently available for sale.
+ * Planning on increasing the list to 50+, 100+ if we have time.
  */
 
 public class productDatabase extends databases {
 
-	 public final static int numItems = 30;
+	 public final int numItems = 30;
 	 Items[] itemArray = new Items[numItems];
 	
 	 public productDatabase(){
@@ -52,7 +53,7 @@ public class productDatabase extends databases {
 		itemArray[10].setPrice(1.99);
 		itemArray[10].setWeight(1.00);
 		itemArray[11].setItemName("Carrots");
-		itemArray[11].setPrice(.99);
+		itemArray[11].setPrice(0.99);
 		itemArray[11].setWeight(.50);
 		itemArray[12].setItemName("Ice Cream");
 		itemArray[12].setPrice(2.99);
@@ -73,12 +74,12 @@ public class productDatabase extends databases {
 		itemArray[17].setPrice(2.99);
 		itemArray[17].setWeight(1.25);
 		itemArray[18].setItemName("Broccoli");
-		itemArray[18].setPrice(.99);
+		itemArray[18].setPrice(0.99);
 		itemArray[18].setWeight(1.0);
 		itemArray[19].setItemName("Spaghetti Sauce");
 		itemArray[19].setPrice(4.99);
 		itemArray[19].setWeight(2.0);
-		itemArray[20].setItemName("Macaroni & Cheese");
+		itemArray[20].setItemName("Mac & Cheese");
 		itemArray[20].setPrice(2.99);
 		itemArray[20].setWeight(1.5);
 		itemArray[21].setItemName("Cat Food");
@@ -112,10 +113,6 @@ public class productDatabase extends databases {
 		
 	 }
 
-	 public static final int getNumItems(){
-		 return numItems;
-	 }
-	
 	
 	
 	Items testItem = new Items();
