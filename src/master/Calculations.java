@@ -50,6 +50,5 @@ public class Calculations {
 		return totalWeight;
 	}
 	
-	
 }
 
