@@ -115,8 +115,8 @@ public class productDatabase extends databases {
 
 	
 	
-	Items testItem = new Items();
-	
+//	Items testItem = new Items();
+
 	Items getItemByID(int id){
 		return ia[id];
 	}

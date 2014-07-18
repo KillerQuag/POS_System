@@ -6,15 +6,10 @@ package master;
 
 public class Items{
 		
-		private double weight = 0;
-		private double price = 0;
-		private String itemName = "";
+		double weight = 0;
+		double price = 0;
+		String itemName = "";
 		
-		Items(){
-			weight = 0;
-			price = 0;
-			itemName = "Item name not entered.";
-		}
 		public double getWeight() {
 			return weight;
 		}
@@ -33,5 +28,5 @@ public class Items{
 		public void setItemName(String itemName) {
 			this.itemName = itemName;
 		}
-	
+			
 }

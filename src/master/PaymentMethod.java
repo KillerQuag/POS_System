@@ -36,7 +36,9 @@ public abstract class PaymentMethod
 	
 	double setTotalPayment()
 	{
-		return 
+		//Garbage return need to fix
+		
+		return 0;
 	}
 	
 	
