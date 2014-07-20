@@ -9,6 +9,7 @@ public class Items{
 		double weight = 0;
 		double price = 0;
 		String itemName = "";
+		int UID = 0;
 		
 		public double getWeight() {
 			return weight;
@@ -28,5 +29,10 @@ public class Items{
 		public void setItemName(String itemName) {
 			this.itemName = itemName;
 		}
-			
+		public int getUID(){
+			return UID;
+		}
+		public void setUID(int UID){
+			this.UID = UID;
+		}
 }
