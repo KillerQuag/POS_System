@@ -1,13 +1,4 @@
-
-/**
- * 
- */
 package master;
-
-/**
- * @author John
- * Stuff
- */
 
 public class POSMainframe 
 {
@@ -32,7 +23,7 @@ public class POSMainframe
 
 	public void setTotalTransaction$(Items[] cart)
 	{
-		this.totalTransaction$ = totalTransaction$ + Calculations.getTotalPrice(cart);
+		this.totalTransaction$ = totalTransaction$ + Calculations.getTotal(cart);
 	}
 
 	public int getNumOfTransactions() 
@@ -40,9 +31,9 @@ public class POSMainframe
 		return numOfTransactions;
 	}
 
-	public void setNumOfTransactions(int numOfTrans) 
+	public void setNumOfTransactions() 
 	{
-		this.numOfTransactions = numOfTrans;
+		numOfTransactions = numOfTransactions;
 	}
 
 	public double getTotalCouponAmount() 
@@ -58,4 +49,3 @@ public class POSMainframe
 	
 
 }
-
