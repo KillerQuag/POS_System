@@ -31,11 +31,14 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton cashButton;
 	public static JButton checkButton;
 	public static JButton creditDebitButton;
+	public static JButton helpButton;
 	
 	public static JLabel welcomeLabel;
 	public static JLabel couponLabel;
 	public static JLabel insertCouponLabel;
 	public static JLabel selectPaymentLabel;
+	public static JLabel insertCashLabel;
+	public static JLabel slideCardLabel;
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
@@ -43,6 +46,8 @@ public class Display extends JFrame {//extends POSRegister {
 	//public static JTable textTable1;
 	public static JScrollPane scrollPane1;
 	public static JScrollPane scrollPane2;
+	
+	public static JTextField currencyField;
 	
 	
 	/*public static void main(String[] a) { 	//Will want to remove this main() and 
@@ -117,21 +122,20 @@ public class Display extends JFrame {//extends POSRegister {
 				mainWindow.repaint();*/
 				//System.out.println(e.getSource().toString()); //For testing
 				// End of if(e.getSource() == button1)
+			} else if(e.getSource() == helpButton) {
+				
+				HelpWindow helpWindow = new HelpWindow();
+				
 			} else if(e.getSource() == yesButton) {
 				
-				//textArea1.append("\n YES WAS PUSHED"); //For testing
-				//System.out.println("YES WAS PUSHED"); //For testing
-				
-				
-				
+				////////////////////////////////////////////////////////////////////////////
 				//TODO We will need another window to pop up separately for coupon insertion
-				//The constructor for that window would go here
-				
-				
+				//CouponInsertion couponInsertionWindow = new CouponInsertion(); //Works, but not used so commented out because I don't like warnings
+				////////////////////////////////////////////////////////////////////////////
 				
 				insertCouponLabel = new JLabel("<html>Please insert all coupons<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;into the reader<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
 				insertCouponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				insertCouponLabel.setLocation(450, 50);
+				insertCouponLabel.setLocation(450, 50); 
 				insertCouponLabel.setSize(400, 150);
 				
 				
@@ -142,31 +146,25 @@ public class Display extends JFrame {//extends POSRegister {
 				proceedToCOButton.addActionListener(lForYesButton);
 				
 				
-			/*	mainWindow.remove(yesButton);
-				mainWindow.remove(noButton);
-				mainWindow.remove(couponLabel);
+				Main.mainWindow.remove(yesButton);
+				Main.mainWindow.remove(noButton);
+				Main.mainWindow.remove(couponLabel);
 				
-				mainWindow.getContentPane().add(insertCouponLabel);
-				mainWindow.getContentPane().add(proceedToCOButton);
+				Main.mainWindow.getContentPane().add(insertCouponLabel);
+				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
-				mainWindow.repaint();*/
+				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton) {
 				
 				//Clears proper labels and buttons
-				if(e.getSource() == noButton) {
-					textArea1.append("\n NO WAS PUSHED"); //For testing
-					System.out.println("NO WAS PUSHED"); //For testing
-				
-					/*mainWindow.remove(yesButton);
-					mainWindow.remove(noButton);
-					mainWindow.remove(couponLabel);
-				} else if(e.getSource() == proceedToCOButton) {
-					textArea1.append("\n proceedToCOButton WAS PUSHED"); //For testing
-					System.out.println("proceedToCOButton WAS PUSHED"); //For testing
-					
-					mainWindow.remove(insertCouponLabel);
-					mainWindow.remove(proceedToCOButton);*/
+				if(e.getSource() == noButton) {				
+					Main.mainWindow.remove(yesButton);
+					Main.mainWindow.remove(noButton);
+					Main.mainWindow.remove(couponLabel);
+				} else if(e.getSource() == proceedToCOButton) {					
+					Main.mainWindow.remove(insertCouponLabel);
+					Main.mainWindow.remove(proceedToCOButton);
 				}
 				
 				
@@ -197,20 +195,94 @@ public class Display extends JFrame {//extends POSRegister {
 				creditDebitButton.addActionListener(lForCreditDebitButton);
 				
 				//Adding Labels and buttons
-			/*	mainWindow.getContentPane().add(selectPaymentLabel);
+				Main.mainWindow.getContentPane().add(selectPaymentLabel);
 				
-				mainWindow.getContentPane().add(cashButton);
-				mainWindow.getContentPane().add(checkButton);
-				mainWindow.getContentPane().add(creditDebitButton);
+				Main.mainWindow.getContentPane().add(cashButton);
+				Main.mainWindow.getContentPane().add(checkButton);
+				Main.mainWindow.getContentPane().add(creditDebitButton);
 				
-				mainWindow.repaint();*/
+				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == cashButton) {
 				
+				////////////////////////////////////////////////////////////////////////////
+				//TODO We will need another window to pop up separately for cash insertion
+				//CashInsertion cashInsertionWindow = new CashInsertion(); //Works, but not used so commented out because I don't like warnings
+				////////////////////////////////////////////////////////////////////////////
+				
+				insertCashLabel = new JLabel("<html>Please insert cash now<html>");
+				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				insertCashLabel.setLocation(450, 50);
+				insertCashLabel.setSize(400, 150);
+				
+				currencyField = new JTextField("$0.0", 15);
+				//currencyField.setColumns(10); // Change the size of the text field
+				//currencyField.setText("New Text Here"); // Change the initial value of the text field
+				currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
+				currencyField.setLocation(450, 200);
+				currencyField.setSize(200, 25);
+				//currencyField.setEditable(false);
+				
+				Main.mainWindow.remove(selectPaymentLabel);
+				Main.mainWindow.remove(cashButton);
+				Main.mainWindow.remove(checkButton);
+				Main.mainWindow.remove(creditDebitButton);
+				
+				Main.mainWindow.getContentPane().add(insertCashLabel);
+				Main.mainWindow.getContentPane().add(currencyField);
+				
+				Main.mainWindow.repaint();
+				
 			} else if(e.getSource() == checkButton) {
+				
+				////////////////////////////////////////////////////////////////////////////
+				//TODO We will need another window to pop up separately for cash insertion
+				//CheckInsertion checkInsertionWindow = new CheckInsertion(); //Works, but not used so commented out because I don't like warnings
+				////////////////////////////////////////////////////////////////////////////
+				
+				insertCashLabel = new JLabel("<html>Please insert check now<html>");
+				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				insertCashLabel.setLocation(450, 50);
+				insertCashLabel.setSize(400, 150);
+				
+				currencyField = new JTextField("$0.0", 15);
+				//currencyField.setColumns(10); // Change the size of the text field
+				//currencyField.setText("New Text Here"); // Change the initial value of the text field
+				currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
+				currencyField.setLocation(450, 200);
+				currencyField.setSize(200, 25);
+				//currencyField.setEditable(false);
+				
+				Main.mainWindow.remove(selectPaymentLabel);
+				Main.mainWindow.remove(cashButton);
+				Main.mainWindow.remove(checkButton);
+				Main.mainWindow.remove(creditDebitButton);
+				
+				Main.mainWindow.getContentPane().add(insertCashLabel);
+				Main.mainWindow.getContentPane().add(currencyField);
+				
+				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == creditDebitButton) {
 				
+				slideCardLabel = new JLabel("<html>Please slide your card<br> through the card reader<br> and follow the instructions<html>");
+				slideCardLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				slideCardLabel.setLocation(450, 50);
+				slideCardLabel.setSize(400, 150);
+				
+				////////////////////////////////////////////////////////////////////////////
+				//TODO We will need another window to pop up separately for simulating swiping a card 
+				//CardSwipe cardSwipeWindow = new CardSwipe(); //Works, but not used so commented out because I don't like warnings
+				////////////////////////////////////////////////////////////////////////////
+				
+				Main.mainWindow.remove(selectPaymentLabel);
+				Main.mainWindow.remove(cashButton);
+				Main.mainWindow.remove(checkButton);
+				Main.mainWindow.remove(creditDebitButton);
+				
+				Main.mainWindow.getContentPane().add(slideCardLabel);
+				
+				Main.mainWindow.repaint();
 			}
 		}// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
