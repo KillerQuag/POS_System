@@ -40,7 +40,7 @@ public class DisplayCart extends Display {
 		//textArea2.setText(transactionText); // If text doesn't fit on a line, jump to the next
 		textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
 		textArea2.setWrapStyleWord(true); 
-		textArea2.setLocation(100, 100); 
+		//textArea2.setLocation(100, 100); 
 		textArea2.setSize(275, 105);
 		textArea2.setEditable(false);
 		for (int i = 0; i < cart.getNumItemsInCart(); i++){
@@ -63,8 +63,8 @@ public class DisplayCart extends Display {
 		scrollPane1.setSize(175, 375);
 		
 		scrollPane2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane2.setLocation(10, 10); 
-		scrollPane2.setSize(275, 375);
+		scrollPane2.setLocation(175+100, 100); 
+		scrollPane2.setSize(65, 375);
 		
 		
 		couponLabel = new JLabel("Do you have any coupons?");
@@ -83,6 +83,13 @@ public class DisplayCart extends Display {
 		noButton.setSize(100, 50);
 		ListenForButton lForNoButton = new ListenForButton(); //Making object from within the object's class may be bad
 		noButton.addActionListener(lForNoButton);
+		
+		helpButton = new JButton("Help");
+		helpButton.setLocation(690, 518); //800, 600
+		helpButton.setSize(100, 50);
+		ListenForButton lForHelpButton = new ListenForButton(); //Making object from within the object's class may be bad
+		helpButton.addActionListener(lForHelpButton);
+
 		
 	}
 }
