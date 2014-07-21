@@ -9,20 +9,10 @@ public class Items{
 		double weight = 0;
 		double price = 0;
 		String itemName = "";
-<<<<<<< HEAD
 		int UID = -1;
-=======
-		int UID = 0;
->>>>>>> master
-		
+
 		public double getWeight() {
 			return weight;
-		}
-		public int getUID() {
-			return UID;
-		}
-		public void setUID(int uID) {
-			UID = uID;
 		}
 		public void setWeight(double weight) {
 			this.weight = weight;

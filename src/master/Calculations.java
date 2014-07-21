@@ -1,7 +1,7 @@
 
 package master;	
 
-import java.util.EmptyStackException;
+//import java.util.EmptyStackException;
 
 import master.productDatabase;
 import master.Scale;

@@ -32,7 +32,7 @@ public class POSMainframe
 
 	public void setTotalTransaction$(Items[] cart)
 	{
-		this.totalTransaction$ = totalTransaction$ + Calculations.getTotal(cart);
+		this.totalTransaction$ = totalTransaction$ + Calculations.getTotalPrice(cart);
 	}
 
 	public int getNumOfTransactions() 
@@ -40,9 +40,9 @@ public class POSMainframe
 		return numOfTransactions;
 	}
 
-	public void setNumOfTransactions() 
+	public void setNumOfTransactions(int numOfTrans) 
 	{
-		numOfTransactions = numOfTransactions;
+		this.numOfTransactions = numOfTrans;
 	}
 
 	public double getTotalCouponAmount() 

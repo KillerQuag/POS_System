@@ -23,28 +23,31 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	
 	//Declarations for all buttons and labels for customer transaction main window
-	public JButton startTransaction;
+	public static JButton startTransactionButton;
 	
-	public JButton yesButton;
-	public JButton noButton;
-	public JButton proceedToCOButton;
-	public JButton cashButton;
-	public JButton checkButton;
-	public JButton creditDebitButton;
+	public static JButton yesButton;
+	public static JButton noButton;
+	public static JButton proceedToCOButton;
+	public static JButton cashButton;
+	public static JButton checkButton;
+	public static JButton creditDebitButton;
 	
-	public JLabel welcomeLabel;
-	public JLabel couponLabel;
-	public JLabel insertCouponLabel;
-	public JLabel selectPaymentLabel;
+	public static JLabel welcomeLabel;
+	public static JLabel couponLabel;
+	public static JLabel insertCouponLabel;
+	public static JLabel selectPaymentLabel;
 	
-	static Display mainWindow; //This will likely move to the main() function when removing the temp main() from this class
-	public JTextArea textArea1;
-	public JScrollPane scrollbar1;
+	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
+	public static JTextArea textArea1;
+	public static JTextArea textArea2;
+	//public static JTable textTable1;
+	public static JScrollPane scrollPane1;
+	public static JScrollPane scrollPane2;
 	
 	
-	public static void main(String[] a) { 	//Will want to remove this main() and 
-		mainWindow = new Display();			// put this constructor in the real main()
-	}
+	/*public static void main(String[] a) { 	//Will want to remove this main() and 
+				// put this constructor in the real main()
+	}*/
 	
 	
 	public Display() { 
@@ -77,12 +80,12 @@ public class Display extends JFrame {//extends POSRegister {
 		
 		this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 		
-		startTransaction = new JButton("Start Transaction");
-		startTransaction.setLocation(400-100, 225);
-		startTransaction.setSize(200, 75);
-		this.getContentPane().add(startTransaction);
+		startTransactionButton = new JButton("Start Transaction");
+		startTransactionButton.setLocation(400-100, 225);
+		startTransactionButton.setSize(200, 75);
+		this.getContentPane().add(startTransactionButton);
 		ListenForButton lForButton = new ListenForButton();
-		startTransaction.addActionListener(lForButton);
+		startTransactionButton.addActionListener(lForButton);
 		
 			
 		/* Cannot get this to work properly **** Have not included MyCanvas class so this especially cannot work now ****
@@ -98,56 +101,12 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	
 	//Implement Listeners
-	private class ListenForButton implements ActionListener {
+	static class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource() == startTransaction) {
+			if(e.getSource() == startTransactionButton) {
 				
-				//WILL USE A GETTER TO LOAD THE TRANSACTION WINDOW (SET EQUAL TO BELOW VARIABLE)
-				String transactionText = " Tequila     $9.99\n Benadryl    $12.98";
-				//******************************************************************************
-				
-				//Text area stuff
-				textArea1 = new JTextArea(15, 20); // Set the default text for the text area
-				textArea1.setText(transactionText); // If text doesn't fit on a line, jump to the next
-				textArea1.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
-				textArea1.setWrapStyleWord(true); 
-				textArea1.setLocation(100, 100); 
-				textArea1.setSize(275, 105);
-				textArea1.setEditable(false); //Prevents the user from being able to change the text area's data
-				
-				//Test text data
-				textArea1.append("\n TMNT Action figure   $8.99");
-				textArea1.append("\n TMNT Action figure   $8.99");
-				textArea1.append("\n TMNT Action figure   $8.99");
-				textArea1.append("\n TMNT Action figure   $8.99");
-				textArea1.append("\n TMNT Action figure   $8.99");
-				textArea1.append("\n TMNT Action figure   $8.99");
-				//End of test text data
-				
-				scrollbar1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-				scrollbar1.setLocation(100, 100); 
-				scrollbar1.setSize(275, 375);
-				
-				
-				couponLabel = new JLabel("Do you have any coupons?");
-				couponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				couponLabel.setLocation(410, 50);
-				couponLabel.setSize(400, 150);
-				
-				yesButton = new JButton("Yes");
-				yesButton.setLocation(410, 225);
-				yesButton.setSize(100, 50);
-				ListenForButton lForYesButton = new ListenForButton(); //Making object from within the object's class may be bad
-				yesButton.addActionListener(lForYesButton);
-				
-				noButton = new JButton("No");
-				noButton.setLocation(520, 225);
-				noButton.setSize(100, 50);
-				ListenForButton lForNoButton = new ListenForButton(); //Making object from within the object's class may be bad
-				noButton.addActionListener(lForNoButton);
-				
-				
-				mainWindow.remove(startTransaction);
+				Main.StartTrans();
+				/*mainWindow.remove(startTransaction);
 				mainWindow.remove(welcomeLabel);
 				
 				mainWindow.getContentPane().add(couponLabel);
@@ -155,8 +114,7 @@ public class Display extends JFrame {//extends POSRegister {
 				mainWindow.getContentPane().add(noButton);
 				mainWindow.getContentPane().add(scrollbar1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
 				
-				mainWindow.repaint();
-				
+				mainWindow.repaint();*/
 				//System.out.println(e.getSource().toString()); //For testing
 				// End of if(e.getSource() == button1)
 			} else if(e.getSource() == yesButton) {
@@ -184,14 +142,14 @@ public class Display extends JFrame {//extends POSRegister {
 				proceedToCOButton.addActionListener(lForYesButton);
 				
 				
-				mainWindow.remove(yesButton);
+			/*	mainWindow.remove(yesButton);
 				mainWindow.remove(noButton);
 				mainWindow.remove(couponLabel);
 				
 				mainWindow.getContentPane().add(insertCouponLabel);
 				mainWindow.getContentPane().add(proceedToCOButton);
 				
-				mainWindow.repaint();
+				mainWindow.repaint();*/
 				
 			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton) {
 				
@@ -200,7 +158,7 @@ public class Display extends JFrame {//extends POSRegister {
 					textArea1.append("\n NO WAS PUSHED"); //For testing
 					System.out.println("NO WAS PUSHED"); //For testing
 				
-					mainWindow.remove(yesButton);
+					/*mainWindow.remove(yesButton);
 					mainWindow.remove(noButton);
 					mainWindow.remove(couponLabel);
 				} else if(e.getSource() == proceedToCOButton) {
@@ -208,7 +166,7 @@ public class Display extends JFrame {//extends POSRegister {
 					System.out.println("proceedToCOButton WAS PUSHED"); //For testing
 					
 					mainWindow.remove(insertCouponLabel);
-					mainWindow.remove(proceedToCOButton);
+					mainWindow.remove(proceedToCOButton);*/
 				}
 				
 				
@@ -239,13 +197,13 @@ public class Display extends JFrame {//extends POSRegister {
 				creditDebitButton.addActionListener(lForCreditDebitButton);
 				
 				//Adding Labels and buttons
-				mainWindow.getContentPane().add(selectPaymentLabel);
+			/*	mainWindow.getContentPane().add(selectPaymentLabel);
 				
 				mainWindow.getContentPane().add(cashButton);
 				mainWindow.getContentPane().add(checkButton);
 				mainWindow.getContentPane().add(creditDebitButton);
 				
-				mainWindow.repaint();
+				mainWindow.repaint();*/
 				
 			} else if(e.getSource() == cashButton) {
 				

@@ -1,6 +1,6 @@
 package master;
 
-import java.util.EmptyStackException;
+//import java.util.EmptyStackException;
 import java.util.Random;
 
 import master.productDatabase;
@@ -12,25 +12,22 @@ import master.productDatabase;
 
 public class ProductScanner extends POSRegister {
 
-	public static Items[] populateCart(){
-		int maxItemsInCart = 20;
+	
+	
+	public static Cart populateCart(Cart cart){
+		
 		productDatabase db = new productDatabase();
-		
-		Random rdm = new Random();
-		int numItemsInCart = rdm.nextInt(maxItemsInCart) + 1;
-		
-		Items[] cart = new Items[numItemsInCart];
-		
-		for (int i = 0; i < numItemsInCart; i++){
-			cart[i] = db.getItemByID(rdm.nextInt(db.numItems));
-			int duplicate = findFreq(cart[i].getUID(), cart, i);
+				
+		for (int i = 0; i < cart.numItemsInCart; i++){
+			cart.items[i] = db.getItemByID(cart.rdm.nextInt(db.numItems));
+			//int duplicate = findFreq(cart[i].getUID(), cart, i);
 			
 		}
 		
 		//Cart now has (random) items inside it.
 		return cart;
 	}
-	public static int findFreq(int UID, Items[] cart, int curItemsInCart) {
+	/*public static int findFreq(int UID, Items[] cart, int curItemsInCart) {
 	  int targCounter = 0;
 
 	  for(int i = 0; i < curItemsInCart; i++)
@@ -40,7 +37,7 @@ public class ProductScanner extends POSRegister {
 	  }
 	  return targCounter;
 	}
-		
+		*/
 }
 
 		 
