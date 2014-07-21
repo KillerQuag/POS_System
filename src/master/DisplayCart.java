@@ -65,6 +65,7 @@ public class DisplayCart extends Display {
 		scrollPane2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane2.setLocation(175+100, 100); 
 		scrollPane2.setSize(65, 375);
+
 		
 		
 		couponLabel = new JLabel("Do you have any coupons?");
@@ -83,7 +84,7 @@ public class DisplayCart extends Display {
 		noButton.setSize(100, 50);
 		ListenForButton lForNoButton = new ListenForButton(); //Making object from within the object's class may be bad
 		noButton.addActionListener(lForNoButton);
-		
+
 		helpButton = new JButton("Help");
 		helpButton.setLocation(690, 518); //800, 600
 		helpButton.setSize(100, 50);
@@ -91,5 +92,6 @@ public class DisplayCart extends Display {
 		helpButton.addActionListener(lForHelpButton);
 
 		
+
 	}
 }

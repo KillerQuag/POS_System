@@ -40,9 +40,12 @@ public class Main extends Display {
 		mainWindow.getContentPane().add(Display.couponLabel);
 		mainWindow.getContentPane().add(Display.yesButton);
 		mainWindow.getContentPane().add(Display.noButton);
+
 		mainWindow.getContentPane().add(Display.scrollPane1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
 		mainWindow.getContentPane().add(Display.scrollPane2);
 		mainWindow.repaint();  //Critical after every refresh.
 	}
 
 }
+
+
