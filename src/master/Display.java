@@ -122,14 +122,7 @@ public class Display extends JFrame {//extends POSRegister {
 				mainWindow.repaint();*/
 				//System.out.println(e.getSource().toString()); //For testing
 				// End of if(e.getSource() == button1)
-<<<<<<< HEAD
 			} else if(e.getSource() == helpButton) {
-=======
-			} else if(e.getSource() == yesButton) {
-				
-				textArea1.append("\n YES WAS PUSHED"); //For testing
-				System.out.println("YES WAS PUSHED"); //For testing
->>>>>>> 7/21
 				
 				HelpWindow helpWindow = new HelpWindow();
 				
@@ -165,7 +158,6 @@ public class Display extends JFrame {//extends POSRegister {
 			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton) {
 				
 				//Clears proper labels and buttons
-<<<<<<< HEAD
 				if(e.getSource() == noButton) {				
 					Main.mainWindow.remove(yesButton);
 					Main.mainWindow.remove(noButton);
@@ -173,21 +165,6 @@ public class Display extends JFrame {//extends POSRegister {
 				} else if(e.getSource() == proceedToCOButton) {					
 					Main.mainWindow.remove(insertCouponLabel);
 					Main.mainWindow.remove(proceedToCOButton);
-=======
-				if(e.getSource() == noButton) {
-					textArea1.append("\n NO WAS PUSHED"); //For testing
-					System.out.println("NO WAS PUSHED"); //For testing
-//SHOULD REDRAW PAYMENT METHODS
-					/*mainWindow.remove(yesButton);
-					mainWindow.remove(noButton);
-					mainWindow.remove(couponLabel);
-				} else if(e.getSource() == proceedToCOButton) {
-					textArea1.append("\n proceedToCOButton WAS PUSHED"); //For testing
-					System.out.println("proceedToCOButton WAS PUSHED"); //For testing
-					
-					mainWindow.remove(insertCouponLabel);
-					mainWindow.remove(proceedToCOButton);*/
->>>>>>> 7/21
 				}
 				
 				
