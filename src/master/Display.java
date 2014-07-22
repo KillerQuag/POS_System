@@ -124,7 +124,9 @@ public class Display extends JFrame {//extends POSRegister {
 				// End of if(e.getSource() == button1)
 			} else if(e.getSource() == helpButton) {
 				
-				HelpWindow helpWindow = new HelpWindow();
+				//HelpWindow helpWindow = new HelpWindow();
+				
+				HelpWindow.getInstance();
 				
 			} else if(e.getSource() == yesButton) {
 				

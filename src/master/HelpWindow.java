@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 public class HelpWindow extends JFrame {
 	
+	private static HelpWindow myInstance;
+	
 	public JLabel helpLabel;
 	public JButton cancelHelpButton;
 	public JFrame helpFrame;
@@ -22,7 +24,7 @@ public class HelpWindow extends JFrame {
 		//...Create the component...
 		//...Set instance variables in the GridBagConstraints instance...
 		
-
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(425, 150); //Where this method is invoked relative to other matters
@@ -50,14 +52,25 @@ public class HelpWindow extends JFrame {
 		ListenForButton lForCancelHelpButton = new ListenForButton(); //Making object from within the object's class may be bad
 		cancelHelpButton.addActionListener(lForCancelHelpButton);
 		
-		
 	}
 	
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == cancelHelpButton) {
 				helpFrame.dispose();
+				myInstance = null;
 			}
 		}
 	}
-}
+	
+    public static HelpWindow getInstance() {
+        if (myInstance == null)
+            myInstance = new HelpWindow();
+
+        return myInstance;
+    }
+    
+    
+}//End of HelpWindow class
+
+
