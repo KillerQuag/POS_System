@@ -2,7 +2,7 @@ package master;
 
 import javax.swing.*;
 
-//import master.Display.ListenForButton;
+import master.Display.ListenForButton;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

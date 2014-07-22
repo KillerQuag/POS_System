@@ -211,11 +211,12 @@ public class Display extends JFrame {//extends POSRegister {
 				//TODO We will need another window to pop up separately for cash insertion
 				//CashInsertion cashInsertionWindow = new CashInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
+				CashInsertion.getInstance();
+				////insertCashLabel = new JLabel("<html>Please insert cash now<html>");
+				////insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				////insertCashLabel.setLocation(450, 50);
+				////insertCashLabel.setSize(400, 150);
 				
-				insertCashLabel = new JLabel("<html>Please insert cash now<html>");
-				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				insertCashLabel.setLocation(450, 50);
-				insertCashLabel.setSize(400, 150);
 				
 				currencyField = new JTextField("$0.0", 15);
 				//currencyField.setColumns(10); // Change the size of the text field
@@ -230,7 +231,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
 				
-				Main.mainWindow.getContentPane().add(insertCashLabel);
+				//Main.mainWindow.getContentPane().add(insertCashLabel);//removed because it screwed things up ~wigmore
 				Main.mainWindow.getContentPane().add(currencyField);
 				
 				Main.mainWindow.repaint();
