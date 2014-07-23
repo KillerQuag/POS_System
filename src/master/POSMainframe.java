@@ -27,7 +27,7 @@ public class POSMainframe
 
 	public void setTotalTransaction$(Items[] cart)
 	{
-		this.totalTransaction$ = totalTransaction$ + Calculations.getTotalPrice(cart);
+		this.totalTransaction$ = totalTransaction$ + Calculations.getTotal(cart);
 	}
 
 	public int getNumOfTransactions() 
@@ -54,16 +54,5 @@ public class POSMainframe
 		return totalCash;
 	}
 
-	public void setTotalCash(double totalCash) {
-		this.totalCash = totalCash;
-	}
-
-	public double getTotalCredit() {
-		return totalCredit;
-	}
-
-	public void setTotalCredit(double totalCredit) {
-		this.totalCredit = totalCredit;
-	}	
 
 }
