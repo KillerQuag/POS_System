@@ -24,6 +24,9 @@ public class Cart {
 	public int getNumItemsInCart() {
 		return numItemsInCart;
 	}
+	public Items getItem(int index){
+		return items[index];
+	}
 	
 	
 }
