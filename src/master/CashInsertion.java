@@ -19,6 +19,7 @@ public class CashInsertion extends JFrame{
 	public JLabel insertCashLabel;
 	public JButton returnToPayMethods;
 	public JFrame insertCashFrame;
+	public static JLabel remainingBalance;
 	//cash buttons
 	public static JButton hundredButton;
 	public static JButton fiftyButton;
@@ -32,7 +33,7 @@ public class CashInsertion extends JFrame{
 	public static JButton nickelButton;
 	public static JButton pennyButton;
 	
-	
+	public static JTextField currencyField;
 	
 	public CashInsertion(){
 	
@@ -151,8 +152,24 @@ public class CashInsertion extends JFrame{
 		insertCashFrame.getContentPane().add(returnToPayMethods);
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
+		
+		currencyField = new JTextField("$0.00", 15);
+		//currencyField.setColumns(10); // Change the size of the text field
+		//currencyField.setText("New Text Here"); // Change the initial value of the text field
+		currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
+		currencyField.setHorizontalAlignment(JLabel.CENTER);
+		currencyField.setLocation(315, 400);
+		currencyField.setSize(200, 25);
+		//currencyField.setEditable(false);
+		insertCashFrame.getContentPane().add(currencyField);
+		
+		remainingBalance = new JLabel("<html>Remaining Balance:<html>");
+		remainingBalance.setFont(new Font("Ariel", Font.PLAIN, 12));
+		remainingBalance.setLocation(355, 325);
+		remainingBalance.setSize(400,100);
+		this.getContentPane().add(remainingBalance);
 	}
-	
+
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == returnToPayMethods) {
@@ -160,7 +177,7 @@ public class CashInsertion extends JFrame{
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
-				System.out.print("Oh hi there.");
+				currencyField.setText("$100.00");
 				
 			}
 			else if(e.getSource() == fiftyButton) {
@@ -210,29 +227,3 @@ public class CashInsertion extends JFrame{
     }
 }
 
-/*selectPaymentLabel = new JLabel("<html>Select your payment method<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
-selectPaymentLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-selectPaymentLabel.setLocation(450, 50);
-selectPaymentLabel.setSize(400, 150);
-
-//cashButton
-cashButton = new JButton("Cash");
-cashButton.setLocation(500, 175);
-cashButton.setSize(100, 75);
-ListenForButton lForCashButton = new ListenForButton(); //Making object from within the object's class may be bad
-cashButton.addActionListener(lForCashButton);
-
-//checkButton
-checkButton = new JButton("Check");
-checkButton.setLocation(500, 175+75+10);
-checkButton.setSize(100, 75);
-ListenForButton lForCheckButton = new ListenForButton(); //Making object from within the object's class may be bad
-checkButton.addActionListener(lForCheckButton);
-
-//creditDebitButton
-creditDebitButton = new JButton("Credit/Debit");
-creditDebitButton.setLocation(500, 345);
-creditDebitButton.setSize(100, 75);
-ListenForButton lForCreditDebitButton = new ListenForButton(); //Making object from within the object's class may be bad
-creditDebitButton.addActionListener(lForCreditDebitButton);
-*/
