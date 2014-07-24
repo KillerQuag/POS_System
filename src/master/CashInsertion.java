@@ -2,7 +2,7 @@ package master;
 
 import javax.swing.*;
 
-import sun.awt.HorizBagLayout;
+//import sun.awt.HorizBagLayout;
 import master.Display.ListenForButton;
 
 import java.awt.*;
@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 //This class simulates the process of inserting cash
 public class CashInsertion extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
+
 	private static CashInsertion myInstance;
 
 	public JLabel insertCashLabel;
