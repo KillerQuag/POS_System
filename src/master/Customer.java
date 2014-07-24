@@ -6,6 +6,6 @@ public class Customer {
 	public Customer(){
 		Cart myCart = new Cart();
 		myCart = ProductScanner.populateCart(myCart);
-		myCart = Calculations.SortCart(myCart);  //WIP
+		//myCart = Calculations.SortCart(myCart);  //WIP
 	}
 }
