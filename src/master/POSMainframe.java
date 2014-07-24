@@ -27,7 +27,7 @@ public class POSMainframe
 
 	public void setTotalTransaction$(Items[] cart)
 	{
-		this.totalTransaction$ = totalTransaction$ + Calculations.getTotal(cart);
+		this.totalTransaction$ = totalTransaction$ + Calculations.getTotalPrice(cart);
 	}
 
 	public int getNumOfTransactions() 
