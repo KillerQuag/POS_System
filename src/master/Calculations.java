@@ -32,36 +32,36 @@ public class Calculations {
 	    return (double) tmp / factor;
 	}
 	 
-	static double getTotalPrice(Items[] cart){
+	static double getTotalPrice(Cart cart){
 		double totalCost = 0.0;
-		for (int i = 0; i < cart.length; i++ ){
-			totalCost += cart[i].getPrice();
+		for (int i = 0; i < cart.items.length; i++ ){
+			totalCost += cart.items[i].getPrice();
 		}
 		totalCost = Calculations.round(totalCost, 2);
 		return totalCost;
 	}
 
-	static double getTotalWeight(Items[] cart){
+	static double getTotalWeight(Cart cart){
 		double totalWeight = 0;
-		for (int i = 0; i < cart.length; i++ ){
-			totalWeight += cart[i].getWeight();
+		for (int i = 0; i < cart.items.length; i++ ){
+			totalWeight += cart.items[i].getWeight();
 		}
 		totalWeight = Calculations.round(totalWeight, 2);
 		return totalWeight;
 	}
-	public Items[] SortCart(Items[] cart){
+	public Cart SortCart(Cart cart){
 		int i, j, minIndex;
 		Items tmp;
-	      int n = cart.length;
+	      int n = cart.items.length;
 	      for (i = 0; i < n - 1; i++) {
 	            minIndex = i;
 	            for (j = i + 1; j < n; j++)
-	                  if (cart[j].UID < cart[minIndex].UID)
+	                  if (cart.items[j].UID < cart.items[minIndex].UID)
 	                        minIndex = j;
 	            if (minIndex != i) {
-	                  tmp = cart[i];
-	                  cart[i] = cart[minIndex];
-	                  cart[minIndex] = tmp;
+	                  tmp = cart.items[i];
+	                  cart.items[i] = cart.items[minIndex];
+	                  cart.items[minIndex] = tmp;
 	            }
 	      }
 	      return cart;
