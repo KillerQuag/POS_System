@@ -49,12 +49,8 @@ public class Calculations {
 		totalWeight = Calculations.round(totalWeight, 2);
 		return totalWeight;
 	}
-<<<<<<< HEAD
-	
-	public Items[] SortCart(Items[] cart){
-=======
+
 	public Cart SortCart(Cart cart){
->>>>>>> John
 		int i, j, minIndex;
 		Items tmp;
 	      int n = cart.items.length;
