@@ -1,13 +1,4 @@
-
-/**
- * 
- */
 package master;
-
-/**
- * @author John
- * Stuff
- */
 
 public class POSMainframe 
 {
@@ -15,6 +6,8 @@ public class POSMainframe
 	public double totalTransaction$ = 0;
 	public int numOfTransactions = 0;
 	public double totalCouponAmount = 0;
+	public double totalCash = 0;
+	public double totalCredit = 0;
 	
 	//constructor
 	public POSMainframe()
@@ -22,6 +15,8 @@ public class POSMainframe
 		totalTransaction$ = 0;
 		numOfTransactions = 0;
 		totalCouponAmount = 0;
+		totalCash = 0;
+		totalCredit = 0;
 	}
 	
 	//functions
@@ -32,7 +27,7 @@ public class POSMainframe
 
 	public void setTotalTransaction$(Items[] cart)
 	{
-		this.totalTransaction$ = totalTransaction$ + Calculations.getTotalPrice(cart);
+		this.totalTransaction$ = totalTransaction$ + Calculations.getTotal(cart);
 	}
 
 	public int getNumOfTransactions() 
@@ -40,9 +35,9 @@ public class POSMainframe
 		return numOfTransactions;
 	}
 
-	public void setNumOfTransactions(int numOfTrans) 
+	public void setNumOfTransactions() 
 	{
-		this.numOfTransactions = numOfTrans;
+		numOfTransactions = numOfTransactions;
 	}
 
 	public double getTotalCouponAmount() 
@@ -55,7 +50,9 @@ public class POSMainframe
 		totalCouponAmount = totalCouponAmount + coupon;
 	}
 	
-	
+	public double getTotalCash() {
+		return totalCash;
+	}
+
 
 }
-

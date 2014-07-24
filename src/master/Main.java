@@ -42,9 +42,12 @@ public class Main extends Display {
 		mainWindow.getContentPane().add(Display.noButton);
 		mainWindow.getContentPane().add(Display.scrollPane1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
 		mainWindow.getContentPane().add(Display.scrollPane2);
+<<<<<<< HEAD
 		mainWindow.getContentPane().add(Display.helpButton);
 		
 		
+=======
+>>>>>>> origin/master
 		mainWindow.repaint();  //Critical after every refresh.
 	}
 
