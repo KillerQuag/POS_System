@@ -17,7 +17,9 @@ public class Main extends Display {
 	 * @param args
 	 */
 	static Display mainWindow; 
-	static Cart cart = new Cart();
+	
+	
+	
 	
 	
 	
@@ -30,11 +32,16 @@ public class Main extends Display {
 	
 	public static void StartTrans() {
 		// TODO Auto-generated method stub
+		Cart cart = new Cart();
 		cart = ProductScanner.populateCart(cart);
+		Calculations.SortCart(cart);
+		CartStorage cs = new CartStorage();
+		cs.save(cart);
 		DisplayCart.display(cart);
 		//Display.startTransactionButton.remove(mainWindow);
 		mainWindow.remove(startTransactionButton);
 		mainWindow.remove(welcomeLabel);
+		mainWindow.repaint();
 		//Display.welcomeLabel.remove(mainWindow);
 		
 		mainWindow.getContentPane().add(Display.couponLabel);

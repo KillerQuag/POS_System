@@ -10,22 +10,27 @@ import java.util.*;
  *
  */
 public class Cart {
-	int maxItemsInCart = 20;
-	Random rdm = new Random();
-	int numItemsInCart = rdm.nextInt(maxItemsInCart) + 1;
-	Items[] items = new Items[numItemsInCart];
+	
+	private static final int maxItemsInCart = 20;
+	static Random rdm = new Random();
+	static final int numItemsInCart = rdm.nextInt(maxItemsInCart) + 1;
+	static Items[] items = new Items[numItemsInCart];
+	
 	
 	public Items[] getItems() {
 		return items;
 	}
 	public void setItems(Items[] items) {
-		this.items = items;
+		Cart.items = items;
 	}
 	public int getNumItemsInCart() {
 		return numItemsInCart;
 	}
 	public Items getItem(int index){
 		return items[index];
+	}
+	public boolean hasItems(){
+		return numItemsInCart > 0;
 	}
 	
 	

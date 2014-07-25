@@ -18,8 +18,8 @@ public class ProductScanner extends POSRegister {
 		
 		productDatabase db = new productDatabase();
 				
-		for (int i = 0; i < cart.numItemsInCart; i++){
-			cart.items[i] = db.getItemByID(cart.rdm.nextInt(db.numItems));
+		for (int i = 0; i < Cart.numItemsInCart; i++){
+			Cart.items[i] = db.getItemByID(Cart.rdm.nextInt(db.numItems));
 			//int duplicate = findFreq(cart[i].getUID(), cart, i);
 			
 		}

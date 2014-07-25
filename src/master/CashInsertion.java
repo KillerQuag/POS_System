@@ -19,6 +19,7 @@ public class CashInsertion extends JFrame{
 	public JLabel insertCashLabel;
 	public JButton returnToPayMethods;
 	public JFrame insertCashFrame;
+	public static JLabel remainingBalance;
 	//cash buttons
 	public static JButton hundredButton;
 	public static JButton fiftyButton;
@@ -32,10 +33,24 @@ public class CashInsertion extends JFrame{
 	public static JButton nickelButton;
 	public static JButton pennyButton;
 	
-	
+	public static JTextField currencyField;
 	
 	public CashInsertion(){
 	
+		Cart cartCopy = new Cart();
+		CartStorage cs = new CartStorage();
+		cartCopy = cs.getCart();
+		/*for (int i = 0; i < cartCopy.getNumItemsInCart(); i++){
+			System.out.format("%-20s",(i+1) + ". " + cartCopy.items[i].getItemName());
+			System.out.format("%15s", cartCopy.items[i].getPrice() + "\n");
+			
+		}*/
+		boolean hasItems = cartCopy.hasItems();
+		if(hasItems)
+			System.out.printf("Has items.");
+		else
+			System.out.printf("NO ITEMS.");
+				
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
@@ -151,8 +166,29 @@ public class CashInsertion extends JFrame{
 		insertCashFrame.getContentPane().add(returnToPayMethods);
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
+		
+<<<<<<< HEAD
+		//String balRem = Double.toString(Calculations.getTotalPrice(cartCopy));
+		//currencyField = new JTextField(balRem);
+=======
+		currencyField = new JTextField("$0.00", 15);
+>>>>>>> ad0923f3dc4ebd29f791d22c1f129ef65d7e57a8
+		//currencyField.setColumns(10); // Change the size of the text field
+		//currencyField.setText("New Text Here"); // Change the initial value of the text field
+		currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
+		currencyField.setHorizontalAlignment(JLabel.CENTER);
+		currencyField.setLocation(315, 400);
+		currencyField.setSize(200, 25);
+		//currencyField.setEditable(false);
+		insertCashFrame.getContentPane().add(currencyField);
+		
+		remainingBalance = new JLabel("<html>Remaining Balance:<html>");
+		remainingBalance.setFont(new Font("Ariel", Font.PLAIN, 12));
+		remainingBalance.setLocation(355, 325);
+		remainingBalance.setSize(400,100);
+		this.getContentPane().add(remainingBalance);
 	}
-	
+
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == returnToPayMethods) {
@@ -160,7 +196,7 @@ public class CashInsertion extends JFrame{
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
-				System.out.print("Oh hi there.");
+				currencyField.setText("$100.00");
 				
 			}
 			else if(e.getSource() == fiftyButton) {
@@ -210,29 +246,3 @@ public class CashInsertion extends JFrame{
     }
 }
 
-/*selectPaymentLabel = new JLabel("<html>Select your payment method<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
-selectPaymentLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-selectPaymentLabel.setLocation(450, 50);
-selectPaymentLabel.setSize(400, 150);
-
-//cashButton
-cashButton = new JButton("Cash");
-cashButton.setLocation(500, 175);
-cashButton.setSize(100, 75);
-ListenForButton lForCashButton = new ListenForButton(); //Making object from within the object's class may be bad
-cashButton.addActionListener(lForCashButton);
-
-//checkButton
-checkButton = new JButton("Check");
-checkButton.setLocation(500, 175+75+10);
-checkButton.setSize(100, 75);
-ListenForButton lForCheckButton = new ListenForButton(); //Making object from within the object's class may be bad
-checkButton.addActionListener(lForCheckButton);
-
-//creditDebitButton
-creditDebitButton = new JButton("Credit/Debit");
-creditDebitButton.setLocation(500, 345);
-creditDebitButton.setSize(100, 75);
-ListenForButton lForCreditDebitButton = new ListenForButton(); //Making object from within the object's class may be bad
-creditDebitButton.addActionListener(lForCreditDebitButton);
-*/
