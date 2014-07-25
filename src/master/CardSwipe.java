@@ -91,23 +91,27 @@ public class CardSwipe extends JFrame
 			if(e.getSource() == debitButton )
 			{
 				//full payment be made with the card?
+				//ActionEvent debitPress = null;
+				//debitPress.setSource(debitButton);
+				Main.mainWindow.lForButton.actionPerformed(e);
 			}
 			else if(e.getSource() == creditButton )
 			{
 				//full payment be made with card? 
+				Main.mainWindow.lForButton.actionPerformed(e);
 			}
 			else if(e.getSource() == giftButton )
 			{
 				//full payment to be made with gift card?
+				Main.mainWindow.lForButton.actionPerformed(e);
 			}
 			else if(e.getSource() == returnButton )
 			{
 				
 			}
 		}
-	}
-	
-	}
+	}	
+}
 	
 	
 

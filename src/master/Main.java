@@ -27,7 +27,7 @@ public class Main extends Display {
 		mainWindow = new Display();	
 
 	}
-
+	
 	public static void StartTrans() {
 		// TODO Auto-generated method stub
 		cart = ProductScanner.populateCart(cart);

@@ -3,8 +3,6 @@ package master;
 //import javax.swing.JFrame;
 import javax.swing.*;
 
-
-
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -20,7 +18,8 @@ public class Display extends JFrame {//extends POSRegister {
 	//Line below is for serialization. I don't think we'll need it, but it gets rid of a warning sign so I added it.
 	// and, no, I don't understand how to use this.
 	private static final long serialVersionUID = 1L; //Ignore
-	
+	public ListenForButton lForButton;
+	static CardSwipe cardSwipeWindow;
 	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
@@ -33,12 +32,23 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton creditDebitButton;
 	public static JButton helpButton;
 	
+	///TEMPORARY//
+	public static JButton cashInsertComplete;
+	public static JButton checkInsertComplete;
+	/////////////
+	
 	public static JLabel welcomeLabel;
 	public static JLabel couponLabel;
 	public static JLabel insertCouponLabel;
 	public static JLabel selectPaymentLabel;
 	public static JLabel insertCashLabel;
 	public static JLabel slideCardLabel;
+	public static JLabel changeDueLabel;
+	public static JLabel insertCheckLabel;
+	public static JLabel checkCompleteLabel;
+	public static JLabel debitLabel;
+	public static JLabel creditLabel;
+	public static JLabel giftLabel;
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
@@ -48,6 +58,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JScrollPane scrollPane2;
 	
 	public static JTextField currencyField;
+	public static JTextField changeDueField;
 	
 	
 	/*public static void main(String[] a) { 	//Will want to remove this main() and 
@@ -89,10 +100,11 @@ public class Display extends JFrame {//extends POSRegister {
 		startTransactionButton.setLocation(400-100, 225);
 		startTransactionButton.setSize(200, 75);
 		this.getContentPane().add(startTransactionButton);
-		ListenForButton lForButton = new ListenForButton();
+		//ListenForButton lForButton = new ListenForButton();
+		lForButton = new ListenForButton();
 		startTransactionButton.addActionListener(lForButton);
 		
-			
+		
 		/* Cannot get this to work properly **** Have not included MyCanvas class so this especially cannot work now ****
 		 * Deletion fodder
 		MyCanvas backDrop = new MyCanvas();
@@ -119,9 +131,9 @@ public class Display extends JFrame {//extends POSRegister {
 				mainWindow.getContentPane().add(noButton);
 				mainWindow.getContentPane().add(scrollbar1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
 				
-				mainWindow.repaint();*/
+				mainWindow.repaint();
+				*/
 				//System.out.println(e.getSource().toString()); //For testing
-				// End of if(e.getSource() == button1)
 			} else if(e.getSource() == helpButton) {
 				
 				//HelpWindow helpWindow = new HelpWindow();
@@ -212,10 +224,10 @@ public class Display extends JFrame {//extends POSRegister {
 				//CashInsertion cashInsertionWindow = new CashInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				CashInsertion.getInstance();
-				////insertCashLabel = new JLabel("<html>Please insert cash now<html>");
-				////insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				////insertCashLabel.setLocation(450, 50);
-				////insertCashLabel.setSize(400, 150);
+				insertCashLabel = new JLabel("<html>Please insert cash now<html>");
+				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				insertCashLabel.setLocation(450, 50);
+				insertCashLabel.setSize(400, 150);
 				
 				
 				currencyField = new JTextField("$0.0", 15);
@@ -226,12 +238,29 @@ public class Display extends JFrame {//extends POSRegister {
 				currencyField.setSize(200, 25);
 				//currencyField.setEditable(false);
 				
+				//From account manager program - We may be able to use this to update the currencyFields 
+				//balanceField.setText(Double.toString(me.getBalance()));
+				//Otherwise may want to create a eventListener like in the midterm review
+				
+				/////////TEMPORARY CODE/////////
+				//++++++++++++++++++++++++++++++
+				cashInsertComplete = new JButton("SEND PAID EVENT");
+				cashInsertComplete.setLocation(450, 175+75+10);
+				cashInsertComplete.setSize(200, 75);
+				ListenForButton lForCashInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
+				cashInsertComplete.addActionListener(lForCashInsertCompleteButton);
+				Main.mainWindow.getContentPane().add(cashInsertComplete);
+				//++++++++++++++++++++++++++++++
+				//////END OF TEMPORARY CODE/////
+				
+				
+				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
 				
-				//Main.mainWindow.getContentPane().add(insertCashLabel);//removed because it screwed things up ~wigmore
+				Main.mainWindow.getContentPane().add(insertCashLabel);//removed because it screwed things up ~wigmore
 				Main.mainWindow.getContentPane().add(currencyField);
 				
 				Main.mainWindow.repaint();
@@ -243,10 +272,10 @@ public class Display extends JFrame {//extends POSRegister {
 				//CheckInsertion checkInsertionWindow = new CheckInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				
-				insertCashLabel = new JLabel("<html>Please insert check now<html>");
-				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				insertCashLabel.setLocation(450, 50);
-				insertCashLabel.setSize(400, 150);
+				insertCheckLabel = new JLabel("<html>Please insert check now<html>");
+				insertCheckLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				insertCheckLabel.setLocation(450, 50);
+				insertCheckLabel.setSize(400, 150);
 				
 				currencyField = new JTextField("$0.0", 15);
 				//currencyField.setColumns(10); // Change the size of the text field
@@ -256,12 +285,23 @@ public class Display extends JFrame {//extends POSRegister {
 				currencyField.setSize(200, 25);
 				//currencyField.setEditable(false);
 				
+				/////////TEMPORARY CODE/////////
+				//++++++++++++++++++++++++++++++
+				checkInsertComplete = new JButton("<html>SEND CHECK ACCEPTED<br> EVENT<html>");
+				checkInsertComplete.setLocation(450, 175+75+10);
+				checkInsertComplete.setSize(200, 75);
+				ListenForButton lForCheckInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
+				checkInsertComplete.addActionListener(lForCheckInsertCompleteButton);
+				Main.mainWindow.getContentPane().add(checkInsertComplete);
+				//++++++++++++++++++++++++++++++
+				//////END OF TEMPORARY CODE/////
+				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
 				
-				Main.mainWindow.getContentPane().add(insertCashLabel);
+				Main.mainWindow.getContentPane().add(insertCheckLabel);
 				Main.mainWindow.getContentPane().add(currencyField);
 				
 				Main.mainWindow.repaint();
@@ -289,7 +329,96 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().add(slideCardLabel);
 				
 				Main.mainWindow.repaint();
+				
+			} else if(e.getSource() == cashInsertComplete) {
+				
+				changeDueLabel = new JLabel("<html>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
+				changeDueLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				changeDueLabel.setLocation(450, 50);
+				changeDueLabel.setSize(400, 150);
+				
+				changeDueField = new JTextField("$0.0", 15);
+				changeDueField.setToolTipText("Change to be returned to you"); // Change the tool tip for the text field
+				changeDueField.setLocation(450, 200);
+				changeDueField.setSize(200, 25);
+				//currencyField.setEditable(false);
+				
+				///TEMPORARY CODE///////////
+				Main.mainWindow.remove(cashInsertComplete);
+				////////////////////////////
+				
+				Main.mainWindow.remove(insertCashLabel);
+				Main.mainWindow.remove(currencyField);
+				
+				Main.mainWindow.getContentPane().add(changeDueLabel);
+				Main.mainWindow.getContentPane().add(changeDueField);
+				
+				Main.mainWindow.repaint();
+				
+			} else if(e.getSource() == checkInsertComplete) {
+				
+				checkCompleteLabel = new JLabel("<html>&#160;&#160;&#160;&#160;Transaction completed. <br> Thank you for your business!<html>");
+				checkCompleteLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				checkCompleteLabel.setLocation(400, 150);
+				checkCompleteLabel.setSize(400, 150);
+				
+				
+				///TEMPORARY CODE///////////
+				Main.mainWindow.remove(checkInsertComplete);
+				////////////////////////////
+				
+				Main.mainWindow.getContentPane().add(checkCompleteLabel);
+				Main.mainWindow.remove(insertCheckLabel);
+				Main.mainWindow.remove(currencyField);
+				
+				Main.mainWindow.repaint();
+				
+			} else if(e.getSource() == CardSwipe.debitButton) { //From CardSwipe class
+				
+				debitLabel = new JLabel("<html>Please enter your pin number followed by the enter key<html>");
+				debitLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				debitLabel.setLocation(400, 150);
+				debitLabel.setSize(400, 150);
+				
+				Main.mainWindow.getContentPane().add(debitLabel);
+				Main.mainWindow.remove(slideCardLabel);
+				
+				Main.mainWindow.repaint();
+				
+				System.out.println("debit button pressed");
+				
+			} else if(e.getSource() == CardSwipe.creditButton) { //From CardSwipe class
+				
+				creditLabel = new JLabel("<html>Please provide signature for transaction<html>");
+				creditLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				creditLabel.setLocation(400, 150);
+				creditLabel.setSize(400, 150);
+				
+				Main.mainWindow.getContentPane().add(creditLabel);
+				Main.mainWindow.remove(slideCardLabel);
+				
+				Main.mainWindow.repaint();
+				
+				System.out.println("credit button pressed");
+				
+			} else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
+
+				
+				//If ( giftCardAmt >= totalCost ) == true
+				giftLabel = new JLabel("<html>Transaction completed. <br> The remaining balance on your gift card is: <html>");
+				giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				giftLabel.setLocation(400, 150);
+				giftLabel.setSize(400, 150);
+				
+				Main.mainWindow.getContentPane().add(giftLabel);
+				Main.mainWindow.remove(slideCardLabel);
+				
+				Main.mainWindow.repaint();
+				
+				System.out.println("Gift button pressed");
+				
 			}
 		}// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
+	
 }
