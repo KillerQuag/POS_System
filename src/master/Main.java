@@ -35,8 +35,8 @@ public class Main extends Display {
 		Cart cart = new Cart();
 		cart = ProductScanner.populateCart(cart);
 		Calculations.SortCart(cart);
-		CartStorage cs = new CartStorage();
-		cs.save(cart);
+	//	CartStorage cs = new CartStorage();
+	//	cs.save(cart);
 		DisplayCart.display(cart);
 		//Display.startTransactionButton.remove(mainWindow);
 		mainWindow.remove(startTransactionButton);
