@@ -3,6 +3,8 @@ package master;
 
 //import java.util.EmptyStackException;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+
 import master.productDatabase;
 import master.Scale;
 import master.Items;
@@ -37,8 +39,7 @@ public class Calculations {
 		for (int i = 0; i < cart.items.length; i++ ){
 			totalCost += cart.items[i].getPrice();
 		}
-		totalCost = Calculations.round(totalCost, 2);
-		return totalCost;
+		return round(totalCost, 2);
 	}
 
 	static double getTotalWeight(Cart cart){
@@ -46,11 +47,19 @@ public class Calculations {
 		for (int i = 0; i < cart.items.length; i++ ){
 			totalWeight += cart.items[i].getWeight();
 		}
-		totalWeight = Calculations.round(totalWeight, 2);
-		return totalWeight;
+		return round(totalWeight, 2);
+	}
+	
+	static double getTax(Cart cart){
+		final double TAXRATE = 0.0825;
+		double amountTaxed = getTotalPrice(cart) * TAXRATE;
+		return round(amountTaxed, 2);
+	}
+	static double getTotalPriceWithTax(Cart cart){
+		return round(getTotalPrice(cart) + getTax(cart), 2);
 	}
 
-	public Cart SortCart(Cart cart){
+	static void SortCart(Cart cart){
 		int i, j, minIndex;
 		Items tmp;
 	      int n = cart.items.length;
@@ -65,7 +74,6 @@ public class Calculations {
 	                  cart.items[minIndex] = tmp;
 	            }
 	      }
-	      return cart;
 	}
 	
 }

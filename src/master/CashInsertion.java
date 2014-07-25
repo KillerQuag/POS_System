@@ -37,6 +37,20 @@ public class CashInsertion extends JFrame{
 	
 	public CashInsertion(){
 	
+		Cart cartCopy = new Cart();
+		CartStorage cs = new CartStorage();
+		cartCopy = cs.getCart();
+		/*for (int i = 0; i < cartCopy.getNumItemsInCart(); i++){
+			System.out.format("%-20s",(i+1) + ". " + cartCopy.items[i].getItemName());
+			System.out.format("%15s", cartCopy.items[i].getPrice() + "\n");
+			
+		}*/
+		boolean hasItems = cartCopy.hasItems();
+		if(hasItems)
+			System.out.printf("Has items.");
+		else
+			System.out.printf("NO ITEMS.");
+				
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
@@ -153,7 +167,8 @@ public class CashInsertion extends JFrame{
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
-		currencyField = new JTextField("$0.00", 15);
+		//String balRem = Double.toString(Calculations.getTotalPrice(cartCopy));
+		//currencyField = new JTextField(balRem);
 		//currencyField.setColumns(10); // Change the size of the text field
 		//currencyField.setText("New Text Here"); // Change the initial value of the text field
 		currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field

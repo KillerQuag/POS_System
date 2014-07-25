@@ -18,52 +18,53 @@ public class DisplayCart extends Display {
 
 	static void display(Cart cart) {
 		//WILL USE A GETTER TO LOAD THE TRANSACTION WINDOW (SET EQUAL TO BELOW VARIABLE)
-		String transactionText = "Items";
 		//******************************************************************************
 	
 		//Text area stuff
 		textArea1 = new JTextArea(15, 20); // Set the default text for the text area
-		textArea1.setText(transactionText); // If text doesn't fit on a line, jump to the next
+		textArea1.setText("         Items"); // If text doesn't fit on a line, jump to the next
 		textArea1.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
 		textArea1.setWrapStyleWord(true); 
 		//textArea1.setLocation(100, 100); 
 		textArea1.setSize(275, 105);
 		textArea1.setEditable(false); //Prevents the user from being able to change the text area's data
 		
+		textArea1.append("\n         --------\n");
 		for (int i = 0; i < cart.getNumItemsInCart(); i++){
+			textArea1.append(Integer.toString(i+1) + ". " + cart.items[i].getItemName());
 			textArea1.append("\n ");
-			textArea1.append(cart.items[i].getItemName());
+			//textArea1.append(cart.items[i].getItemName());
 		}		
+		textArea1.append("---------------------------------\n");
+		textArea1.append("Sales Tax:" + "\n");
+		textArea1.append("Total Price: " + "\n");
 		
-		transactionText = "Price";
 		textArea2 = new JTextArea(15, 20); // Set the default text for the text area
-		//textArea2.setText(transactionText); // If text doesn't fit on a line, jump to the next
+		textArea2.setText("   Price"); // If text doesn't fit on a line, jump to the next
 		textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
 		textArea2.setWrapStyleWord(true); 
 		//textArea2.setLocation(100, 100); 
 		textArea2.setSize(275, 105);
 		textArea2.setEditable(false);
+		textArea2.append("\n  --------\n");
 		for (int i = 0; i < cart.getNumItemsInCart(); i++){
-			textArea2.append("\n ");
+			textArea2.append("$");
 			textArea2.append(Double.toString(cart.items[i].getPrice()));
-	}
+			textArea2.append("\n ");
+		}
+		textArea2.append("--------\n");
+		textArea2.append("$" + Calculations.getTax(cart) + "\n");
+		textArea2.append("$" + Calculations.getTotalPriceWithTax(cart) + "\n");
 		
-/*		//Test text data
-		POSRegister.startTransaction();
-		textArea1.append("\n ");
-		textArea1.append("\n TMNT Action figure   $8.99");
-		textArea1.append("\n TMNT Action figure   $8.99");
-		textArea1.append("\n TMNT Action figure   $8.99");
-		textArea1.append("\n TMNT Action figure   $8.99");
-		textArea1.append("\n TMNT Action figure   $8.99");
-		//End of test text data
-*/		
+		
+		
+		
 		scrollPane1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane1.setLocation(100, 100); 
-		scrollPane1.setSize(175, 375);
+		scrollPane1.setLocation(50, 100); 
+		scrollPane1.setSize(150, 375);
 		
 		scrollPane2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane2.setLocation(175+100, 100); 
+		scrollPane2.setLocation(200, 100); 
 		scrollPane2.setSize(65, 375);
 
 		
