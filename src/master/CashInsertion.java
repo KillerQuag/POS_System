@@ -167,8 +167,12 @@ public class CashInsertion extends JFrame{
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
+<<<<<<< HEAD
 		//String balRem = Double.toString(Calculations.getTotalPrice(cartCopy));
 		//currencyField = new JTextField(balRem);
+=======
+		currencyField = new JTextField("$0.00", 15);
+>>>>>>> ad0923f3dc4ebd29f791d22c1f129ef65d7e57a8
 		//currencyField.setColumns(10); // Change the size of the text field
 		//currencyField.setText("New Text Here"); // Change the initial value of the text field
 		currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
