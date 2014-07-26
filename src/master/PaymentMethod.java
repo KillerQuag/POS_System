@@ -14,7 +14,7 @@ import master.Calculations;
  * should call either MFScanner or CardProcessor to get funds applied.
  * should return amount paid to calling function.
  */
-public abstract class PaymentMethod 
+public class PaymentMethod 
 {
 	double Cash = 0;
 	double Credit = 0;
@@ -22,8 +22,7 @@ public abstract class PaymentMethod
 	double Check = 0;
 	double GiftCard = 0;
 	double TotalPayment;	
-	
-	
+
 	public PaymentMethod()
 	{
 		Cash = 0;
@@ -76,7 +75,6 @@ public abstract class PaymentMethod
 	public double getGiftCard() {
 		return GiftCard;
 	}
-
 
 	public void setGiftCard(double giftCard) {
 		GiftCard += giftCard;

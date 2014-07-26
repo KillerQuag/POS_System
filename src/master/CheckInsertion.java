@@ -16,11 +16,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 //This class simulates the process of inserting a check
-public class CheckInsertion extends Display{
+public class CheckInsertion extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private static CheckInsertion myInstance;
+
+	private Object BufferedImage;
+	public JFrame insertCheckFrame;
 	
 
 	/*public JLabel insertCheckLabel;
@@ -34,7 +37,7 @@ public class CheckInsertion extends Display{
 	
 	public CheckInsertion(){
 		
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
@@ -43,15 +46,17 @@ public class CheckInsertion extends Display{
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
 		
+		
 		BufferedImage myPicture = null;
 		try {
-			myPicture = ImageIO.read(new File("./blankCheck.png"));
+			myPicture = ImageIO.read(new File("c:/BlankCheck.jpg") );
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-		add(picLabel);
+		
+		this.getContentPane().add(picLabel);
 		
 	}
 	
