@@ -2,26 +2,20 @@
  * 
  */
 package master;
-
-import master.CardProcessor;
-import master.MFScanner;
-import master.CashInBunker;
-import master.Calculations;
-
 /**
  * @author Leah
  * UI Element to select payment method
  * should call either MFScanner or CardProcessor to get funds applied.
  * should return amount paid to calling function.
  */
-public abstract class PaymentMethod 
+public class PaymentMethod 
 {
 	double Cash = 0;
 	double Credit = 0;
 	double Coupon = 0;
 	double Check = 0;
 	double GiftCard = 0;
-	double TotalPayment;	
+	double TotalPayment = 0;	
 	
 	
 	public PaymentMethod()
@@ -30,9 +24,9 @@ public abstract class PaymentMethod
 		Credit = 0;
 		Coupon = 0;
 		Check = 0;
-		TotalPayment = 0;
-	}
+		TotalPayment = 0;	
 	
+	}			
 	
 	public double getCash() {
 		return Cash;
@@ -71,7 +65,7 @@ public abstract class PaymentMethod
 	}
 
 	public void setTotalPayment(double totalPayment) {
-		TotalPayment += totalPayment;
+		TotalPayment += totalPayment;		
 	}	
 	public double getGiftCard() {
 		return GiftCard;

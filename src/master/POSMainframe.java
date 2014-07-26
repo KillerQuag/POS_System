@@ -8,6 +8,7 @@ public class POSMainframe
 	public double totalCouponAmount = 0;
 	public double totalCash = 0;
 	public double totalCredit = 0;
+	public double totalGiftCard = 0;
 	
 	//constructor
 	public POSMainframe()
@@ -17,7 +18,17 @@ public class POSMainframe
 		totalCouponAmount = 0;
 		totalCash = 0;
 		totalCredit = 0;
+		totalGiftCard = 0;
+		
+		Main.database.totalTransaction$ = getTotalTransaction$();
+		Main.database.numOfTransactions = getNumOfTransactions();
+		Main.database.totalCouponAmount = getTotalCouponAmount();
+		Main.database.totalCash = getTotalCash();
+		Main.database.totalCredit = getTotalCredit();
+		Main.database.totalGiftCard = getTotalGiftCard();
 	}
+	
+	
 	
 	//functions
 	public double getTotalTransaction$()
@@ -27,7 +38,7 @@ public class POSMainframe
 
 	public void setTotalTransaction$(Cart cart)
 	{
-		this.totalTransaction$ = totalTransaction$ + Calculations.getTotalPrice(cart);
+		this.totalTransaction$ += totalTransaction$;
 	}
 
 	public int getNumOfTransactions() 
@@ -37,7 +48,7 @@ public class POSMainframe
 
 	public void setNumOfTransactions() 
 	{
-		numOfTransactions = numOfTransactions;
+		numOfTransactions += numOfTransactions;
 	}
 
 	public double getTotalCouponAmount() 
@@ -49,10 +60,31 @@ public class POSMainframe
 	{
 		totalCouponAmount = totalCouponAmount + coupon;
 	}
-	
+
 	public double getTotalCash() {
 		return totalCash;
 	}
+
+	public void setTotalCash(double totalCash) {
+		this.totalCash += totalCash;
+	}
+
+	public double getTotalCredit() {
+		return totalCredit;
+	}
+
+	public void setTotalCredit(double totalCredit) {
+		this.totalCredit = totalCredit;
+	}
+
+	public double getTotalGiftCard() {
+		return totalGiftCard;
+	}
+
+	public void setTotalGiftCard(double totalGiftCard) {
+		this.totalGiftCard = totalGiftCard;
+	}	
+	
 
 
 }

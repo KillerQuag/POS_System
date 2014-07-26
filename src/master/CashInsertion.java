@@ -14,6 +14,7 @@ public class CashInsertion extends Display{
 	
 	private static final long serialVersionUID = 1L;
 
+
 	private static CashInsertion myInstance;
 
 	public JLabel insertCashLabel;

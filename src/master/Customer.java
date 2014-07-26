@@ -5,7 +5,7 @@ package master;
 public class Customer {
 	
 	public static Cart myCart;
-	public static double amountPaid = 0.0;
+	public static double amountPaid = 0.0;	
 	
 	public static double getAmountPaid() {
 		return amountPaid;
