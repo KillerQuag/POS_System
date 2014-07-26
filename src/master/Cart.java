@@ -16,7 +16,6 @@ public class Cart {
 	static final int numItemsInCart = rdm.nextInt(maxItemsInCart) + 1;
 	static Items[] items = new Items[numItemsInCart];
 	
-	
 	public Items[] getItems() {
 		return items;
 	}
@@ -30,7 +29,7 @@ public class Cart {
 		return items[index];
 	}
 	public boolean hasItems(){
-		return numItemsInCart > 0;
+		return (items[0].getUID() != -1);
 	}
 	
 	
