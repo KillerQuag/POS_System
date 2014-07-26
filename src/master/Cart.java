@@ -21,6 +21,7 @@ public class Cart {
 	static double myTotalPrice = 0.0;
 	static double myTaxTotal  = 0.0;
 	static double myTax = 0.0;
+	static double myRemBal = 0.0;
 	
 	public Items[] getItems() {
 		return items;

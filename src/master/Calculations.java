@@ -58,7 +58,7 @@ public class Calculations {
 	static double getTotalPriceWithTax(Cart cart){
 		return round(getTotalPrice(cart) + getTax(cart), 2);
 	}
-
+	
 	static Cart SortCart(Cart cart){
 		int i, j, minIndex;
 		Items tmp;

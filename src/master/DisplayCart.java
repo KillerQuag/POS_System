@@ -47,12 +47,12 @@ public class DisplayCart extends Display {
 		textArea2.setWrapStyleWord(true); */
 		//textArea2.setLocation(100, 100); 
 		textArea2.setSize(275, 105);
-		/*textArea2.setEditable(false);
-		textArea2.append("\n  --------\n");*/
-		for (int i = 0; i < cart.getNumItemsInCart(); i++){
-			textArea2.setText("$");
-			textArea2.setText(Double.toString(cart.items[i].getPrice()));
-			textArea2.setText("\n ");
+		textArea2.setEditable(false);
+		textArea2.append("\n  --------\n");
+		for(int i = 0; i < cart.getNumItemsInCart(); i++){
+			textArea2.append("$");
+			textArea2.append(Double.toString(cart.items[i].getPrice()));
+			textArea2.append("\n ");
 		}
 
 		textArea2.append("--------\n");

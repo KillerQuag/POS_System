@@ -19,7 +19,8 @@ public class CashInsertion extends Display{
 	public JLabel insertCashLabel;
 	public JButton returnToPayMethods;
 	public JFrame insertCashFrame;
-	public static JLabel remainingBalance;
+	public static JLabel amtPaid;
+	public static JLabel amtRemaining;
 	//cash buttons
 	public static JButton hundredButton;
 	public static JButton fiftyButton;
@@ -33,7 +34,8 @@ public class CashInsertion extends Display{
 	public static JButton nickelButton;
 	public static JButton pennyButton;
 	
-	public static JTextField currencyField;
+	public static JTextField amtPaidText;
+	public static JTextField amtDueText;
 	
 	public CashInsertion(){
 		
@@ -156,87 +158,101 @@ public class CashInsertion extends Display{
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
-
-		//String balRem = Double.toString(Calculations.getTotalPrice(cartCopy));
-		//currencyField = new JTextField(balRem);
 		Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
-		double leftToPay = thisOne.myCart.myTaxTotal - thisOne.amountPaid;
+		//double leftToPay = Cart.myTaxTotal - Customer.amountPaid;
+		
 		this.remove(welcomeLabel);
 		this.remove(startTransactionButton);
 		
-		currencyField = new JTextField("$" + Double.toString(leftToPay ), 15);
-
+		double printAmt = Customer.getAmountPaid();
+		amtPaidText = new JTextField("$" + Double.toString(printAmt ), 15);
+		
 
 		//currencyField.setColumns(10); // Change the size of the text field
 		//currencyField.setText("New Text Here"); // Change the initial value of the text field
-		currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
-		currencyField.setHorizontalAlignment(JLabel.CENTER);
-		currencyField.setLocation(315, 400);
-		currencyField.setSize(200, 25);
+		amtPaidText.setToolTipText("Amount paid"); // Change the tool tip for the text field
+		amtPaidText.setHorizontalAlignment(JLabel.CENTER);
+		amtPaidText.setLocation(300, 370);
+		amtPaidText.setSize(200, 25);
 		//currencyField.setEditable(false);
-		insertCashFrame.getContentPane().add(currencyField);
+		insertCashFrame.getContentPane().add(amtPaidText);
 		
-		remainingBalance = new JLabel("<html>Remaining Balance:<html>");
-		remainingBalance.setFont(new Font("Ariel", Font.PLAIN, 12));
-		remainingBalance.setLocation(355, 325);
-		remainingBalance.setSize(400,100);
-		this.getContentPane().add(remainingBalance);
+		amtPaid = new JLabel("<html>Amount Paid:<html>");
+		amtPaid.setFont(new Font("Ariel", Font.PLAIN, 12));
+		amtPaid.setLocation(355, 300);
+		amtPaid.setSize(400,100);
+		this.getContentPane().add(amtPaid);
+		
+		amtRemaining = new JLabel("<html>Balance Remaining:<html>");
+		amtRemaining.setFont(new Font("Ariel", Font.PLAIN, 12));
+		amtRemaining.setLocation(345, 375);
+		amtRemaining.setSize(400,100);
+		this.getContentPane().add(amtRemaining);
+		
+		
+		amtDueText = new JTextField("$" + Double.toString(Cart.myTaxTotal), 15);
+		
+		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
+		amtDueText.setHorizontalAlignment(JLabel.CENTER);
+		amtDueText.setLocation(300, 450);
+		amtDueText.setSize(200, 25);
+		//currencyField.setEditable(false);
+		insertCashFrame.getContentPane().add(amtDueText);
 	
-		
-		
 	}
 
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+			String totalAmountPaid = Double.toString(customer.getAmountPaid());
 			if(e.getSource() == returnToPayMethods) {
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
-				currencyField.setText("$100.00");
+				
 				customer.setAmountPaid(100.00);
-				System.out.println( customer.getAmountPaid() );
-				
-				//Redraw the current CashInsertion window here.
-				
+				System.out.println( customer.getAmountPaid() );	
 			}
 			else if(e.getSource() == fiftyButton) {
-				//send amount to calculations
+				customer.setAmountPaid(50.00);
 				
 			}
 			else if(e.getSource() == twentyButton) {
-				//send amount to calculations
+				customer.setAmountPaid(20.00);
 				
 			}
 			else if(e.getSource() == tenButton) {
-				//send amount to calculations
+				customer.setAmountPaid(10.00);
 				
 			}
 			else if(e.getSource() == fiveButton) {
-				//send amount to calculations
+				customer.setAmountPaid(5.00);
 				
 			}
 			else if(e.getSource() == oneButton) {
-				//send amount to calculations
+				customer.setAmountPaid(1.00);
 				
 			}
 			else if(e.getSource() == quarterButton) {
-				//send amount to calculations
+				customer.setAmountPaid(0.25);
 				
 			}
 			else if(e.getSource() == dimeButton) {
-				//send amount to calculations
+				customer.setAmountPaid(00.10);
 				
 			}
 			else if(e.getSource() == nickelButton) {
-				//send amount to calculations
+				customer.setAmountPaid(00.05);
 				
 			}
 			else if(e.getSource() == pennyButton) {
-				//send amount to calculations
+				customer.setAmountPaid(0.01);
 				
 			}
+			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+			amtPaidText.setText(Double.toString(customer.amountPaid));
+			amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
 		}
 	}
 	
