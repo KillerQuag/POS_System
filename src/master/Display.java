@@ -46,6 +46,8 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton jButton8; 
 	public static JButton jButton9;
 	public static JButton jButton0; 
+	
+	public static JButton altPaymentMethodButton;
 
 	
 	///TEMPORARY//
@@ -65,6 +67,8 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel debitLabel;
 	public static JLabel creditLabel;
 	public static JLabel giftLabel;
+	public static JLabel transactionDeniedLabel;
+	public static JLabel transactionApprovedLabel;
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
@@ -191,7 +195,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton) {
+			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton) {
 				
 				//Clears proper labels and buttons
 				if(e.getSource() == noButton) {				
@@ -201,6 +205,9 @@ public class Display extends JFrame {//extends POSRegister {
 				} else if(e.getSource() == proceedToCOButton) {					
 					Main.mainWindow.remove(insertCouponLabel);
 					Main.mainWindow.remove(proceedToCOButton);
+				} else if(e.getSource() == altPaymentMethodButton) {
+					Main.mainWindow.remove(transactionDeniedLabel);
+					Main.mainWindow.remove(altPaymentMethodButton);
 				}
 				
 				
@@ -211,21 +218,21 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				//cashButton
 				cashButton = new JButton("Cash");
-				cashButton.setLocation(500, 175);
+				cashButton.setLocation(515, 175);
 				cashButton.setSize(100, 75);
 				ListenForButton lForCashButton = new ListenForButton(); //Making object from within the object's class may be bad
 				cashButton.addActionListener(lForCashButton);
 				
 				//checkButton
 				checkButton = new JButton("Check");
-				checkButton.setLocation(500, 175+75+10);
+				checkButton.setLocation(515, 175+75+10);
 				checkButton.setSize(100, 75);
 				ListenForButton lForCheckButton = new ListenForButton(); //Making object from within the object's class may be bad
 				checkButton.addActionListener(lForCheckButton);
 				
 				//creditDebitButton
 				creditDebitButton = new JButton("Credit/Debit");
-				creditDebitButton.setLocation(500, 345);
+				creditDebitButton.setLocation(515, 345);
 				creditDebitButton.setSize(100, 75);
 				ListenForButton lForCreditDebitButton = new ListenForButton(); //Making object from within the object's class may be bad
 				creditDebitButton.addActionListener(lForCreditDebitButton);
@@ -330,7 +337,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == creditDebitButton) {
 				
-				slideCardLabel = new JLabel("<html>Please slide your card<br> through the card reader<br> and follow the instructions<html>");
+				slideCardLabel = new JLabel("<html><div style=\"text-align: center;\">Please slide your card <br> through the card reader<br> and follow the instructions<html>");
 				slideCardLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				slideCardLabel.setLocation(450, 50);
 				slideCardLabel.setSize(400, 150);
@@ -354,7 +361,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == cashInsertComplete) {
 				
-				changeDueLabel = new JLabel("<html>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
+				changeDueLabel = new JLabel("<html><div style=\"text-align: center;\">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
 				changeDueLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				changeDueLabel.setLocation(450, 50);
 				changeDueLabel.setSize(400, 150);
@@ -379,7 +386,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == checkInsertComplete) {
 				
-				checkCompleteLabel = new JLabel("<html>&#160;&#160;&#160;&#160;Transaction completed. <br> Thank you for your business!<html>");
+				checkCompleteLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> Thank you for your business!<html>");
 				checkCompleteLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				checkCompleteLabel.setLocation(450, 50);
 				checkCompleteLabel.setSize(400, 150);
@@ -397,8 +404,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == CardSwipe.debitButton) { //From CardSwipe class
 				
-				debitLabel = new JLabel("<html>Please enter your pin number <br>"
-											+ " &#160;&#160;&#160; followed by the enter key<html>");
+				debitLabel = new JLabel("<html><div style=\"text-align: center;\">Please enter your pin number <br> followed by the enter key<html>");
 				debitLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				debitLabel.setLocation(450, 50);
 				debitLabel.setSize(400, 150);
@@ -498,7 +504,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == CardSwipe.creditButton) { //From CardSwipe class
 				
-				creditLabel = new JLabel("<html>Please provide signature <br> &#160;&#160;&#160;&#160;&#160;&#160;&#160; for transaction <html>");
+				creditLabel = new JLabel("<html><div style=\"text-align: center;\">Please provide signature <br> for transaction <html>");
 				creditLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				creditLabel.setLocation(450, 50);
 				creditLabel.setSize(400, 150);
@@ -536,7 +542,7 @@ public class Display extends JFrame {//extends POSRegister {
 			} else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
 				
 				//If ( giftCardAmt >= totalCost ) == true
-				giftLabel = new JLabel("<html>Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
+				giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
 				giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				giftLabel.setLocation(450, 50);
 				giftLabel.setSize(400, 150);
@@ -559,18 +565,78 @@ public class Display extends JFrame {//extends POSRegister {
 			}  else if(e.getSource() == enterButton2) { //For debit
 				
 				//Submit data from field
-				String password;
-				password = passwordField.getText();
-				//password[password.length()];
-				String[] strArray = new String[] {password};
-				System.out.println(strArray[0]);
+				String password = passwordField.getText();
 				
-				/*
-				String strName = "name";
-				String[] strArray = new String[] {strName};
-				System.out.println(strArray[0]); //prints "name"   
-				 */
+				char[] charArray = password.toCharArray();
 				
+				
+				//Below is the Wigmore function
+				if(charArray[password.length()-1] == '0') {
+					
+					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
+					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					transactionDeniedLabel.setLocation(450, 50);
+					transactionDeniedLabel.setSize(400, 150);
+					
+					
+					altPaymentMethodButton = new JButton("Ok");
+					altPaymentMethodButton.setLocation(515, 175+75+10);
+					altPaymentMethodButton.setSize(100, 75);
+					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
+					altPaymentMethodButton.addActionListener(lForAltButton);
+					
+					
+					Main.mainWindow.remove(debitLabel);
+					Main.mainWindow.remove(passwordField);
+					Main.mainWindow.remove(enterButton2);
+					Main.mainWindow.remove(clearButton2);
+					Main.mainWindow.remove(jButton0);
+					Main.mainWindow.remove(jButton1);
+					Main.mainWindow.remove(jButton2);
+					Main.mainWindow.remove(jButton3);
+					Main.mainWindow.remove(jButton4);
+					Main.mainWindow.remove(jButton5);
+					Main.mainWindow.remove(jButton6);
+					Main.mainWindow.remove(jButton7);
+					Main.mainWindow.remove(jButton8);
+					Main.mainWindow.remove(jButton9);
+					
+					Main.mainWindow.getContentPane().add(transactionDeniedLabel);
+					Main.mainWindow.getContentPane().add(altPaymentMethodButton);
+					
+					Main.mainWindow.repaint();
+					
+				} else {
+					
+					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
+					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					transactionApprovedLabel.setLocation(450, 50);
+					transactionApprovedLabel.setSize(400, 150);
+					
+					Main.mainWindow.remove(debitLabel);
+					Main.mainWindow.remove(passwordField);
+					Main.mainWindow.remove(enterButton2);
+					Main.mainWindow.remove(clearButton2);
+					Main.mainWindow.remove(jButton0);
+					Main.mainWindow.remove(jButton1);
+					Main.mainWindow.remove(jButton2);
+					Main.mainWindow.remove(jButton3);
+					Main.mainWindow.remove(jButton4);
+					Main.mainWindow.remove(jButton5);
+					Main.mainWindow.remove(jButton6);
+					Main.mainWindow.remove(jButton7);
+					Main.mainWindow.remove(jButton8);
+					Main.mainWindow.remove(jButton9);
+					
+					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
+					
+					Main.mainWindow.repaint();
+					
+				}
+				
+				
+				System.out.println(charArray[password.length()-1]);
+				System.out.println(password);
 				
 			} else if(e.getSource() == clearButton2) {
 				

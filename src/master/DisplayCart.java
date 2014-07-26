@@ -75,17 +75,17 @@ public class DisplayCart extends Display {
 		
 		couponLabel = new JLabel("Do you have any coupons?");
 		couponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-		couponLabel.setLocation(410, 50);
+		couponLabel.setLocation(450, 50);
 		couponLabel.setSize(400, 150);
 		
 		yesButton = new JButton("Yes");
-		yesButton.setLocation(410, 225);
+		yesButton.setLocation(450, 225);
 		yesButton.setSize(100, 50);
 		ListenForButton lForYesButton = new ListenForButton(); //Making object from within the object's class may be bad
 		yesButton.addActionListener(lForYesButton);
 		
 		noButton = new JButton("No");
-		noButton.setLocation(520, 225);
+		noButton.setLocation(560, 225);
 		noButton.setSize(100, 50);
 		ListenForButton lForNoButton = new ListenForButton(); //Making object from within the object's class may be bad
 		noButton.addActionListener(lForNoButton);
