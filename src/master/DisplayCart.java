@@ -62,12 +62,12 @@ public class DisplayCart extends Display {
 		
 		
 		scrollPane1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane1.setLocation(50, 100); 
-		scrollPane1.setSize(150, 375);
+		scrollPane1.setLocation(100, 100); 
+		scrollPane1.setSize(175, 375);
 		
 		scrollPane2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane2.setLocation(200, 100); 
-		scrollPane2.setSize(65, 375);
+		scrollPane2.setLocation(275, 100); 
+		scrollPane2.setSize(75, 375);
 
 		
 		
