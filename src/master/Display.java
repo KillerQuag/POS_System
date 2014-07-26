@@ -19,7 +19,7 @@ public class Display extends JFrame {//extends POSRegister {
 	// and, no, I don't understand how to use this.
 	private static final long serialVersionUID = 1L; //Ignore
 	public ListenForButton lForButton;
-	static CardSwipe cardSwipeWindow;
+	public CardSwipe cardSwipeWindow;
 	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
@@ -31,6 +31,22 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton checkButton;
 	public static JButton creditDebitButton;
 	public static JButton helpButton;
+	public static JButton enterButton1;
+	public static JButton clearButton1;
+	public static JButton enterButton2;
+	public static JButton clearButton2;
+	
+	public static JButton jButton1; 
+	public static JButton jButton2; 
+	public static JButton jButton3; 
+	public static JButton jButton4; 
+	public static JButton jButton5; 
+	public static JButton jButton6; 
+	public static JButton jButton7; 
+	public static JButton jButton8; 
+	public static JButton jButton9;
+	public static JButton jButton0; 
+
 	
 	///TEMPORARY//
 	public static JButton cashInsertComplete;
@@ -59,6 +75,9 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	public static JTextField currencyField;
 	public static JTextField changeDueField;
+	public static JTextField signatureField;
+	
+	public static JPasswordField passwordField;
 	
 	
 	/*public static void main(String[] a) { 	//Will want to remove this main() and 
@@ -74,6 +93,8 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
+		
+		
 		
 		
 		/*//This group is an alternate method to center frame in middle of screen
@@ -119,11 +140,10 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	//Implement Listeners
 	static class ListenForButton implements ActionListener {
+		@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == startTransactionButton) {
 				
-				Main.mainWindow.remove(startTransactionButton);
-				Main.mainWindow.remove(welcomeLabel);
 				Main.StartTrans();
 				/*mainWindow.remove(startTransaction);
 				mainWindow.remove(welcomeLabel);
@@ -261,7 +281,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
-								
+				
 				Main.mainWindow.getContentPane().add(insertCashLabel);//removed because it screwed things up ~wigmore
 				Main.mainWindow.getContentPane().add(currencyField);
 				
@@ -361,7 +381,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				checkCompleteLabel = new JLabel("<html>&#160;&#160;&#160;&#160;Transaction completed. <br> Thank you for your business!<html>");
 				checkCompleteLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				checkCompleteLabel.setLocation(400, 150);
+				checkCompleteLabel.setLocation(450, 50);
 				checkCompleteLabel.setSize(400, 150);
 				
 				
@@ -377,11 +397,98 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == CardSwipe.debitButton) { //From CardSwipe class
 				
-				debitLabel = new JLabel("<html>Please enter your pin number followed by the enter key<html>");
+				debitLabel = new JLabel("<html>Please enter your pin number <br>"
+											+ " &#160;&#160;&#160; followed by the enter key<html>");
 				debitLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				debitLabel.setLocation(400, 150);
+				debitLabel.setLocation(450, 50);
 				debitLabel.setSize(400, 150);
 				
+				passwordField = new JPasswordField();
+				passwordField.setLocation(450, 200);
+				passwordField.setSize(225, 25);
+				passwordField.setHorizontalAlignment(JTextField.RIGHT);
+				
+				//in EnterButton listener 
+				//passwordField.getPassword();
+				//char[] mander;
+				
+				enterButton2 = new JButton("Enter");
+				enterButton2.setLocation(600, 250);
+				enterButton2.setSize(75, 50);
+				ListenForButton lForEnterButton = new ListenForButton(); //Making object from within the object's class may be bad
+				enterButton2.addActionListener(lForEnterButton);
+				
+				clearButton2 = new JButton("Clear");
+				clearButton2.setLocation(600, 300);
+				clearButton2.setSize(75, 50);
+				ListenForButton lForClearButton = new ListenForButton(); //Making object from within the object's class may be bad
+				clearButton2.addActionListener(lForClearButton);
+				
+				
+				jButton0 = new JButton("0");
+				jButton1 = new JButton("1"); 
+				jButton2 = new JButton("2"); 
+				jButton3 = new JButton("3"); 
+				jButton4 = new JButton("4"); 
+				jButton5 = new JButton("5"); 
+				jButton6 = new JButton("6"); 
+				jButton7 = new JButton("7"); 
+				jButton8 = new JButton("8"); 
+				jButton9 = new JButton("9");
+				 
+				
+				jButton0.setLocation(550+50, 400-50);
+				jButton1.setLocation(400+50, 400-50);
+				jButton2.setLocation(450+50, 400-50);
+				jButton3.setLocation(500+50, 400-50);
+				jButton4.setLocation(400+50, 350-50);
+				jButton5.setLocation(450+50, 350-50);
+				jButton6.setLocation(500+50, 350-50);
+				jButton7.setLocation(400+50, 300-50);
+				jButton8.setLocation(450+50, 300-50);
+				jButton9.setLocation(500+50, 300-50);
+				
+				
+				jButton0.setSize(75, 50);
+				jButton1.setSize(50, 50);
+				jButton2.setSize(50, 50);
+				jButton3.setSize(50, 50);
+				jButton4.setSize(50, 50);
+				jButton5.setSize(50, 50);
+				jButton6.setSize(50, 50);
+				jButton7.setSize(50, 50);
+				jButton8.setSize(50, 50);
+				jButton9.setSize(50, 50);
+				
+				
+				ListenForButton lForNumberButton = new ListenForButton(); //Making object from within the object's class may be bad
+				jButton0.addActionListener(lForNumberButton);
+				jButton1.addActionListener(lForNumberButton);
+				jButton2.addActionListener(lForNumberButton);
+				jButton3.addActionListener(lForNumberButton);
+				jButton4.addActionListener(lForNumberButton);
+				jButton5.addActionListener(lForNumberButton);
+				jButton6.addActionListener(lForNumberButton);
+				jButton7.addActionListener(lForNumberButton);
+				jButton8.addActionListener(lForNumberButton);
+				jButton9.addActionListener(lForNumberButton);
+				
+				
+				Main.mainWindow.getContentPane().add(jButton0);
+				Main.mainWindow.getContentPane().add(jButton1);
+				Main.mainWindow.getContentPane().add(jButton2);
+				Main.mainWindow.getContentPane().add(jButton3);
+				Main.mainWindow.getContentPane().add(jButton4);
+				Main.mainWindow.getContentPane().add(jButton5);
+				Main.mainWindow.getContentPane().add(jButton6);
+				Main.mainWindow.getContentPane().add(jButton7);
+				Main.mainWindow.getContentPane().add(jButton8);
+				Main.mainWindow.getContentPane().add(jButton9);
+				
+				
+				Main.mainWindow.getContentPane().add(passwordField);
+				Main.mainWindow.getContentPane().add(enterButton2);
+				Main.mainWindow.getContentPane().add(clearButton2);
 				Main.mainWindow.getContentPane().add(debitLabel);
 				Main.mainWindow.remove(slideCardLabel);
 				
@@ -391,11 +498,34 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == CardSwipe.creditButton) { //From CardSwipe class
 				
-				creditLabel = new JLabel("<html>Please provide signature for transaction<html>");
+				creditLabel = new JLabel("<html>Please provide signature <br> &#160;&#160;&#160;&#160;&#160;&#160;&#160; for transaction <html>");
 				creditLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				creditLabel.setLocation(400, 150);
+				creditLabel.setLocation(450, 50);
 				creditLabel.setSize(400, 150);
 				
+				
+				signatureField = new JTextField("Write your signature here", 15);
+				//currencyField.setColumns(10); // Change the size of the text field
+				//currencyField.setText("New Text Here"); // Change the initial value of the text field
+				signatureField.setToolTipText("Use your finger or the stylus"); // Change the tool tip for the text field
+				signatureField.setLocation(450, 200);
+				signatureField.setSize(200, 40);
+				
+				
+				
+				enterButton1 = new JButton("Enter");
+				enterButton1.setLocation(450, 300);
+				enterButton1.setSize(75, 50);
+				
+				clearButton1 = new JButton("Clear");
+				clearButton1.setLocation(575, 300);
+				clearButton1.setSize(75, 50);
+				ListenForButton lForClearButton = new ListenForButton(); //Making object from within the object's class may be bad
+				clearButton1.addActionListener(lForClearButton);
+				
+				Main.mainWindow.getContentPane().add(enterButton1);
+				Main.mainWindow.getContentPane().add(clearButton1);
+				Main.mainWindow.getContentPane().add(signatureField);
 				Main.mainWindow.getContentPane().add(creditLabel);
 				Main.mainWindow.remove(slideCardLabel);
 				
@@ -404,12 +534,11 @@ public class Display extends JFrame {//extends POSRegister {
 				System.out.println("credit button pressed");
 				
 			} else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
-
 				
 				//If ( giftCardAmt >= totalCost ) == true
-				giftLabel = new JLabel("<html>Transaction completed. <br> The remaining balance on your gift card is: <html>");
+				giftLabel = new JLabel("<html>Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
 				giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				giftLabel.setLocation(400, 150);
+				giftLabel.setLocation(450, 50);
 				giftLabel.setSize(400, 150);
 				
 				Main.mainWindow.getContentPane().add(giftLabel);
@@ -419,8 +548,57 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				System.out.println("Gift button pressed");
 				
-			}
+			} else if(e.getSource() == enterButton1) { //For credit
+				
+				//Submit data from field
+				
+			} else if(e.getSource() == clearButton1) {
+				
+				signatureField.setText(" ");
+				
+			}  else if(e.getSource() == enterButton2) { //For debit
+				
+				//Submit data from field
+				String password;
+				password = passwordField.getText();
+				//password[password.length()];
+				String[] strArray = new String[] {password};
+				System.out.println(strArray[0]);
+				
+				/*
+				String strName = "name";
+				String[] strArray = new String[] {strName};
+				System.out.println(strArray[0]); //prints "name"   
+				 */
+				
+				
+			} else if(e.getSource() == clearButton2) {
+				
+				passwordField.setText("");
+				
+			} else if(e.getSource() == jButton0) {
+				passwordField.setText(passwordField.getText() + '0');
+			} else if(e.getSource() == jButton1) {
+				passwordField.setText(passwordField.getText() + '1');
+			} else if(e.getSource() == jButton2) {
+				passwordField.setText(passwordField.getText() + '2');
+			} else if(e.getSource() == jButton3) {
+				passwordField.setText(passwordField.getText() + '3');
+			} else if(e.getSource() == jButton4) {
+				passwordField.setText(passwordField.getText() + '4');
+			} else if(e.getSource() == jButton5) {
+				passwordField.setText(passwordField.getText() + '5');
+			} else if(e.getSource() == jButton6) {
+				passwordField.setText(passwordField.getText() + '6');
+			} else if(e.getSource() == jButton7) {
+				passwordField.setText(passwordField.getText() + '7');
+			} else if(e.getSource() == jButton8) {
+				passwordField.setText(passwordField.getText() + '8');
+			} else if(e.getSource() == jButton9) {
+				passwordField.setText(passwordField.getText() + '9');
+			} 
 		}// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
 	
-}
+	
+} //End of Display class
