@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //This class simulates the process of inserting cash
-public class CashInsertion extends JFrame{
+public class CashInsertion extends Display{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -36,9 +36,9 @@ public class CashInsertion extends JFrame{
 	public static JTextField currencyField;
 	
 	public CashInsertion(){
+		
+		//this.removeAll();  Pristine whiteness delivered.		
 
-		CartStorage cs = new CartStorage();
-				
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
@@ -47,6 +47,7 @@ public class CashInsertion extends JFrame{
 		this.setResizable(false);
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
+		
 		
 		insertCashLabel = new JLabel("<html>Please insert cash now.<html>");//possibly add a return to payment methods option once this works
 		insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -156,7 +157,15 @@ public class CashInsertion extends JFrame{
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
 
-		currencyField = new JTextField("$0.00", 15);
+		//String balRem = Double.toString(Calculations.getTotalPrice(cartCopy));
+		//currencyField = new JTextField(balRem);
+		Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
+		double leftToPay = thisOne.myCart.myTaxTotal - thisOne.amountPaid;
+		this.remove(welcomeLabel);
+		this.remove(startTransactionButton);
+		
+		currencyField = new JTextField("$" + Double.toString(leftToPay ), 15);
+
 
 		//currencyField.setColumns(10); // Change the size of the text field
 		//currencyField.setText("New Text Here"); // Change the initial value of the text field
@@ -172,16 +181,24 @@ public class CashInsertion extends JFrame{
 		remainingBalance.setLocation(355, 325);
 		remainingBalance.setSize(400,100);
 		this.getContentPane().add(remainingBalance);
+	
+		
+		
 	}
 
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			if(e.getSource() == returnToPayMethods) {
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
 				currencyField.setText("$100.00");
+				customer.setAmountPaid(100.00);
+				System.out.println( customer.getAmountPaid() );
+				
+				//Redraw the current CashInsertion window here.
 				
 			}
 			else if(e.getSource() == fiftyButton) {

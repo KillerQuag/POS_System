@@ -52,7 +52,7 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
-	public static JLabel textArea2;
+	public static JTextArea textArea2;
 	//public static JTable textTable1;
 	public static JScrollPane scrollPane1;
 	public static JScrollPane scrollPane2;
@@ -122,6 +122,8 @@ public class Display extends JFrame {//extends POSRegister {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == startTransactionButton) {
 				
+				Main.mainWindow.remove(startTransactionButton);
+				Main.mainWindow.remove(welcomeLabel);
 				Main.StartTrans();
 				/*mainWindow.remove(startTransaction);
 				mainWindow.remove(welcomeLabel);
@@ -259,7 +261,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
-				
+								
 				Main.mainWindow.getContentPane().add(insertCashLabel);//removed because it screwed things up ~wigmore
 				Main.mainWindow.getContentPane().add(currencyField);
 				
