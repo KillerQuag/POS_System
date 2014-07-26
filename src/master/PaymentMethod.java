@@ -16,14 +16,13 @@ import master.Calculations;
  */
 public abstract class PaymentMethod 
 {
-	
 	double Cash = 0;
 	double Credit = 0;
 	double Coupon = 0;
 	double Check = 0;
-	double totalPayment;
+	double GiftCard = 0;
+	double TotalPayment;	
 	
-	//random comment
 	
 	public PaymentMethod()
 	{
@@ -31,15 +30,56 @@ public abstract class PaymentMethod
 		Credit = 0;
 		Coupon = 0;
 		Check = 0;
-		totalPayment = 0;
+		TotalPayment = 0;
 	}
 	
-	double setTotalPayment()
-	{
-		//Garbage return need to fix
-		
-		return 0;
-	}
 	
+	public double getCash() {
+		return Cash;
+	}
+
+	public void setCash(double cash) {
+		Cash += cash;
+	}
+
+	public double getCredit() {
+		return Credit;
+	}
+
+	public void setCredit(double credit) {
+		Credit += credit;
+	}
+
+	public double getCoupon() {
+		return Coupon;
+	}
+
+	public void setCoupon(double coupon) {
+		Coupon += coupon;
+	}
+
+	public double getCheck() {
+		return Check;
+	}
+
+	public void setCheck(double check) {
+		Check += check;
+	}
+
+	public double getTotalPayment() {
+		return TotalPayment;
+	}
+
+	public void setTotalPayment(double totalPayment) {
+		TotalPayment += totalPayment;
+	}	
+	public double getGiftCard() {
+		return GiftCard;
+	}
+
+
+	public void setGiftCard(double giftCard) {
+		GiftCard += giftCard;
+	}
 	
 }
