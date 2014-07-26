@@ -293,7 +293,7 @@ public class Display extends JFrame {//extends POSRegister {
 				//TODO We will need another window to pop up separately for cash insertion
 				//CheckInsertion checkInsertionWindow = new CheckInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
-				
+				CheckInsertion.getInstance();
 				insertCheckLabel = new JLabel("<html>Please insert check now<html>");
 				insertCheckLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCheckLabel.setLocation(450, 50);
