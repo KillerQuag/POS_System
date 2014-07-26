@@ -3,7 +3,7 @@ package master;
 
 //import java.util.EmptyStackException;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
+//import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 import master.productDatabase;
 import master.Scale;
@@ -59,7 +59,7 @@ public class Calculations {
 		return round(getTotalPrice(cart) + getTax(cart), 2);
 	}
 
-	static void SortCart(Cart cart){
+	static Cart SortCart(Cart cart){
 		int i, j, minIndex;
 		Items tmp;
 	      int n = cart.items.length;
@@ -74,6 +74,7 @@ public class Calculations {
 	                  cart.items[minIndex] = tmp;
 	            }
 	      }
+	      return cart;
 	}
 	
 }

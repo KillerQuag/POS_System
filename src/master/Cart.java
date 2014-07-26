@@ -15,6 +15,11 @@ public class Cart {
 	static Random rdm = new Random();
 	static final int numItemsInCart = rdm.nextInt(maxItemsInCart) + 1;
 	static Items[] items = new Items[numItemsInCart];
+	static double myPrice = 0.0;
+	static double myWeight = 0.0;
+	static double myTotalPrice = 0.0;
+	static double myTaxTotal  = 0.0;
+	static double myTax = 0.0;
 	
 	public Items[] getItems() {
 		return items;

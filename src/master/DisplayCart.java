@@ -17,6 +17,8 @@ public class DisplayCart extends Display {
 	private static final long serialVersionUID = 1L;
 
 	static void display(Cart cart) {
+		
+		Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 		//WILL USE A GETTER TO LOAD THE TRANSACTION WINDOW (SET EQUAL TO BELOW VARIABLE)
 		//******************************************************************************
 	
@@ -53,8 +55,8 @@ public class DisplayCart extends Display {
 			textArea2.append("\n ");
 		}
 		textArea2.append("--------\n");
-		textArea2.append("$" + Calculations.getTax(cart) + "\n");
-		textArea2.append("$" + Calculations.getTotalPriceWithTax(cart) + "\n");
+		textArea2.append("$" + customer.myCart.myTax + "\n");
+		textArea2.append("$" + customer.myCart.myTaxTotal + "\n");
 		
 		
 		
