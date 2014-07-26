@@ -110,9 +110,9 @@ public class CardSwipe extends JFrame
 			{
 				//full payment be made with the card?
 				//ActionEvent debitPress = null;
-				//debitPress.setSource(debitButton);				
-				Main.mainWindow.lForButton.actionPerformed(e);				
-				cardSwipeWindow.dispose();			
+				//debitPress.setSource(debitButton);
+				Main.mainWindow.lForButton.actionPerformed(e);
+				cardSwipeWindow.dispose();
 				
 			}
 			else if(e.getSource() == creditButton )
