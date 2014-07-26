@@ -16,8 +16,7 @@ public class PaymentMethod
 	double Check = 0;
 	double GiftCard = 0;
 	double TotalPayment = 0;	
-	
-	
+
 	public PaymentMethod()
 	{
 		Cash = 0;
@@ -70,7 +69,6 @@ public class PaymentMethod
 	public double getGiftCard() {
 		return GiftCard;
 	}
-
 
 	public void setGiftCard(double giftCard) {
 		GiftCard += giftCard;
