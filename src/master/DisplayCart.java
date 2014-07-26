@@ -39,22 +39,22 @@ public class DisplayCart extends Display {
 		textArea1.append("Sales Tax:" + "\n");
 		textArea1.append("Total Price: " + "\n");
 		
-		textArea2 = new JTextArea(15, 20); // Set the default text for the text area
+		textArea2 = new JLabel(); // Set the default text for the text area
 		textArea2.setText("   Price"); // If text doesn't fit on a line, jump to the next
-		textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
-		textArea2.setWrapStyleWord(true); 
+		/*textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
+		textArea2.setWrapStyleWord(true); */
 		//textArea2.setLocation(100, 100); 
 		textArea2.setSize(275, 105);
-		textArea2.setEditable(false);
-		textArea2.append("\n  --------\n");
+		/*textArea2.setEditable(false);
+		textArea2.append("\n  --------\n");*/
 		for (int i = 0; i < cart.getNumItemsInCart(); i++){
-			textArea2.append("$");
-			textArea2.append(Double.toString(cart.items[i].getPrice()));
-			textArea2.append("\n ");
+			textArea2.setText("$");
+			textArea2.setText(Double.toString(cart.items[i].getPrice()));
+			textArea2.setText("\n ");
 		}
-		textArea2.append("--------\n");
+		/*textArea2.append("--------\n");
 		textArea2.append("$" + Calculations.getTax(cart) + "\n");
-		textArea2.append("$" + Calculations.getTotalPriceWithTax(cart) + "\n");
+		textArea2.append("$" + Calculations.getTotalPriceWithTax(cart) + "\n");*/
 		
 		
 		

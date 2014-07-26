@@ -52,7 +52,7 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
-	public static JTextArea textArea2;
+	public static JLabel textArea2;
 	//public static JTable textTable1;
 	public static JScrollPane scrollPane1;
 	public static JScrollPane scrollPane2;

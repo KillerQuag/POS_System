@@ -18,11 +18,6 @@ public class Main extends Display {
 	 */
 	static Display mainWindow; 
 	
-	
-	
-	
-	
-	
 	public static void main(String[] args) {
 		// TODO Commented out the stuff below, not sure what is the most current
 		// iteration of the code, I think Matt has the answer.
@@ -35,8 +30,7 @@ public class Main extends Display {
 		Cart cart = new Cart();
 		cart = ProductScanner.populateCart(cart);
 		Calculations.SortCart(cart);
-	//	CartStorage cs = new CartStorage();
-	//	cs.save(cart);
+		
 		DisplayCart.display(cart);
 		//Display.startTransactionButton.remove(mainWindow);
 		mainWindow.remove(startTransactionButton);

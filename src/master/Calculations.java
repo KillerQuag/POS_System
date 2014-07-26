@@ -36,8 +36,8 @@ public class Calculations {
 	 
 	static double getTotalPrice(Cart cart){
 		double totalCost = 0.0;
-		for (int i = 0; i < cart.items.length; i++ ){
-			totalCost += cart.items[i].getPrice();
+		for (int i = 0; i < Cart.items.length; i++ ){
+			totalCost += Cart.items[i].getPrice();
 		}
 		return round(totalCost, 2);
 	}

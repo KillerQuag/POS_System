@@ -36,20 +36,8 @@ public class CashInsertion extends JFrame{
 	public static JTextField currencyField;
 	
 	public CashInsertion(){
-	
-		Cart cartCopy = new Cart();
+
 		CartStorage cs = new CartStorage();
-		cartCopy = cs.getCart();
-		/*for (int i = 0; i < cartCopy.getNumItemsInCart(); i++){
-			System.out.format("%-20s",(i+1) + ". " + cartCopy.items[i].getItemName());
-			System.out.format("%15s", cartCopy.items[i].getPrice() + "\n");
-			
-		}*/
-		boolean hasItems = cartCopy.hasItems();
-		if(hasItems)
-			System.out.printf("Has items.");
-		else
-			System.out.printf("NO ITEMS.");
 				
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -167,8 +155,7 @@ public class CashInsertion extends JFrame{
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
-		//String balRem = Double.toString(Calculations.getTotalPrice(cartCopy));
-		//currencyField = new JTextField(balRem);
+
 		currencyField = new JTextField("$0.00", 15);
 
 		//currencyField.setColumns(10); // Change the size of the text field
