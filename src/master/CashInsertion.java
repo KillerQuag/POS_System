@@ -48,7 +48,8 @@ public class CashInsertion extends Display{
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
-		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+		
+		//this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
@@ -270,7 +271,7 @@ public class CashInsertion extends Display{
 				
 			}
 			amtPaidText.setText(formatter.format(customer.amountPaid));
-			amtDueText.setText(formatter.format(Cart.myRemBal));
+			amtDueText.setText(formatter.format(customer.myCart.myRemBal));
 		}
 		
 	}

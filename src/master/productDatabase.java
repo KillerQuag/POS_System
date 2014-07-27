@@ -11,7 +11,7 @@ import master.Items;
 
 public class productDatabase extends databases {
 
-	 public final int numItems = 30;
+	 public final int numItems = 50;
 	 Items[] itemArray = new Items[numItems];
 	
 	 public productDatabase(){
@@ -110,7 +110,66 @@ public class productDatabase extends databases {
 		itemArray[29].setItemName("Candy Bar");
 		itemArray[29].setPrice(1.25);
 		itemArray[29].setWeight(0.25);
-		
+		itemArray[30].setItemName("Dead Cat");
+		itemArray[30].setPrice(4.99);
+		itemArray[30].setWeight(11.0);
+		itemArray[31].setItemName("Anthrax Vial");
+		itemArray[31].setPrice(329.99);
+		itemArray[31].setWeight(0.02);
+		itemArray[32].setItemName("Crystal Meth");
+		itemArray[32].setPrice(25.00);
+		itemArray[32].setWeight(0.05);
+		itemArray[33].setItemName("Prostitute");
+		itemArray[33].setPrice(29.99);
+		itemArray[33].setWeight(300.00);
+		itemArray[34].setItemName("AK-47");
+		itemArray[34].setPrice(199.49);
+		itemArray[34].setWeight(9.50);
+		itemArray[35].setItemName("Chainsaw");
+		itemArray[35].setPrice(129.99);
+		itemArray[35].setWeight(16.05);
+		itemArray[36].setItemName("Sex Panther Cologne");
+		itemArray[36].setPrice(99.98);
+		itemArray[36].setWeight(0.10);
+		itemArray[37].setItemName("The One Ring");
+		itemArray[37].setPrice(275.00);
+		itemArray[37].setWeight(0.01);
+		itemArray[38].setItemName("Snuggie");
+		itemArray[38].setPrice(39.99);
+		itemArray[38].setWeight(0.7);
+		itemArray[39].setItemName("Great White Shark");
+		itemArray[39].setPrice(149.00);
+		itemArray[39].setWeight(1000.00);
+		itemArray[40].setItemName("iPhone 12");
+		itemArray[40].setPrice(0.99);
+		itemArray[40].setWeight(0.3);
+		itemArray[41].setItemName("Slap Chop");
+		itemArray[41].setPrice(9.99);
+		itemArray[41].setWeight(0.9);
+		itemArray[42].setItemName("(Holy) Hand Grenade");
+		itemArray[42].setPrice(54.99);
+		itemArray[42].setWeight(3.5);
+		itemArray[43].setItemName("Bacon Wrapped Bacon");
+		itemArray[43].setPrice(12.99);
+		itemArray[43].setWeight(1.00);
+		itemArray[44].setItemName("Boones Farm");
+		itemArray[44].setPrice(4.99);
+		itemArray[44].setWeight(0.7);
+		itemArray[45].setItemName("Prosthetic Leg");
+		itemArray[45].setPrice(99.99);
+		itemArray[45].setWeight(4.2);
+		itemArray[46].setItemName("Natty Light 12 Pack");
+		itemArray[46].setPrice(7.99);
+		itemArray[46].setWeight(1.5);
+		itemArray[47].setItemName("Magic: The Gathering Cards");
+		itemArray[47].setPrice(7.99);
+		itemArray[47].setWeight(0.2);
+		itemArray[48].setItemName("An A in 4498 Project");
+		itemArray[48].setPrice(300.00);
+		itemArray[48].setWeight(0.00);
+		itemArray[49].setItemName("Flip Flops");
+		itemArray[49].setPrice(18.99);
+		itemArray[49].setWeight(0.5);
 		
 	 }
 

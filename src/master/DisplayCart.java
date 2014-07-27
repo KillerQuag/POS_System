@@ -1,6 +1,8 @@
 package master;
 
 import java.awt.Font;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,6 +21,10 @@ public class DisplayCart extends Display {
 	static void display(Cart cart) {
 		
 		Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+		NumberFormat formatter = new DecimalFormat("#0.00");
+		String formattedPrice,
+		 	   formattedTax,
+		 	   formattedTotal;
 		//WILL USE A GETTER TO LOAD THE TRANSACTION WINDOW (SET EQUAL TO BELOW VARIABLE)
 		//******************************************************************************
 	
@@ -36,7 +42,6 @@ public class DisplayCart extends Display {
 		for (int i = 0; i < cart.getNumItemsInCart(); i++){
 			textArea1.append(Integer.toString(i+1) + ". " + cart.items[i].getItemName());
 			textArea1.append("\n ");
-			//textArea1.append(cart.items[i].getItemName());
 		}		
 		textArea1.append("---------------------------------\n");
 		textArea1.append("Subtotal: " + "\n");
@@ -54,14 +59,18 @@ public class DisplayCart extends Display {
 		textArea2.append("\n --------\n");
 		for(int i = 0; i < cart.getNumItemsInCart(); i++){
 			textArea2.append("$");
-			textArea2.append(Double.toString(cart.items[i].getPrice()));
+			textArea2.append(formatter.format(cart.items[i].getPrice()));  //for some reason no errors when format is called here
 			textArea2.append("\n ");
 		}
 
 		textArea2.append("--------\n");
-		textArea2.append("$" + customer.myCart.myPrice + "\n");
-		textArea2.append("$" + customer.myCart.myTax + "\n");
-		textArea2.append("$" + customer.myCart.myTaxTotal + "\n");
+		formattedPrice = formatter.format(customer.myCart.myPrice);
+		formattedTax = formatter.format(customer.myCart.myTax);
+		formattedTotal = formatter.format(customer.myCart.myTaxTotal);
+		
+		textArea2.append("$" + formattedPrice + "\n");  //but have to make them strings here...appending?
+		textArea2.append("$" + formattedTax + "\n");
+		textArea2.append("$" + formattedTotal + "\n");
 
 		
 		
