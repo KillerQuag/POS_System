@@ -8,6 +8,8 @@ import master.Display.ListenForButton;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 //This class simulates the process of inserting cash
 public class CashInsertion extends Display{
@@ -40,7 +42,7 @@ public class CashInsertion extends Display{
 	
 	public CashInsertion(){
 		
-		//this.removeAll();  Pristine whiteness delivered.		
+		NumberFormat formatter = new DecimalFormat("#0.00");	
 
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,7 +168,8 @@ public class CashInsertion extends Display{
 		this.remove(startTransactionButton);
 		
 		double printAmt = Customer.getAmountPaid();
-		amtPaidText = new JTextField("$" + Double.toString(printAmt ), 15);
+		formatter.format(printAmt);
+		amtPaidText = new JTextField("$" + (formatter.format(printAmt)), 15);
 		
 
 		//currencyField.setColumns(10); // Change the size of the text field
@@ -190,7 +193,7 @@ public class CashInsertion extends Display{
 		amtRemaining.setSize(400,100);
 		this.getContentPane().add(amtRemaining);
 		
-		
+		formatter.format(Cart.myTaxTotal);
 		amtDueText = new JTextField("$" + Double.toString(Cart.myTaxTotal), 15);
 		
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
@@ -204,57 +207,72 @@ public class CashInsertion extends Display{
 
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			NumberFormat formatter = new DecimalFormat("#0.00");
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-			String totalAmountPaid = Double.toString(customer.getAmountPaid());
+			double cashThisTransaction = 0;
+		   
 			if(e.getSource() == returnToPayMethods) {
+				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
+				DisplayCart.textArea1.append("Cash payment:");
+				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
 				
-				customer.setAmountPaid(100.00);
-				System.out.println( customer.getAmountPaid() );	
+				customer.paidCash(100.00);
+			
 			}
 			else if(e.getSource() == fiftyButton) {
-				customer.setAmountPaid(50.00);
+				customer.paidCash(50.00);
 				
 			}
 			else if(e.getSource() == twentyButton) {
-				customer.setAmountPaid(20.00);
+				customer.paidCash(20.00);
 				
 			}
 			else if(e.getSource() == tenButton) {
-				customer.setAmountPaid(10.00);
+				customer.paidCash(10.00);
 				
 			}
 			else if(e.getSource() == fiveButton) {
-				customer.setAmountPaid(5.00);
+				customer.paidCash(5.00);
 				
 			}
 			else if(e.getSource() == oneButton) {
-				customer.setAmountPaid(1.00);
+				customer.paidCash(1.00);
 				
 			}
 			else if(e.getSource() == quarterButton) {
-				customer.setAmountPaid(0.25);
+				customer.paidCash(0.25);
 				
 			}
 			else if(e.getSource() == dimeButton) {
-				customer.setAmountPaid(00.10);
+				customer.paidCash(00.10);
 				
 			}
 			else if(e.getSource() == nickelButton) {
-				customer.setAmountPaid(00.05);
+				customer.paidCash(00.05);
 				
 			}
 			else if(e.getSource() == pennyButton) {
-				customer.setAmountPaid(0.01);
+				customer.paidCash(0.01);
 				
 			}
 			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-			amtPaidText.setText(Double.toString(customer.amountPaid));
-			amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+			if(customer.amountPaid >= customer.myCart.myTaxTotal){
+				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
+				DisplayCart.textArea1.append("Cash payment:");
+				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
+				Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid())));
+				Display.currencyField.setHorizontalAlignment(JLabel.CENTER);
+				insertCashFrame.dispose();
+				
+			}
+			amtPaidText.setText(formatter.format(customer.amountPaid));
+			amtDueText.setText(formatter.format(Cart.myRemBal));
 		}
+		
 	}
 	
 	public static CashInsertion getInstance() {

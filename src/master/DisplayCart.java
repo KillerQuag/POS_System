@@ -24,6 +24,7 @@ public class DisplayCart extends Display {
 	
 		//Text area stuff
 		textArea1 = new JTextArea(15, 20); // Set the default text for the text area
+		textArea1.setFont(new Font("Ariel", Font.PLAIN, 10));
 		textArea1.setText("         Items"); // If text doesn't fit on a line, jump to the next
 		textArea1.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
 		textArea1.setWrapStyleWord(true); 
@@ -38,17 +39,19 @@ public class DisplayCart extends Display {
 			//textArea1.append(cart.items[i].getItemName());
 		}		
 		textArea1.append("---------------------------------\n");
-		textArea1.append("Sales Tax:" + "\n");
-		textArea1.append("Total Price: " + "\n");
+		textArea1.append("Subtotal: " + "\n");
+		textArea1.append("Tax (8.25 %):" + "\n");
+		textArea1.append("Total: " + "\n");
 		
 		textArea2 = new JTextArea(15, 20); // Set the default text for the text area
+		textArea2.setFont(new Font("Ariel", Font.PLAIN, 10));
 		textArea2.setText("   Price"); // If text doesn't fit on a line, jump to the next
-		/*textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
-		textArea2.setWrapStyleWord(true); */
+		textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
+		textArea2.setWrapStyleWord(true); 
 		//textArea2.setLocation(100, 100); 
 		textArea2.setSize(275, 105);
 		textArea2.setEditable(false);
-		textArea2.append("\n  --------\n");
+		textArea2.append("\n --------\n");
 		for(int i = 0; i < cart.getNumItemsInCart(); i++){
 			textArea2.append("$");
 			textArea2.append(Double.toString(cart.items[i].getPrice()));
@@ -56,6 +59,7 @@ public class DisplayCart extends Display {
 		}
 
 		textArea2.append("--------\n");
+		textArea2.append("$" + customer.myCart.myPrice + "\n");
 		textArea2.append("$" + customer.myCart.myTax + "\n");
 		textArea2.append("$" + customer.myCart.myTaxTotal + "\n");
 

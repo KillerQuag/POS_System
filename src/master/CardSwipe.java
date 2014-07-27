@@ -221,25 +221,25 @@ public class CardSwipe extends JFrame
 			String totalAmountPaid = Double.toString(customer.getAmountPaid());
 			if(e.getSource() == fiveDollar )
 			{	
-				customer.setAmountPaid(5.0);
+				customer.paidGiftCard(5.0);
 				if(customer.amountPaid > customer.myCart.myTaxTotal)				
 				cardSwipeWindow.dispose();
 			}
 			else if( e.getSource() == tenDollar )
 			{
-				customer.setAmountPaid(10.0);
+				customer.paidGiftCard(10.0);
 				if(customer.amountPaid > customer.myCart.myTaxTotal)
 				cardSwipeWindow.dispose();
 			}
 			else if( e.getSource() == twentyFiveDollar )
 			{
-				customer.setAmountPaid(25.0);
+				customer.paidGiftCard(25.0);
 				if(customer.amountPaid > customer.myCart.myTaxTotal)
 				cardSwipeWindow.dispose();
 			}
 			else if( e.getSource() == fiftyDollar )
 			{
-				customer.setAmountPaid(50.0);
+				customer.paidGiftCard(50.0);
 				if(customer.amountPaid > customer.myCart.myTaxTotal)
 				cardSwipeWindow.dispose();
 			}

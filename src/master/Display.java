@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  * @author Heath
@@ -146,6 +148,7 @@ public class Display extends JFrame {//extends POSRegister {
 	static class ListenForButton implements ActionListener {
 		@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
+			NumberFormat formatter = new DecimalFormat("#0.00");
 			if(e.getSource() == startTransactionButton) {
 				
 				Main.StartTrans();
@@ -253,7 +256,7 @@ public class Display extends JFrame {//extends POSRegister {
 				//CashInsertion cashInsertionWindow = new CashInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				CashInsertion.getInstance();
-				insertCashLabel = new JLabel("<html>Please insert cash now<html>");
+				insertCashLabel = new JLabel("<html>Thank you for your payment!<html>");
 				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCashLabel.setLocation(450, 50);
 				insertCashLabel.setSize(400, 150);
@@ -261,12 +264,13 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				currencyField = new JTextField("$0.0", 15);
 				//currencyField.setColumns(10); // Change the size of the text field
-				//currencyField.setText("New Text Here"); // Change the initial value of the text field
-				currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
+				//currencyField.setText(formatter.format(Customer.getAmountPaid())); // Change the initial value of the text field
+				currencyField.setToolTipText("Change Due"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
 				//currencyField.setEditable(false);
-				
+				//DisplayCart.textArea1.append("Cash payment:");
+				//DisplayCart.textArea2.append(Double.toString(Customer.amountPaid));
 				//From account manager program - We may be able to use this to update the currencyFields 
 				//balanceField.setText(Double.toString(me.getBalance()));
 				//Otherwise may want to create a eventListener like in the midterm review
@@ -367,6 +371,8 @@ public class Display extends JFrame {//extends POSRegister {
 				changeDueLabel.setSize(400, 150);
 				
 				changeDueField = new JTextField("$0.0", 15);
+				changeDueField.setText("$" + formatter.format(Math.abs(Customer.myCart.myTaxTotal - Customer.getAmountPaid())));
+				changeDueField.setHorizontalAlignment(JLabel.CENTER);
 				changeDueField.setToolTipText("Change to be returned to you"); // Change the tool tip for the text field
 				changeDueField.setLocation(450, 200);
 				changeDueField.setSize(200, 25);
