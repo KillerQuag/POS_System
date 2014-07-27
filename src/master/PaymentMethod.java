@@ -23,6 +23,7 @@ public class PaymentMethod
 		Credit = 0;
 		Coupon = 0;
 		Check = 0;
+		GiftCard = 0;
 		TotalPayment = 0;	
 	
 	}			
@@ -32,6 +33,7 @@ public class PaymentMethod
 	}
 
 	public void setCash(double cash) {
+		Main.dailyTotalsSummary.setTotalCash(cash);
 		Cash += cash;
 	}
 
@@ -40,6 +42,7 @@ public class PaymentMethod
 	}
 
 	public void setCredit(double credit) {
+		Main.dailyTotalsSummary.setTotalCredit(credit);
 		Credit += credit;
 	}
 
@@ -48,6 +51,7 @@ public class PaymentMethod
 	}
 
 	public void setCoupon(double coupon) {
+		Main.dailyTotalsSummary.setTotalCouponAmount(coupon);
 		Coupon += coupon;
 	}
 
@@ -56,6 +60,7 @@ public class PaymentMethod
 	}
 
 	public void setCheck(double check) {
+		Main.dailyTotalsSummary.setTotalCheck(check);
 		Check += check;
 	}
 
@@ -64,6 +69,7 @@ public class PaymentMethod
 	}
 
 	public void setTotalPayment(double totalPayment) {
+		Main.dailyTotalsSummary.setTotalTransaction$(totalPayment);
 		TotalPayment += totalPayment;		
 	}	
 	public double getGiftCard() {
@@ -71,6 +77,7 @@ public class PaymentMethod
 	}
 
 	public void setGiftCard(double giftCard) {
+		Main.dailyTotalsSummary.setTotalGiftCard(giftCard);
 		GiftCard += giftCard;
 	}
 	

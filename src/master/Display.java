@@ -351,19 +351,19 @@ public class Display extends JFrame {//extends POSRegister {
 				//CardSwipe cardSwipeWindow = new CardSwipe(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				CardSwipe cardSwipeWindow = new CardSwipe();
-				cardSwipeWindow.beginCardSwipe();						
-				
+				cardSwipeWindow.beginCardSwipe();	
 				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
 				
-				Main.mainWindow.getContentPane().add(slideCardLabel);
+				Main.mainWindow.getContentPane().add(slideCardLabel);				
+				Main.mainWindow.repaint();				
 				
-				Main.mainWindow.repaint();
-				
-			} else if(e.getSource() == cashInsertComplete) {
+			} 
+			
+				else if(e.getSource() == cashInsertComplete) {
 				
 				changeDueLabel = new JLabel("<html><div style=\"text-align: center;\">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
 				changeDueLabel.setFont(new Font("Ariel", Font.PLAIN, 18));

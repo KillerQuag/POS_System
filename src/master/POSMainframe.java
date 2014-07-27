@@ -9,6 +9,7 @@ public class POSMainframe
 	public double totalCash = 0;
 	public double totalCredit = 0;
 	public double totalGiftCard = 0;
+	public double totalCheck = 0;
 	
 	//constructor
 	public POSMainframe()
@@ -19,13 +20,15 @@ public class POSMainframe
 		totalCash = 0;
 		totalCredit = 0;
 		totalGiftCard = 0;
-		
-		Main.database.totalTransaction$ = getTotalTransaction$();
-		Main.database.numOfTransactions = getNumOfTransactions();
-		Main.database.totalCouponAmount = getTotalCouponAmount();
-		Main.database.totalCash = getTotalCash();
-		Main.database.totalCredit = getTotalCredit();
-		Main.database.totalGiftCard = getTotalGiftCard();
+		totalCheck = 0;
+		/*
+		Main.dailyTotalsSummary.totalTransaction$ = getTotalTransaction$();
+		Main.dailyTotalsSummary.numOfTransactions = getNumOfTransactions();
+		Main.dailyTotalsSummary.totalCouponAmount = getTotalCouponAmount();
+		Main.dailyTotalsSummary.totalCash = getTotalCash();
+		Main.dailyTotalsSummary.totalCredit = getTotalCredit();
+		Main.dailyTotalsSummary.totalGiftCard = getTotalGiftCard();
+		*/
 	}
 	
 	
@@ -36,9 +39,9 @@ public class POSMainframe
 		return totalTransaction$;
 	}
 
-	public void setTotalTransaction$(Cart cart)
+	public void setTotalTransaction$(double total)
 	{
-		this.totalTransaction$ += totalTransaction$;
+		this.totalTransaction$ += total;
 	}
 
 	public int getNumOfTransactions() 
@@ -48,7 +51,7 @@ public class POSMainframe
 
 	public void setNumOfTransactions() 
 	{
-		numOfTransactions += numOfTransactions;
+		numOfTransactions += 1;
 	}
 
 	public double getTotalCouponAmount() 
@@ -58,7 +61,7 @@ public class POSMainframe
 
 	public void setTotalCouponAmount(double coupon) 
 	{
-		totalCouponAmount = totalCouponAmount + coupon;
+		totalCouponAmount += coupon;
 	}
 
 	public double getTotalCash() {
@@ -74,7 +77,7 @@ public class POSMainframe
 	}
 
 	public void setTotalCredit(double totalCredit) {
-		this.totalCredit = totalCredit;
+		this.totalCredit += totalCredit;
 	}
 
 	public double getTotalGiftCard() {
@@ -82,8 +85,17 @@ public class POSMainframe
 	}
 
 	public void setTotalGiftCard(double totalGiftCard) {
-		this.totalGiftCard = totalGiftCard;
+		this.totalGiftCard += totalGiftCard;
+	}
+	
+	public double getTotalCheck() {
+		return totalCheck;
+	}
+
+	public void setTotalCheck(double totalCheck) {
+		this.totalCheck += totalCheck;
 	}	
+	
 	
 
 

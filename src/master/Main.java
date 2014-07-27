@@ -21,13 +21,13 @@ public class Main extends Display {
 	static Display mainWindow;
 	public static ArrayList Customers = new ArrayList();
 	public static int currentCustNum = 0;
-	static POSMainframe database;
+	static POSMainframe dailyTotalsSummary;
 	
 	public static void main(String[] args) {
 		// TODO Commented out the stuff below, not sure what is the most current
 		// iteration of the code, I think Matt has the answer.
 		mainWindow = new Display();	
-		database = new POSMainframe();
+		dailyTotalsSummary = new POSMainframe();
 
 	}
 	
@@ -43,6 +43,10 @@ public class Main extends Display {
 		customer.myCart.myWeight = Calculations.getTotalWeight(customer.myCart);
 		customer.myCart.myTaxTotal = Calculations.getTotalPriceWithTax(customer.myCart);
 		customer.myCart.myTax = Calculations.getTax(customer.myCart);
+		
+		//Adds 1 transaction to POSMainframe
+		dailyTotalsSummary.setNumOfTransactions();
+		dailyTotalsSummary.setTotalTransaction$(Calculations.getTotalPriceWithTax(customer.myCart));
 		
 		Main.Customers.add(customer);
 

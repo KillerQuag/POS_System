@@ -6,15 +6,14 @@ public class Customer {
 	
 	public static Cart myCart;
 	public static double amountPaid = 0.0;
-	public static PaymentMethod paidBy = new PaymentMethod();
-
+	public static PaymentMethod paidBy = new PaymentMethod();	
 	
 	public static double getAmountPaid() {
 		return amountPaid;
 	}
 
 	public static void paidCash(double amountPaid) {
-		paidBy.setCash(amountPaid);
+		paidBy.setCash(amountPaid);		
 		Customer.amountPaid += amountPaid ;
 	}
 	
