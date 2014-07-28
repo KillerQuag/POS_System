@@ -528,6 +528,8 @@ public class Display extends JFrame {//extends POSRegister {
 				enterButton1 = new JButton("Enter");
 				enterButton1.setLocation(450, 300);
 				enterButton1.setSize(75, 50);
+				ListenForButton lForEnterButton1 = new ListenForButton(); //Making object from within the object's class may be bad
+				enterButton1.addActionListener(lForEnterButton1);
 				
 				clearButton1 = new JButton("Clear");
 				clearButton1.setLocation(575, 300);
@@ -561,8 +563,54 @@ public class Display extends JFrame {//extends POSRegister {
 				System.out.println("Gift button pressed");
 				
 			} else if(e.getSource() == enterButton1) { //For credit
+
+				//If we want to implement a way to approve or decline credit payment
 				
-				//Submit data from field
+				System.out.println("enterButton1 button pressed");
+				
+				if(signatureField.getText().equals("Rodion")) { //Would query a big database IRL
+					
+					System.out.println("sig Rodion button pressed");
+					
+					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
+					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					transactionDeniedLabel.setLocation(450, 50);
+					transactionDeniedLabel.setSize(400, 150);
+					
+					
+					altPaymentMethodButton = new JButton("Ok");
+					altPaymentMethodButton.setLocation(515, 175+75+10);
+					altPaymentMethodButton.setSize(100, 75);
+					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
+					altPaymentMethodButton.addActionListener(lForAltButton);
+					
+					Main.mainWindow.remove(enterButton1);
+					Main.mainWindow.remove(clearButton1);
+					Main.mainWindow.remove(signatureField);
+					Main.mainWindow.remove(creditLabel);
+					
+					Main.mainWindow.getContentPane().add(transactionDeniedLabel);
+					Main.mainWindow.getContentPane().add(altPaymentMethodButton);
+					
+					Main.mainWindow.repaint();
+					
+				} else {
+					System.out.println("sig " +signatureField.getText()+ " pressed");
+					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
+					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					transactionApprovedLabel.setLocation(450, 50);
+					transactionApprovedLabel.setSize(400, 150);
+					
+					Main.mainWindow.remove(enterButton1);
+					Main.mainWindow.remove(clearButton1);
+					Main.mainWindow.remove(signatureField);
+					Main.mainWindow.remove(creditLabel);
+					
+					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
+					
+					Main.mainWindow.repaint();
+					
+				}
 				
 			} else if(e.getSource() == clearButton1) {
 				
@@ -577,7 +625,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				
 				//Below is the Wigmore function
-				if(charArray[password.length()-1] == '0') {
+				if(charArray[password.length()-1] == '0') { //Would query a big database IRL
 					
 					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
 					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));

@@ -37,7 +37,7 @@ public class CardSwipe extends JFrame
 
 	Point windowLocation;	
 	
-	static CardSwipe cardSwipeWindow;
+	public static CardSwipe cardSwipeWindow;
 	
 	
 	public void beginCardSwipe()
@@ -254,9 +254,9 @@ public class CardSwipe extends JFrame
 				cardSwipeWindow.dispose();				
 				
 			}
-			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-			amtPaidText.setText(Double.toString(customer.amountPaid));
-			amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+			//customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+			//amtPaidText.setText(Double.toString(customer.amountPaid));
+			//amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
 		}
 	}		
 

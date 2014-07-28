@@ -20,12 +20,13 @@ public class POSMainframe
 		totalCredit = 0;
 		totalGiftCard = 0;
 		
-		Main.database.totalTransaction$ = getTotalTransaction$();
+		/*Main.database.totalTransaction$ = getTotalTransaction$();
 		Main.database.numOfTransactions = getNumOfTransactions();
 		Main.database.totalCouponAmount = getTotalCouponAmount();
 		Main.database.totalCash = getTotalCash();
 		Main.database.totalCredit = getTotalCredit();
 		Main.database.totalGiftCard = getTotalGiftCard();
+		*/
 	}
 	
 	

@@ -18,10 +18,10 @@ public class Main extends Display {
 	 * @param args
 	 */
 
-	static Display mainWindow;
+	public static Display mainWindow;
 	public static ArrayList Customers = new ArrayList();
 	public static int currentCustNum = 0;
-	static POSMainframe database;
+	public static POSMainframe database;
 	
 	public static void main(String[] args) {
 		// TODO Commented out the stuff below, not sure what is the most current
