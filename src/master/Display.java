@@ -23,6 +23,9 @@ public class Display extends JFrame {//extends POSRegister {
 	public ListenForButton lForButton;
 	public CardSwipe cardSwipeWindow;
 	
+	//Employee Mainframe Access Button
+	public JButton mainframeAccess;
+	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
 	
@@ -102,15 +105,21 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
-
+		
+		//add the mainframeAccess button to the main screen
+		Color mainframeColor = Color.blue;		
+		mainframeAccess = new JButton();
+		mainframeAccess.setBackground(mainframeColor);
+		mainframeAccess.setSize(30, 15);
+		mainframeAccess.setLocation(0, 0);		
+		this.getContentPane().add(mainframeAccess);
+		
 		/*//This group is an alternate method to center frame in middle of screen
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = tk.getScreenSize();
 		int xPos = (dim.width / 2) - (this.getWidth() / 2);
 		int yPos = (dim.height / 2) - (this.getHeight() / 2);
-		this.setLocation(xPos, yPos);
-		*/
-
+		this.setLocation(xPos, yPos);*/
 		
 		//JPanel thePanel = new JPanel();
 		welcomeLabel = new JLabel("Welcome to S-Mart!");
@@ -199,7 +208,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton) {
+			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
 				
 				//Clears proper labels and buttons
 				if(e.getSource() == noButton) {	
@@ -218,6 +227,19 @@ public class Display extends JFrame {//extends POSRegister {
 				} else if(e.getSource() == altPaymentMethodButton) {
 					Main.mainWindow.remove(transactionDeniedLabel);
 					Main.mainWindow.remove(altPaymentMethodButton);
+				}
+				else if( e.getSource() == CardSwipe.returnButton ){
+										
+					Main.mainWindow.remove(slideCardLabel);
+				}
+				else if( e.getSource() == CardSwipe.returnButton2){
+					
+					Main.mainWindow.remove(giftLabel);
+				}
+				else if( e.getSource() == CashInsertion.returnToPayMethods ){
+					Main.mainWindow.remove(cashInsertComplete);
+					Main.mainWindow.remove(currencyField);
+					Main.mainWindow.remove(insertCashLabel);
 				}
 				
 				
@@ -365,19 +387,19 @@ public class Display extends JFrame {//extends POSRegister {
 				//CardSwipe cardSwipeWindow = new CardSwipe(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				CardSwipe cardSwipeWindow = new CardSwipe();
-				cardSwipeWindow.beginCardSwipe();						
-				
+				cardSwipeWindow.beginCardSwipe();	
 				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
 				Main.mainWindow.remove(creditDebitButton);
 				
-				Main.mainWindow.getContentPane().add(slideCardLabel);
+				Main.mainWindow.getContentPane().add(slideCardLabel);				
+				Main.mainWindow.repaint();				
 				
-				Main.mainWindow.repaint();
-				
-			} else if(e.getSource() == cashInsertComplete) {
+			} 
+			
+				else if(e.getSource() == cashInsertComplete) {
 				
 				changeDueLabel = new JLabel("<html><div style=\"text-align: center;\">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
 				changeDueLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -542,6 +564,8 @@ public class Display extends JFrame {//extends POSRegister {
 				enterButton1 = new JButton("Enter");
 				enterButton1.setLocation(450, 300);
 				enterButton1.setSize(75, 50);
+				ListenForButton lForEnterButton1 = new ListenForButton(); //Making object from within the object's class may be bad
+				enterButton1.addActionListener(lForEnterButton1);
 				
 				clearButton1 = new JButton("Clear");
 				clearButton1.setLocation(575, 300);
@@ -575,8 +599,54 @@ public class Display extends JFrame {//extends POSRegister {
 				System.out.println("Gift button pressed");
 				
 			} else if(e.getSource() == enterButton1) { //For credit
+
+				//If we want to implement a way to approve or decline credit payment
 				
-				//Submit data from field
+				System.out.println("enterButton1 button pressed");
+				
+				if(signatureField.getText().equals("Rodion")) { //Would query a big database IRL
+					
+					System.out.println("sig Rodion button pressed");
+					
+					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
+					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					transactionDeniedLabel.setLocation(450, 50);
+					transactionDeniedLabel.setSize(400, 150);
+					
+					
+					altPaymentMethodButton = new JButton("Ok");
+					altPaymentMethodButton.setLocation(515, 175+75+10);
+					altPaymentMethodButton.setSize(100, 75);
+					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
+					altPaymentMethodButton.addActionListener(lForAltButton);
+					
+					Main.mainWindow.remove(enterButton1);
+					Main.mainWindow.remove(clearButton1);
+					Main.mainWindow.remove(signatureField);
+					Main.mainWindow.remove(creditLabel);
+					
+					Main.mainWindow.getContentPane().add(transactionDeniedLabel);
+					Main.mainWindow.getContentPane().add(altPaymentMethodButton);
+					
+					Main.mainWindow.repaint();
+					
+				} else {
+					System.out.println("sig " +signatureField.getText()+ " pressed");
+					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
+					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					transactionApprovedLabel.setLocation(450, 50);
+					transactionApprovedLabel.setSize(400, 150);
+					
+					Main.mainWindow.remove(enterButton1);
+					Main.mainWindow.remove(clearButton1);
+					Main.mainWindow.remove(signatureField);
+					Main.mainWindow.remove(creditLabel);
+					
+					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
+					
+					Main.mainWindow.repaint();
+					
+				}
 				
 			} else if(e.getSource() == clearButton1) {
 				
@@ -591,7 +661,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				
 				//Below is the Wigmore function
-				if(charArray[password.length()-1] == '0') {
+				if(charArray[password.length()-1] == '0') { //Would query a big database IRL
 					
 					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
 					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));

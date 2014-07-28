@@ -20,7 +20,7 @@ public class CashInsertion extends Display{
 	private static CashInsertion myInstance;
 
 	public JLabel insertCashLabel;
-	public JButton returnToPayMethods;
+	public static JButton returnToPayMethods;
 	public JFrame insertCashFrame;
 	public static JLabel amtPaid;
 	public static JLabel amtRemaining;
@@ -43,7 +43,8 @@ public class CashInsertion extends Display{
 	
 	public CashInsertion(){
 		
-		NumberFormat formatter = new DecimalFormat("#0.00");	
+		NumberFormat formatter = new DecimalFormat("#0.00");
+		Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 		//this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -196,17 +197,15 @@ public class CashInsertion extends Display{
 		this.getContentPane().add(amtRemaining);
 		
 		formatter.format(Cart.myTaxTotal);
-		amtDueText = new JTextField("$" + Double.toString(Cart.myTaxTotal), 15);
+		amtDueText = new JTextField("$" + formatter.format(customer.myCart.myTaxTotal));
 		
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 		amtDueText.setHorizontalAlignment(JLabel.CENTER);
 		amtDueText.setLocation(300, 450);
 		amtDueText.setSize(200, 25);
 		//currencyField.setEditable(false);
-		insertCashFrame.getContentPane().add(amtDueText);
-		
-		
-	
+		insertCashFrame.getContentPane().add(amtDueText);		
+			
 	}
 
 	private class ListenForButton implements ActionListener {
@@ -214,6 +213,9 @@ public class CashInsertion extends Display{
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			double cashThisTransaction = 0;
+			
+			//So Main can Listen
+			Main.mainWindow.lForButton.actionPerformed(e);
 		   
 			if(e.getSource() == returnToPayMethods) {
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();

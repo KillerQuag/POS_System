@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 //This class simulates the process of inserting coupons
-public class CouponInsertion extends JFrame {
+public class CouponInsertion extends Display {
 	
 
 	private static final long serialVersionUID = 1L;
@@ -76,13 +76,18 @@ public class CouponInsertion extends JFrame {
 		insertCouponFrame.getContentPane().add(returnToPayMethods);
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
+		
+		this.remove(welcomeLabel);
+		this.remove(startTransactionButton);
 	}
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-			double discount;
-			String taxApplied;
+			double discount,
+			       couponAmount;
+			String formattedTotal;
+			       
 			
 			if(e.getSource() == returnToPayMethods) {
 				
@@ -91,30 +96,44 @@ public class CouponInsertion extends JFrame {
 			}
 			else if(e.getSource() == fivePerOff){
 				discount = 0.05;
-				//taxApplied = formatter.format(customer.myCart.myTotalPrice * discount);
-				System.out.println(customer.myCart.myPrice);
-				System.out.println(customer.myCart.myTaxTotal);
-				System.out.println(customer.myCart.myWeight);
-				System.out.println(customer.myCart.myTax);
-				DisplayCart.textArea1.append("Coupon - 5 Percent off:");
-				//DisplayCart.textArea2.append("$" + taxApplied);
+				System.out.print(customer.myCart.myPrice);
+				couponAmount = customer.myCart.myPrice * discount;
+				formattedTotal = formatter.format(customer.myCart.myTaxTotal  - couponAmount);
+				DisplayCart.textArea1.append("Coupon - 5 Percent off:\n");
+				DisplayCart.textArea1.append("Total:\n");
+				DisplayCart.textArea2.append("$-" + formatter.format(couponAmount) + "\n");
+				DisplayCart.textArea2.append("$" + formattedTotal + "\n");
+				customer.myCart.myTaxTotal -= discount;
 				insertCouponFrame.dispose();
 				myInstance = null;
 			}
 			else if(e.getSource() == fifteenPerOff){
 				discount = 0.15;
-				DisplayCart.textArea1.append("Coupon - 15 Percent off:");
 				
+				couponAmount = customer.myCart.myPrice * discount;
+				formattedTotal = formatter.format(Cart.myTaxTotal - discount);
+				DisplayCart.textArea1.append("Coupon - 15 Percent off:\n");
+				DisplayCart.textArea1.append("Total:\n");
+				DisplayCart.textArea2.append("$-" + formatter.format(couponAmount) + "\n");
+				DisplayCart.textArea2.append("$" + formattedTotal + "\n");
+				customer.myCart.myTaxTotal -= discount;
 				insertCouponFrame.dispose();
 				myInstance = null;
 			}
 			else if(e.getSource() == twentyfivePerOff){
 				discount = 0.25;
-				DisplayCart.textArea1.append("Coupon - 25 Percent off:");
 				
+				couponAmount = customer.myCart.myPrice * discount;
+				formattedTotal = formatter.format(Cart.myTaxTotal - discount);
+				DisplayCart.textArea1.append("Coupon - 25 Percent off:\n");
+				DisplayCart.textArea1.append("Total:\n");
+				DisplayCart.textArea2.append("$-" + formatter.format(couponAmount) + "\n");
+				DisplayCart.textArea2.append("$" + formattedTotal + "\n");
+				customer.myCart.myTaxTotal -= discount;
 				insertCouponFrame.dispose();
 				myInstance = null;
 			}
+			
 		}
 	}
 	public static CouponInsertion getInstance() {

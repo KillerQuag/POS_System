@@ -15,6 +15,7 @@ public class CardSwipe extends JFrame
 	public static JButton creditButton;
 	public static JButton giftButton;
 	public static JButton returnButton;
+	public static JButton returnButton2;
 	public static JButton enterButton;
 	
 	//Gift card buttons
@@ -37,7 +38,7 @@ public class CardSwipe extends JFrame
 
 	Point windowLocation;	
 	
-	static CardSwipe cardSwipeWindow;
+	public static CardSwipe cardSwipeWindow;
 	
 	
 	public void beginCardSwipe()
@@ -115,10 +116,17 @@ public class CardSwipe extends JFrame
 				cardSwipeWindow.dispose();
 				
 			}
+			else if(e.getSource() == returnButton ){
+				Main.mainWindow.lForButton.actionPerformed(e);
+				cardSwipeWindow.dispose();
+			}
 			else if(e.getSource() == creditButton )
 			{
+				double remainingBalance = 0.0;
+				
 				//full payment be made with card? 
-				Main.mainWindow.lForButton.actionPerformed(e);				
+				Main.mainWindow.lForButton.actionPerformed(e);
+				//Customer.paidCredit(amountPaid);
 				cardSwipeWindow.dispose();
 			}
 			else if(e.getSource() == giftButton )
@@ -172,14 +180,14 @@ public class CardSwipe extends JFrame
 				cancelButton.addActionListener(lForcancelButton);
 				cardSwipeWindow.getContentPane().add(cancelButton);
 */				
-				returnButton = new JButton("Return to Payment Method");
-				returnButton.setLocation(130, 300);
-				returnButton.setSize(300, 75);
+				returnButton2 = new JButton("Return to Payment Method");
+				returnButton2.setLocation(130, 300);
+				returnButton2.setSize(300, 75);
 				Color returnBackgroundButton = Color.yellow;
-				returnButton.setBackground(returnBackgroundButton );
-				ListenForButton lForreturnButton = new ListenForButton(); //Making object from within the object's class may be bad
-				returnButton.addActionListener(lForreturnButton);
-				cardSwipeWindow.getContentPane().add(returnButton);
+				returnButton2.setBackground(returnBackgroundButton );
+				ListenForButton lForreturnButton2 = new ListenForButton(); //Making object from within the object's class may be bad
+				returnButton2.addActionListener(lForreturnButton2);
+				cardSwipeWindow.getContentPane().add(returnButton2);
 				
 				
 				double printAmt = Customer.getAmountPaid();
@@ -222,7 +230,8 @@ public class CardSwipe extends JFrame
 			if(e.getSource() == fiveDollar )
 			{	
 				customer.paidGiftCard(5.0);
-				if(customer.amountPaid > customer.myCart.myTaxTotal)				
+				
+				if(customer.amountPaid > customer.myCart.myTaxTotal)
 				cardSwipeWindow.dispose();
 			}
 			else if( e.getSource() == tenDollar )
@@ -248,15 +257,15 @@ public class CardSwipe extends JFrame
 				cardSwipeWindow.dispose();
 			}
 			
-			else if(e.getSource() == returnButton )
+			else if(e.getSource() == returnButton2 )
 			{
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();				
 				
 			}
-			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-			amtPaidText.setText(Double.toString(customer.amountPaid));
-			amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+			//customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+			//amtPaidText.setText(Double.toString(customer.amountPaid));
+			//amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
 		}
 	}		
 
