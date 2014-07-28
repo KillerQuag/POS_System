@@ -25,7 +25,6 @@ public class PaymentMethod
 		Check = 0;
 		GiftCard = 0;
 		TotalPayment = 0;	
-	
 	}			
 	
 	public double getCash() {
@@ -69,7 +68,7 @@ public class PaymentMethod
 	}
 
 	public void setTotalPayment(double totalPayment) {
-		Main.dailyTotalsSummary.setTotalTransaction$(totalPayment);
+		Main.dailyTotalsSummary.setTotalTransaction(totalPayment);
 		TotalPayment += totalPayment;		
 	}	
 	public double getGiftCard() {

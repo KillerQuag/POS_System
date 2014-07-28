@@ -27,11 +27,8 @@ public class Main extends Display {
 		// TODO Commented out the stuff below, not sure what is the most current
 		// iteration of the code, I think Matt has the answer.
 		mainWindow = new Display();	
-<<<<<<< HEAD
 		dailyTotalsSummary = new POSMainframe();
-=======
 		//database = new POSMainframe();
->>>>>>> origin/Matt
 
 	}
 	
@@ -50,7 +47,7 @@ public class Main extends Display {
 		
 		//Adds 1 transaction to POSMainframe
 		dailyTotalsSummary.setNumOfTransactions();
-		dailyTotalsSummary.setTotalTransaction$(Calculations.getTotalPriceWithTax(customer.myCart));
+		dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 
 		Main.Customers.add(customer);
 

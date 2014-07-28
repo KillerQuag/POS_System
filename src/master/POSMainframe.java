@@ -47,9 +47,9 @@ public class POSMainframe
 		return totalTransaction;
 	}
 
-	public void setTotalTransaction(Cart cart)
+	public void setTotalTransaction(double tt)
 	{
-		this.totalTransaction += totalTransaction;
+		this.totalTransaction = tt;
 	}
 
 	public int getNumOfTransactions() 
@@ -61,7 +61,8 @@ public class POSMainframe
 	{
 		numOfTransactions += 1;
 
-		//this.numOfTransactions += numOfTransactions;  //>>>>>>> origin/Matt  Pretty sure this is not what you meant.
+		//this.numOfTransactions += numOfTransactions;  
+		//>>>>>>> origin/Matt  Pretty sure this is not what you meant. -John
 	}
 
 	public double getTotalCouponAmount() 
