@@ -23,6 +23,9 @@ public class Display extends JFrame {//extends POSRegister {
 	public ListenForButton lForButton;
 	public CardSwipe cardSwipeWindow;
 	
+	//Employee Mainframe Access Button
+	public JButton mainframeAccess;
+	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
 	
@@ -100,7 +103,13 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setResizable(false);
 		this.setVisible(true);
 		
-		
+		//add the mainframeAccess button to the main screen
+		Color mainframeColor = Color.blue;		
+		mainframeAccess = new JButton();
+		mainframeAccess.setBackground(mainframeColor);
+		mainframeAccess.setSize(30, 15);
+		mainframeAccess.setLocation(0, 0);		
+		this.getContentPane().add(mainframeAccess);
 		
 		
 		/*//This group is an alternate method to center frame in middle of screen
@@ -198,7 +207,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton) {
+			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
 				
 				//Clears proper labels and buttons
 				if(e.getSource() == noButton) {				
@@ -211,6 +220,19 @@ public class Display extends JFrame {//extends POSRegister {
 				} else if(e.getSource() == altPaymentMethodButton) {
 					Main.mainWindow.remove(transactionDeniedLabel);
 					Main.mainWindow.remove(altPaymentMethodButton);
+				}
+				else if( e.getSource() == CardSwipe.returnButton ){
+										
+					Main.mainWindow.remove(slideCardLabel);
+				}
+				else if( e.getSource() == CardSwipe.returnButton2){
+					
+					Main.mainWindow.remove(giftLabel);
+				}
+				else if( e.getSource() == CashInsertion.returnToPayMethods ){
+					Main.mainWindow.remove(cashInsertComplete);
+					Main.mainWindow.remove(currencyField);
+					Main.mainWindow.remove(insertCashLabel);
 				}
 				
 				

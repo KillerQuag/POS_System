@@ -20,7 +20,7 @@ public class CashInsertion extends Display{
 	private static CashInsertion myInstance;
 
 	public JLabel insertCashLabel;
-	public JButton returnToPayMethods;
+	public static JButton returnToPayMethods;
 	public JFrame insertCashFrame;
 	public static JLabel amtPaid;
 	public static JLabel amtRemaining;
@@ -202,8 +202,8 @@ public class CashInsertion extends Display{
 		amtDueText.setLocation(300, 450);
 		amtDueText.setSize(200, 25);
 		//currencyField.setEditable(false);
-		insertCashFrame.getContentPane().add(amtDueText);
-	
+		insertCashFrame.getContentPane().add(amtDueText);		
+			
 	}
 
 	private class ListenForButton implements ActionListener {
@@ -211,6 +211,9 @@ public class CashInsertion extends Display{
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			double cashThisTransaction = 0;
+			
+			//So Main can Listen
+			Main.mainWindow.lForButton.actionPerformed(e);
 		   
 			if(e.getSource() == returnToPayMethods) {
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
