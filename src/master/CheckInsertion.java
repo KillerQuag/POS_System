@@ -1,5 +1,11 @@
 package master;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import javax.swing.*;
 
 /*import java.awt.*;
@@ -35,6 +41,17 @@ public class CheckInsertion extends JFrame{
 	public static JButton fiftyButton;
 	public static JButton twentyButton;*/
 	
+	protected ImageIcon createImageIcon(String path,
+            String description) {
+		java.net.URL imgURL = getClass().getResource(path);
+		if (imgURL != null) {
+			return new ImageIcon(imgURL, description);
+		} else {
+		System.err.println("Couldn't find file: " + path);
+		return null;
+		}
+	}
+	
 	public CheckInsertion(){
 		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //Use a dismissal button like "Cancel help"
@@ -53,11 +70,24 @@ public class CheckInsertion extends JFrame{
 		this.getContentPane().add(amtDueText);*/
 		
 		ImageIcon background = createImageIcon("images/BlankCheck.png", "A blank check");
-		JLabel label1 = new JLabel("Some text", background, JLabel.CENTER);
-		
+		JLabel theCheck = new JLabel("", background, JLabel.CENTER);
+		ListenForButton lForSig = new ListenForButton();
+		ListenForButton lForTo = new ListenForButton();
+		ListenForButton lForAmount = new ListenForButton();
+		ListenForButton lForDate = new ListenForButton();
 		//this.setSize(label1.getWidth(), label1.getHeight()); 
 		
-		this.getContentPane().add(label1);
+		JPanel sig = new JPanel();
+		ImageIcon janeSig = createImageIcon("images/JaneDoe.png", "Jane's Signature");
+		JLabel janeSigLabel = new JLabel("", janeSig, JLabel.SOUTH_EAST);
+		janeSigLabel.resize(275, 79);
+		sig.add(janeSigLabel);
+		
+		
+		//theCheck.addActionListener(lForBG);
+		
+		this.getContentPane().add(theCheck);
+		this.getContentPane().add(sig);
 		
 		/*BufferedImage myPicture = null;
 		try {
@@ -71,7 +101,8 @@ public class CheckInsertion extends JFrame{
 		this.getContentPane().add(picLabel);
 		//Graphics.this.drawImage(myPicture, 0, 0, null);*/
 		this.repaint();
-		}
+	}
+
 	
 	public static CheckInsertion getInstance() {
         if (myInstance == null)
@@ -80,15 +111,30 @@ public class CheckInsertion extends JFrame{
         return myInstance;
     }
 	
-	protected ImageIcon createImageIcon(String path,
-            String description) {
-		java.net.URL imgURL = getClass().getResource(path);
-		if (imgURL != null) {
-			return new ImageIcon(imgURL, description);
-		} else {
-		System.err.println("Couldn't find file: " + path);
-		return null;
+	private class ListenForButton implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			/*NumberFormat formatter = new DecimalFormat("#0.00");
+			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+			double cashThisTransaction = 0;*/
+			
+			//So Main can Listen
+			/*Main.mainWindow.lForButton.actionPerformed(e);
+		   
+			if(e.getSource() == returnToPayMethods) {
+				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
+				DisplayCart.textArea1.append("Cash payment:");
+				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
+				insertCashFrame.dispose();
+				myInstance = null;
+			}
+			else if(e.getSource() == hundredButton) {
+			//	System.out.println(customer.myCart.myTotalPrice);
+			//	System.out.println(Cart.myTotalPrice);
+				customer.paidCash(100.00);
+			
+			}*/
 		}
 	}
+	
 }
 	
