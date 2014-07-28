@@ -43,7 +43,8 @@ public class CashInsertion extends Display{
 	
 	public CashInsertion(){
 		
-		NumberFormat formatter = new DecimalFormat("#0.00");	
+		NumberFormat formatter = new DecimalFormat("#0.00");
+		Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 		//this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -196,7 +197,7 @@ public class CashInsertion extends Display{
 		this.getContentPane().add(amtRemaining);
 		
 		formatter.format(Cart.myTaxTotal);
-		amtDueText = new JTextField("$" + Double.toString(Cart.myTaxTotal), 15);
+		amtDueText = new JTextField("$" + formatter.format(customer.myCart.myTaxTotal));
 		
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 		amtDueText.setHorizontalAlignment(JLabel.CENTER);

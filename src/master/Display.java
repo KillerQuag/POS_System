@@ -108,9 +108,7 @@ public class Display extends JFrame {//extends POSRegister {
 		Dimension dim = tk.getScreenSize();
 		int xPos = (dim.width / 2) - (this.getWidth() / 2);
 		int yPos = (dim.height / 2) - (this.getHeight() / 2);
-		this.setLocation(xPos, yPos);
-		*/
-
+		this.setLocation(xPos, yPos);*/
 		
 		//JPanel thePanel = new JPanel();
 		welcomeLabel = new JLabel("Welcome to S-Mart!");
