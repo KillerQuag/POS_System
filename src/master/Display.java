@@ -146,7 +146,7 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	//Implement Listeners
 	static class ListenForButton implements ActionListener {
-		@SuppressWarnings("deprecation")
+		//@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			if(e.getSource() == startTransactionButton) {

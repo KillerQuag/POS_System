@@ -92,7 +92,10 @@ public class CouponInsertion extends JFrame {
 			else if(e.getSource() == fivePerOff){
 				discount = 0.05;
 				//taxApplied = formatter.format(customer.myCart.myTotalPrice * discount);
-				System.out.print(customer.myCart.myTotalPrice);
+				System.out.println(customer.myCart.myPrice);
+				System.out.println(customer.myCart.myTaxTotal);
+				System.out.println(customer.myCart.myWeight);
+				System.out.println(customer.myCart.myTax);
 				DisplayCart.textArea1.append("Coupon - 5 Percent off:");
 				//DisplayCart.textArea2.append("$" + taxApplied);
 				insertCouponFrame.dispose();

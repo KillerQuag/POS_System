@@ -204,6 +204,8 @@ public class CashInsertion extends Display{
 		amtDueText.setSize(200, 25);
 		//currencyField.setEditable(false);
 		insertCashFrame.getContentPane().add(amtDueText);
+		
+		
 	
 	}
 
@@ -221,7 +223,8 @@ public class CashInsertion extends Display{
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
-				
+			//	System.out.println(customer.myCart.myTotalPrice);
+			//	System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
 			
 			}

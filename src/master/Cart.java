@@ -18,7 +18,6 @@ public class Cart {
 	static Items[] items = new Items[numItemsInCart];
 	static double myPrice = 0.0;
 	static double myWeight = 0.0;
-	static double myTotalPrice = 0.0;
 	static double myTaxTotal  = 0.0;
 	static double myTax = 0.0;
 	static double myRemBal = 0.0;
@@ -39,5 +38,6 @@ public class Cart {
 		return (items[0].getUID() != -1);
 	}
 
+	
 }
 	
