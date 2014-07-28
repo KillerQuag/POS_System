@@ -3,7 +3,7 @@ package master;
 public class POSMainframe 
 {
 	//fields
-	public double totalTransaction$ = 0;
+	public double totalTransaction = 0.0;
 	public int numOfTransactions = 0;
 	public double totalCouponAmount = 0;
 	public double totalCash = 0;
@@ -13,14 +13,14 @@ public class POSMainframe
 	//constructor
 	public POSMainframe()
 	{
-		totalTransaction$ = 0;
+		totalTransaction = 0;
 		numOfTransactions = 0;
 		totalCouponAmount = 0;
 		totalCash = 0;
 		totalCredit = 0;
 		totalGiftCard = 0;
 		
-		Main.database.totalTransaction$ = getTotalTransaction$();
+		Main.database.totalTransaction = getTotalTransaction();
 		Main.database.numOfTransactions = getNumOfTransactions();
 		Main.database.totalCouponAmount = getTotalCouponAmount();
 		Main.database.totalCash = getTotalCash();
@@ -31,14 +31,14 @@ public class POSMainframe
 	
 	
 	//functions
-	public double getTotalTransaction$()
+	public double getTotalTransaction()
 	{
-		return totalTransaction$;
+		return totalTransaction;
 	}
 
-	public void setTotalTransaction$(Cart cart)
+	public void setTotalTransaction(Cart cart)
 	{
-		this.totalTransaction$ += totalTransaction$;
+		this.totalTransaction += totalTransaction;
 	}
 
 	public int getNumOfTransactions() 
@@ -48,7 +48,7 @@ public class POSMainframe
 
 	public void setNumOfTransactions() 
 	{
-		numOfTransactions += numOfTransactions;
+		this.numOfTransactions += numOfTransactions;
 	}
 
 	public double getTotalCouponAmount() 

@@ -40,11 +40,12 @@ public class CashInsertion extends Display{
 	public static JTextField amtPaidText;
 	public static JTextField amtDueText;
 	
+	
 	public CashInsertion(){
 		
 		NumberFormat formatter = new DecimalFormat("#0.00");	
-
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
+		//this.setUndecorated(true);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
@@ -162,7 +163,7 @@ public class CashInsertion extends Display{
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
-		Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
+		//Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
 		//double leftToPay = Cart.myTaxTotal - Customer.amountPaid;
 		
 		this.remove(welcomeLabel);

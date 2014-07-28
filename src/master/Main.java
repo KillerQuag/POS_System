@@ -27,7 +27,7 @@ public class Main extends Display {
 		// TODO Commented out the stuff below, not sure what is the most current
 		// iteration of the code, I think Matt has the answer.
 		mainWindow = new Display();	
-		database = new POSMainframe();
+		//database = new POSMainframe();
 
 	}
 	
@@ -55,7 +55,7 @@ public class Main extends Display {
 		mainWindow.remove(welcomeLabel);
 		mainWindow.repaint();
 		
-		currentCustNum = currentCustNum++;
+		//currentCustNum = currentCustNum++;
 		//Display.welcomeLabel.remove(mainWindow);
 		
 		mainWindow.getContentPane().add(Display.couponLabel);
