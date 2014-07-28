@@ -40,11 +40,13 @@ public class CashInsertion extends Display{
 	public static JTextField amtPaidText;
 	public static JTextField amtDueText;
 	
+	
 	public CashInsertion(){
 		
-		NumberFormat formatter = new DecimalFormat("#0.00");	
-
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //Use a dismissal button like "Cancel help"
+		NumberFormat formatter = new DecimalFormat("#0.00");
+		Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+		//this.setUndecorated(true);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
@@ -162,7 +164,7 @@ public class CashInsertion extends Display{
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
 		returnToPayMethods.addActionListener(lFoReturnToPayMethods);
 		
-		Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
+		//Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
 		//double leftToPay = Cart.myTaxTotal - Customer.amountPaid;
 		
 		this.remove(welcomeLabel);
@@ -195,7 +197,7 @@ public class CashInsertion extends Display{
 		this.getContentPane().add(amtRemaining);
 		
 		formatter.format(Cart.myTaxTotal);
-		amtDueText = new JTextField("$" + Double.toString(Cart.myTaxTotal), 15);
+		amtDueText = new JTextField("$" + formatter.format(customer.myCart.myTaxTotal));
 		
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 		amtDueText.setHorizontalAlignment(JLabel.CENTER);
@@ -223,7 +225,8 @@ public class CashInsertion extends Display{
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
-				
+			//	System.out.println(customer.myCart.myTotalPrice);
+			//	System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
 			
 			}

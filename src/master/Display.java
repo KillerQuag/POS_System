@@ -65,6 +65,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel insertCouponLabel;
 	public static JLabel selectPaymentLabel;
 	public static JLabel insertCashLabel;
+	public static JLabel insertCashLabel2;
 	public static JLabel slideCardLabel;
 	public static JLabel changeDueLabel;
 	public static JLabel insertCheckLabel;
@@ -74,6 +75,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel giftLabel;
 	public static JLabel transactionDeniedLabel;
 	public static JLabel transactionApprovedLabel;
+	public static JLabel background;
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
@@ -96,6 +98,7 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	public Display() { 
 		
+		//this.setUndecorated(true);//remove comment on final build (or when navigation is stable throughout)
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
@@ -111,21 +114,18 @@ public class Display extends JFrame {//extends POSRegister {
 		mainframeAccess.setLocation(0, 0);		
 		this.getContentPane().add(mainframeAccess);
 		
-		
 		/*//This group is an alternate method to center frame in middle of screen
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Dimension dim = tk.getScreenSize();
 		int xPos = (dim.width / 2) - (this.getWidth() / 2);
 		int yPos = (dim.height / 2) - (this.getHeight() / 2);
-		this.setLocation(xPos, yPos);
-		*/
-
+		this.setLocation(xPos, yPos);*/
 		
 		//JPanel thePanel = new JPanel();
-		welcomeLabel = new JLabel("Welcome!");
+		welcomeLabel = new JLabel("Welcome to S-Mart!");
 		welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-		welcomeLabel.setLocation(365, 150);
-		welcomeLabel.setSize(150, 50);
+		welcomeLabel.setLocation(320, 150);
+		welcomeLabel.setSize(200, 100);
 		
 		//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
 		this.getContentPane().add(welcomeLabel);
@@ -155,7 +155,7 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	//Implement Listeners
 	static class ListenForButton implements ActionListener {
-		@SuppressWarnings("deprecation")
+		//@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			if(e.getSource() == startTransactionButton) {
@@ -184,6 +184,7 @@ public class Display extends JFrame {//extends POSRegister {
 				//TODO We will need another window to pop up separately for coupon insertion
 				//CouponInsertion couponInsertionWindow = new CouponInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
+				CouponInsertion.getInstance();
 				
 				insertCouponLabel = new JLabel("<html>Please insert all coupons<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;into the reader<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
 				insertCouponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -202,7 +203,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(noButton);
 				Main.mainWindow.remove(couponLabel);
 				
-				Main.mainWindow.getContentPane().add(insertCouponLabel);
+				//Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
 				Main.mainWindow.repaint();
@@ -210,7 +211,13 @@ public class Display extends JFrame {//extends POSRegister {
 			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
 				
 				//Clears proper labels and buttons
-				if(e.getSource() == noButton) {				
+				if(e.getSource() == noButton) {	
+					//appends total later to give room for coupons (if any)
+					//might want to move/get rid of this, but displays nicer
+					String formattedTotal;
+					formattedTotal = formatter.format(Cart.myTaxTotal);
+					textArea1.append("Total: " + "\n");
+					textArea2.append("$" + formattedTotal + "\n");
 					Main.mainWindow.remove(yesButton);
 					Main.mainWindow.remove(noButton);
 					Main.mainWindow.remove(couponLabel);
@@ -278,18 +285,25 @@ public class Display extends JFrame {//extends POSRegister {
 				//CashInsertion cashInsertionWindow = new CashInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				CashInsertion.getInstance();
+					
 				insertCashLabel = new JLabel("<html>Thank you for your payment!<html>");
 				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCashLabel.setLocation(450, 50);
 				insertCashLabel.setSize(400, 150);
+					
+				/*insertCashLabel2 = new JLabel("<html>Remining Balance: <html>");
+				insertCashLabel2.setFont(new Font("Ariel", Font.PLAIN, 18));
+				insertCashLabel2.setLocation(450, 750);
+				insertCashLabel2.setSize(400, 150);*/
+					
 				
-				
-				currencyField = new JTextField("$0.0", 15);
+				currencyField = new JTextField();
 				//currencyField.setColumns(10); // Change the size of the text field
-				//currencyField.setText(formatter.format(Customer.getAmountPaid())); // Change the initial value of the text field
+				currencyField.setText(formatter.format(Customer.myCart.myRemBal)); // Change the initial value of the text field
 				currencyField.setToolTipText("Change Due"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
+				
 				//currencyField.setEditable(false);
 				//DisplayCart.textArea1.append("Cash payment:");
 				//DisplayCart.textArea2.append(Double.toString(Customer.amountPaid));

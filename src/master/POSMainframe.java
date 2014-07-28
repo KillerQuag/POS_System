@@ -3,7 +3,7 @@ package master;
 public class POSMainframe 
 {
 	//fields
-	public double totalTransaction$ = 0;
+	public double totalTransaction = 0.0;
 	public int numOfTransactions = 0;
 	public double totalCouponAmount = 0;
 	public double totalCash = 0;
@@ -14,7 +14,7 @@ public class POSMainframe
 	//constructor
 	public POSMainframe()
 	{
-		totalTransaction$ = 0;
+		totalTransaction = 0;
 		numOfTransactions = 0;
 		totalCouponAmount = 0;
 		totalCash = 0;
@@ -29,19 +29,27 @@ public class POSMainframe
 		Main.dailyTotalsSummary.totalCredit = getTotalCredit();
 		Main.dailyTotalsSummary.totalGiftCard = getTotalGiftCard();
 		*/
+		
+		/*Main.database.totalTransaction = getTotalTransaction();
+		Main.database.numOfTransactions = getNumOfTransactions();
+		Main.database.totalCouponAmount = getTotalCouponAmount();
+		Main.database.totalCash = getTotalCash();
+		Main.database.totalCredit = getTotalCredit();
+		Main.database.totalGiftCard = getTotalGiftCard();*/
+
 	}
 	
 	
 	
 	//functions
-	public double getTotalTransaction$()
+	public double getTotalTransaction()
 	{
-		return totalTransaction$;
+		return totalTransaction;
 	}
 
-	public void setTotalTransaction$(double total)
+	public void setTotalTransaction(Cart cart)
 	{
-		this.totalTransaction$ += total;
+		this.totalTransaction += totalTransaction;
 	}
 
 	public int getNumOfTransactions() 
@@ -52,6 +60,8 @@ public class POSMainframe
 	public void setNumOfTransactions() 
 	{
 		numOfTransactions += 1;
+
+		//this.numOfTransactions += numOfTransactions;  //>>>>>>> origin/Matt  Pretty sure this is not what you meant.
 	}
 
 	public double getTotalCouponAmount() 
@@ -95,8 +105,4 @@ public class POSMainframe
 	public void setTotalCheck(double totalCheck) {
 		this.totalCheck += totalCheck;
 	}	
-	
-	
-
-
 }

@@ -46,7 +46,7 @@ public class DisplayCart extends Display {
 		textArea1.append("---------------------------------\n");
 		textArea1.append("Subtotal: " + "\n");
 		textArea1.append("Tax (8.25 %):" + "\n");
-		textArea1.append("Total: " + "\n");
+		//textArea1.append("Total: " + "\n");
 		
 		textArea2 = new JTextArea(15, 20); // Set the default text for the text area
 		textArea2.setFont(new Font("Ariel", Font.PLAIN, 10));
@@ -66,11 +66,11 @@ public class DisplayCart extends Display {
 		textArea2.append("--------\n");
 		formattedPrice = formatter.format(customer.myCart.myPrice);
 		formattedTax = formatter.format(customer.myCart.myTax);
-		formattedTotal = formatter.format(customer.myCart.myTaxTotal);
+		//formattedTotal = formatter.format(customer.myCart.myTaxTotal);
 		
 		textArea2.append("$" + formattedPrice + "\n");  //but have to make them strings here...appending?
 		textArea2.append("$" + formattedTax + "\n");
-		textArea2.append("$" + formattedTotal + "\n");
+		//textArea2.append("$" + formattedTotal + "\n");
 
 		
 		

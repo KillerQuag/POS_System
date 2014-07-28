@@ -27,7 +27,11 @@ public class Main extends Display {
 		// TODO Commented out the stuff below, not sure what is the most current
 		// iteration of the code, I think Matt has the answer.
 		mainWindow = new Display();	
+<<<<<<< HEAD
 		dailyTotalsSummary = new POSMainframe();
+=======
+		//database = new POSMainframe();
+>>>>>>> origin/Matt
 
 	}
 	
@@ -47,20 +51,19 @@ public class Main extends Display {
 		//Adds 1 transaction to POSMainframe
 		dailyTotalsSummary.setNumOfTransactions();
 		dailyTotalsSummary.setTotalTransaction$(Calculations.getTotalPriceWithTax(customer.myCart));
-		
+
 		Main.Customers.add(customer);
 
 	//	CartStorage cs = new CartStorage();
 	//	cs.save(cart);
 		DisplayCart.display( customer.getCart() );
 
-		//Display.startTransactionButton.remove(mainWindow);
 		mainWindow.remove(startTransactionButton);
 		mainWindow.remove(welcomeLabel);
 		mainWindow.repaint();
 		
-		currentCustNum = currentCustNum++;
-		//Display.welcomeLabel.remove(mainWindow);
+		//TODO  This needs to be put in the end state of the transaction to increment the array.
+		//currentCustNum = currentCustNum++;
 		
 		mainWindow.getContentPane().add(Display.couponLabel);
 		mainWindow.getContentPane().add(Display.yesButton);
