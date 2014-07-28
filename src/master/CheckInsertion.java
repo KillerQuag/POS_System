@@ -52,7 +52,7 @@ public class CheckInsertion extends JFrame{
 		amtDueText.setLocation(100, 100);
 		this.getContentPane().add(amtDueText);*/
 		
-		ImageIcon background = createImageIcon("images/BlankCheck.jpg", "A blank check");
+		ImageIcon background = createImageIcon("images/BlankCheck.png", "A blank check");
 		JLabel label1 = new JLabel("Some text", background, JLabel.CENTER);
 		
 		//this.setSize(label1.getWidth(), label1.getHeight()); 

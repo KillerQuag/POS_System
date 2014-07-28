@@ -40,15 +40,12 @@ public class Main extends Display {
 		//Do all calculations
 		customer.myCart = Calculations.SortCart(customer.myCart);
 		customer.myCart.myPrice = Calculations.getTotalPrice(customer.myCart);
-		System.out.println(customer.myCart);
 		customer.myCart.myWeight = Calculations.getTotalWeight(customer.myCart);
 		customer.myCart.myTaxTotal = Calculations.getTotalPriceWithTax(customer.myCart);
 		customer.myCart.myTax = Calculations.getTax(customer.myCart);
 			
 		Main.Customers.add(customer);
 
-	//	CartStorage cs = new CartStorage();
-	//	cs.save(cart);
 		DisplayCart.display( customer.getCart() );
 
 		mainWindow.remove(startTransactionButton);
