@@ -36,18 +36,15 @@ public class POSMainframe
 		Main.database.totalCash = getTotalCash();
 		Main.database.totalCredit = getTotalCredit();
 		Main.database.totalGiftCard = getTotalGiftCard();*/
-
 	}
 	
-	
-	
-	//functions
+	//functions  --Methods
 	public double getTotalTransaction()
 	{
 		return totalTransaction;
 	}
 
-	public void setTotalTransaction(double tt)
+	public void setTotalTransaction(double tt) //Changed this from taking a cart to a double -John
 	{
 		this.totalTransaction = tt;
 	}
@@ -60,9 +57,6 @@ public class POSMainframe
 	public void setNumOfTransactions() 
 	{
 		numOfTransactions += 1;
-
-		//this.numOfTransactions += numOfTransactions;  
-		//>>>>>>> origin/Matt  Pretty sure this is not what you meant. -John
 	}
 
 	public double getTotalCouponAmount() 
