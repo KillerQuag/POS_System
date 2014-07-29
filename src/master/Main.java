@@ -70,7 +70,7 @@ public class Main extends Display {
 		mainWindow.getContentPane().add(Display.scrollPane2);
 
 		mainWindow.getContentPane().add(Display.helpButton);
-		
+		mainWindow.getContentPane().add(remainingBalanceLabel);
 		
 
 		mainWindow.repaint();  //Critical after every refresh.
