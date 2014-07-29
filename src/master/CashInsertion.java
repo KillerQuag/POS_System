@@ -75,13 +75,14 @@ public class CashInsertion extends Display{
 		hundredButton.addActionListener(lFoHundredButton);
 		
 		//button for fiftys
-		fiftyButton = new JButton("$50");
+		fiftyButton = new JButton("$50", new ImageIcon(getClass().getResource("Images/JaneDoe.png")));
 		fiftyButton.setFont(new Font("Ariel", Font.PLAIN, 12));
 		fiftyButton.setLocation(120 + 100, 100);
 		fiftyButton.setSize(75, 75);
 		insertCashFrame.getContentPane().add(fiftyButton);
 		ListenForButton lFoFiftyButton = new ListenForButton(); //Making object from within the object's class may be bad
 		fiftyButton.addActionListener(lFoFiftyButton);
+		//fiftyButton.setIcon(new ImageIcon(getClass().getResource("Images/JaneDoe.png")))
 		
 		//button for twankeys
 		twentyButton = new JButton("$20");

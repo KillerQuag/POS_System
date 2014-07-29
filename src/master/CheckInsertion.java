@@ -41,7 +41,9 @@ public class CheckInsertion extends JFrame{
 	private JLabel check;
 	
 	private JButton amount,
-				    signatureBtn;
+				    signatureBtn,
+				    payTo,
+				    submitCheck;
 	
 	private JDialog getAmount = null;
 	
@@ -72,10 +74,6 @@ public class CheckInsertion extends JFrame{
 		
 		ImageIcon background = createImageIcon("images/BlankCheck.png", "A blank check");
 		JLabel theCheck = new JLabel("", background, JLabel.CENTER);
-		ListenForButton lForSig = new ListenForButton();
-		ListenForButton lForTo = new ListenForButton();
-		ListenForButton lForAmount = new ListenForButton();
-		ListenForButton lForDate = new ListenForButton();
 
 		//this.setSize(label1.getWidth(), label1.getHeight()); 
 		
@@ -110,6 +108,16 @@ public class CheckInsertion extends JFrame{
         signatureBtn.setBounds(620,350,470,80);
         signatureBtn.setFocusPainted(false);  // Sets Focus off for the button
         signatureBtn.setBorderPainted(false); // sets button boundaries off
+        
+        payTo = new JButton();
+        payTo.setBounds(620,350,470,80);  //X, Y, Wid, Hei
+        payTo.setFocusPainted(false);  // Sets Focus off for the button
+        payTo.setBorderPainted(false); // sets button boundaries off
+        
+        submitCheck = new JButton();
+        submitCheck.setBounds(620,350,470,80);
+        submitCheck.setFocusPainted(false);  // Sets Focus off for the button
+        submitCheck.setBorderPainted(false); // sets button boundaries off
         
         /*
          * The action listener of the button creates new fields that are placed in the dialog
