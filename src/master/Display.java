@@ -102,11 +102,6 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JPasswordField passwordField;
 	
 	
-	/*public static void main(String[] a) { 	//Will want to remove this main() and 
-				// put this constructor in the real main()
-	}*/
-	
-	
 	public Display() { 
 		
 		//this.setUndecorated(true);//remove comment on final build (or when navigation is stable throughout)
@@ -116,6 +111,8 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
+		this.getContentPane().setBackground(new Color(0,162,255));
+			    
 		
 		
 		
