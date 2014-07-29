@@ -76,14 +76,18 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel transactionDeniedLabel;
 	public static JLabel transactionApprovedLabel;
 	public static JLabel background;
+	public static JLabel remainingBalanceLabel;
+	
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
 	public static JTextArea textArea2;
+	
 	//public static JTable textTable1;
 	public static JScrollPane scrollPane1;
 	public static JScrollPane scrollPane2;
 	
+	public static JTextField remainingBalanceText;
 	public static JTextField currencyField;
 	public static JTextField changeDueField;
 	public static JTextField signatureField;
@@ -140,6 +144,16 @@ public class Display extends JFrame {//extends POSRegister {
 		lForButton = new ListenForButton();
 		startTransactionButton.addActionListener(lForButton);
 		
+		remainingBalanceLabel = new JLabel("Remaining Balance:");
+		remainingBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+		remainingBalanceLabel.setLocation(130, 390);
+		remainingBalanceLabel.setSize(200, 100);
+		
+		remainingBalanceText = new JTextField();
+		remainingBalanceText.setFont(new Font("Ariel", Font.PLAIN, 18));
+		//remainingBalanceText.setEditable(false);
+		remainingBalanceText.setLocation(150, 455);
+		remainingBalanceText.setSize(100, 25);
 		
 		/* Cannot get this to work properly **** Have not included MyCanvas class so this especially cannot work now ****
 		 * Deletion fodder
@@ -158,23 +172,13 @@ public class Display extends JFrame {//extends POSRegister {
 		//@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
 			NumberFormat formatter = new DecimalFormat("#0.00");
+			//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+			
 			if(e.getSource() == startTransactionButton) {
 				
 				Main.StartTrans();
-				/*mainWindow.remove(startTransaction);
-				mainWindow.remove(welcomeLabel);
 				
-				mainWindow.getContentPane().add(couponLabel);
-				mainWindow.getContentPane().add(yesButton);
-				mainWindow.getContentPane().add(noButton);
-				mainWindow.getContentPane().add(scrollbar1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
-				
-				mainWindow.repaint();
-				*/
-				//System.out.println(e.getSource().toString()); //For testing
 			} else if(e.getSource() == helpButton) {
-				
-				//HelpWindow helpWindow = new HelpWindow();
 				
 				HelpWindow.getInstance();
 				
@@ -211,6 +215,10 @@ public class Display extends JFrame {//extends POSRegister {
 			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
 				
 				//Clears proper labels and buttons
+				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+				//String remBal = formatter.format(customer.myCart.myTaxTotal);
+				//remainingBalanceText.setText(remBal);
+				
 				if(e.getSource() == noButton) {	
 					//appends total later to give room for coupons (if any)
 					//might want to move/get rid of this, but displays nicer
@@ -235,13 +243,19 @@ public class Display extends JFrame {//extends POSRegister {
 				else if( e.getSource() == CardSwipe.returnButton2){
 					
 					Main.mainWindow.remove(giftLabel);
+					
 				}
 				else if( e.getSource() == CashInsertion.returnToPayMethods ){
 					Main.mainWindow.remove(cashInsertComplete);
 					Main.mainWindow.remove(currencyField);
 					Main.mainWindow.remove(insertCashLabel);
+					//Main.mainWindow.remainingBalanceText.setText(" ");
+					
+					
 				}
-				
+				Main.mainWindow.getContentPane().add(remainingBalanceText);
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
+				//remainingBalanceText.append(remBalance);
 				
 				selectPaymentLabel = new JLabel("<html>Select your payment method<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
 				selectPaymentLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -755,6 +769,5 @@ public class Display extends JFrame {//extends POSRegister {
 			} 
 		}// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
-	
 	
 } //End of Display class

@@ -75,6 +75,7 @@ public class CheckInsertion extends JFrame{
 		ListenForButton lForTo = new ListenForButton();
 		ListenForButton lForAmount = new ListenForButton();
 		ListenForButton lForDate = new ListenForButton();
+
 		//this.setSize(label1.getWidth(), label1.getHeight()); 
 		
 		JPanel sig = new JPanel();

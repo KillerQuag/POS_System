@@ -29,13 +29,13 @@ public class DisplayCart extends Display {
 		//******************************************************************************
 	
 		//Text area stuff
-		textArea1 = new JTextArea(15, 20); // Set the default text for the text area
+		textArea1 = new JTextArea(); // Set the default text for the text area
 		textArea1.setFont(new Font("Ariel", Font.PLAIN, 10));
 		textArea1.setText("         Items"); // If text doesn't fit on a line, jump to the next
 		textArea1.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
 		textArea1.setWrapStyleWord(true); 
 		//textArea1.setLocation(100, 100); 
-		textArea1.setSize(275, 105);
+		textArea1.setSize(275, 90);
 		textArea1.setEditable(false); //Prevents the user from being able to change the text area's data
 		
 		textArea1.append("\n         --------\n");
@@ -48,7 +48,7 @@ public class DisplayCart extends Display {
 		textArea1.append("Tax (8.25 %):" + "\n");
 		//textArea1.append("Total: " + "\n");
 		
-		textArea2 = new JTextArea(15, 20); // Set the default text for the text area
+		textArea2 = new JTextArea(); // Set the default text for the text area
 		textArea2.setFont(new Font("Ariel", Font.PLAIN, 10));
 		textArea2.setText("   Price"); // If text doesn't fit on a line, jump to the next
 		textArea2.setLineWrap(true); // Makes sure that words stay intact if a line wrap occurs
@@ -77,12 +77,14 @@ public class DisplayCart extends Display {
 		
 		
 		scrollPane1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane1.setLocation(100, 100); 
+		scrollPane1.setLocation(100, 30); 
 		scrollPane1.setSize(175, 375);
 		
 		scrollPane2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane2.setLocation(275, 100); 
+		scrollPane2.setLocation(275, 30); 
 		scrollPane2.setSize(75, 375);
+		
+		
 
 		
 		

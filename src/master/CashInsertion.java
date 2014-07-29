@@ -197,7 +197,7 @@ public class CashInsertion extends Display{
 		this.getContentPane().add(amtRemaining);
 		
 		formatter.format(Cart.myTaxTotal);
-		amtDueText = new JTextField("$" + formatter.format(customer.myCart.myTaxTotal));
+		amtDueText = new JTextField("$" + formatter.format(customer.myCart.myTaxTotal - customer.getAmountPaid()));
 		
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 		amtDueText.setHorizontalAlignment(JLabel.CENTER);
@@ -219,8 +219,10 @@ public class CashInsertion extends Display{
 		   
 			if(e.getSource() == returnToPayMethods) {
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
-				DisplayCart.textArea1.append("Cash payment:");
-				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
+				DisplayCart.textArea1.append("Cash payment:\n");
+				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction) + "\n");
+				Main.mainWindow.remainingBalanceText.setText(" ");
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- cashThisTransaction));
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
