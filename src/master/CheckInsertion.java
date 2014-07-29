@@ -81,6 +81,7 @@ public class CheckInsertion extends JFrame{
 		ImageIcon janeSig = createImageIcon("images/JaneDoe.png", "Jane's Signature");
 		JLabel janeSigLabel = new JLabel("", janeSig, JLabel.SOUTH_EAST);
 		janeSigLabel.resize(275, 79);
+		janeSigLabel.setOpaque(false);
 		sig.add(janeSigLabel);
 		
 		
