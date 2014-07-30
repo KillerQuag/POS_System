@@ -131,7 +131,7 @@ public class CardSwipe extends JFrame
 			}
 			else if(e.getSource() == giftButton )
 			{
-				
+				double remainingBalance = 0;
 				//full payment to be made with gift card?
 				Main.mainWindow.lForButton.actionPerformed(e);				
 				//cardSwipeWindow.dispose();

@@ -3,6 +3,9 @@ package master;
 //import javax.swing.JFrame;
 import javax.swing.*;
 
+import master.CardSwipe.ListenForButton;
+
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -23,8 +26,10 @@ public class Display extends JFrame {//extends POSRegister {
 	public ListenForButton lForButton;
 	public CardSwipe cardSwipeWindow;
 	
-	//Employee Mainframe Access Button
-	public JButton mainframeAccess;
+	//Employee Mainframe Access Buttons and Window
+	public static JButton mainframeAccess;
+	
+	
 	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
@@ -110,13 +115,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setResizable(false);
 		this.setVisible(true);
 		
-		//add the mainframeAccess button to the main screen
-		Color mainframeColor = Color.blue;		
-		mainframeAccess = new JButton();
-		mainframeAccess.setBackground(mainframeColor);
-		mainframeAccess.setSize(30, 15);
-		mainframeAccess.setLocation(0, 0);		
-		this.getContentPane().add(mainframeAccess);
+		
 		
 		/*//This group is an alternate method to center frame in middle of screen
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -136,6 +135,17 @@ public class Display extends JFrame {//extends POSRegister {
 		
 		this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 		
+		
+		//add the mainframeAccess button to the main screen
+		Color mainframeColor = Color.blue;		
+		mainframeAccess = new JButton();
+		mainframeAccess.setBackground(mainframeColor);
+		ListenForButton lFormainframeAccess = new ListenForButton(); //Making object from within the object's class may be bad
+		mainframeAccess.addActionListener(lFormainframeAccess);
+		mainframeAccess.setSize(30, 15);
+		mainframeAccess.setLocation(0, 0);		
+		this.getContentPane().add(mainframeAccess);
+				
 		startTransactionButton = new JButton("Start Transaction");
 		startTransactionButton.setLocation(400-100, 225);
 		startTransactionButton.setSize(200, 75);
@@ -178,17 +188,22 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.StartTrans();
 				
-			} else if(e.getSource() == helpButton) {
+			}else if( e.getSource() == mainframeAccess ){
+				databases showDatabase = new databases();
+				showDatabase.showMainframeDetails();
+			}
+			else if(e.getSource() == helpButton) {
 				
 				HelpWindow.getInstance();
 				
-			} else if(e.getSource() == yesButton) {
+			} else if(e.getSource() == yesButton) {				 
 				
 				////////////////////////////////////////////////////////////////////////////
 				//TODO We will need another window to pop up separately for coupon insertion
 				//CouponInsertion couponInsertionWindow = new CouponInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
-				CouponInsertion.getInstance();
+				CouponInsertion.getInstance();		
+				
 				
 				insertCouponLabel = new JLabel("<html>Please insert all coupons<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;into the reader<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
 				insertCouponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -202,20 +217,32 @@ public class Display extends JFrame {//extends POSRegister {
 				ListenForButton lForYesButton = new ListenForButton(); //Making object from within the object's class may be bad
 				proceedToCOButton.addActionListener(lForYesButton);
 				
-				
+				/*
 				Main.mainWindow.remove(yesButton);
 				Main.mainWindow.remove(noButton);
 				Main.mainWindow.remove(couponLabel);
+				Main.mainWindow.remove(mainframeAccess);
+				*/
 				
 				//Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
 				Main.mainWindow.repaint();
 				
-			} else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
+				if( e.getSource() == mainframeAccess ){
+					databases showDatabase = new databases();
+					showDatabase.showMainframeDetails();
+				}
+				
+				
+			} 
+			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
+				
 				
 				//Clears proper labels and buttons
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+				//Laya's addition to set the total balance for POS Mainframe
+				Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 				//String remBal = formatter.format(customer.myCart.myTaxTotal);
 				//remainingBalanceText.setText(remBal);
 				
@@ -252,6 +279,10 @@ public class Display extends JFrame {//extends POSRegister {
 					//Main.mainWindow.remainingBalanceText.setText(" ");
 					
 					
+				}
+				else if( e.getSource() == mainframeAccess ){
+					databases showDatabase = new databases();
+					showDatabase.showMainframeDetails();
 				}
 				Main.mainWindow.getContentPane().add(remainingBalanceText);
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
@@ -292,7 +323,9 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-			} else if(e.getSource() == cashButton) {
+			} else if(e.getSource() == cashButton) {	
+			
+				
 				
 				////////////////////////////////////////////////////////////////////////////
 				//TODO We will need another window to pop up separately for cash insertion
@@ -767,7 +800,9 @@ public class Display extends JFrame {//extends POSRegister {
 			} else if(e.getSource() == jButton9) {
 				passwordField.setText(passwordField.getText() + '9');
 			} 
-		}// End of actionPerformed(ActionEvent e)
+			
+		}
+		// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
 	
 } //End of Display class

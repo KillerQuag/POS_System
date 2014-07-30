@@ -38,6 +38,26 @@ public class POSMainframe
 		Main.database.totalGiftCard = getTotalGiftCard();*/
 	}
 	
+	public String toString()
+	{
+		String output = "";
+		
+		output = '\n' + "	        Daily Transactions Summary" + '\n' + '\n' +
+					"---------------------------------------------------------------------------------------------------" + '\n' + 
+					"Number of Transactions:			 " + this.numOfTransactions + '\n' + 
+					"---------------------------------------------------------------------------------------------------" + '\n' + 
+					"Total Cash:				$" + this.totalCash + '\n' +
+					"Total Credit:				$" + this.totalCredit + '\n' +
+					"Total Checks:				$" + this.totalCheck + '\n' +
+					"Total Coupons:				$" + this.totalCouponAmount + '\n' +
+					"Total Gift Card:				$" + this.totalGiftCard + '\n' + 
+					"---------------------------------------------------------------------------------------------------" + '\n' + 					
+					"Total Transactions:			$" + this.totalTransaction + '\n' +
+					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n';
+		
+		return output;
+	}
+	
 	//functions  --Methods
 	public double getTotalTransaction()
 	{
