@@ -11,6 +11,13 @@ import java.util.Random;
  *  This will act as the customer.  It will call the other classes/agents to do 
  *  the checkout process.
  */
+
+/** TODO
+ * 
+ * Check insertion puts event back to Display
+ * 
+ *
+ */
 public class Main extends Display {
 
 	private static final long serialVersionUID = 1L;  //Eclipse wants this garbage everywhere for some reason.
