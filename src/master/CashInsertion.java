@@ -275,6 +275,10 @@ public class CashInsertion extends Display{
 				DisplayCart.textArea1.append("Cash payment:");
 				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
 				Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid())));
+				double changeDue = customer.myCart.myTaxTotal - customer.getAmountPaid();
+				customer.setChangeDue(changeDue);
+				customer.paidCash(changeDue);
+				System.out.println("Change due:  $" + changeDue);
 				Display.currencyField.setHorizontalAlignment(JLabel.CENTER);
 				insertCashFrame.dispose();
 				

@@ -84,6 +84,7 @@ public class CouponInsertion extends Display {
 	}
 	private class ListenForButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			Main.mainWindow.lForButton.actionPerformed(e);
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			double discount,
@@ -98,8 +99,9 @@ public class CouponInsertion extends Display {
 				myInstance = null;
 			}
 			else if(e.getSource() == fivePerOff){
+				
 				discount = 0.05;
-				System.out.print(customer.myCart.myPrice);
+				System.out.print("Subtotal Price:  $" + customer.myCart.myPrice + '\n');
 				couponAmount = customer.myCart.myPrice * discount;
 				formattedTotal = formatter.format(customer.myCart.myTaxTotal  - couponAmount);				
 				DisplayCart.textArea1.append("Coupon - 5 Percent off:\n");

@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 //This class simulates the process of swiping a card (Debit, Credit or Gift)
 public class CardSwipe extends JFrame 
@@ -28,7 +30,7 @@ public class CardSwipe extends JFrame
 	public static JLabel chooseACardLabel;
 	public static JLabel couponLabel;
 	public static JLabel giftCardAmountLabel;
-	//public static JLabel processingLabel;
+	
 	public static JLabel amtPaid;
 	public static JLabel amtRemaining;
 	
@@ -229,28 +231,171 @@ public class CardSwipe extends JFrame
 			String totalAmountPaid = Double.toString(customer.getAmountPaid());
 			if(e.getSource() == fiveDollar )
 			{	
-				customer.paidGiftCard(5.0);
+				if( customer.amountPaid + 5.00 > customer.myCart.myTaxTotal )	
+				{
+					customer.giftCardBalance = (customer.getAmountPaid() + 5) - customer.myCart.myTaxTotal;
+					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()));	
+					System.out.println("Remaining Gift Card Balance:");
+					System.out.println(customer.getGiftCardBalance());
+					
+					//
+					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+					amtPaidText.setText(Double.toString(customer.amountPaid));
+					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					
+					
+					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
+					Display.giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftLabel.setLocation(450, 50);
+					Display.giftLabel.setSize(400, 150);
+					
+					NumberFormat formatter = new DecimalFormat("#0.00");
+					customer.getGiftCardBalance();
+					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
+					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftCardBalanceLabel.setLocation(523, 175);
+					Display.giftCardBalanceLabel.setSize(200, 25);
+					
+					Main.mainWindow.getContentPane().add(Display.giftLabel);
+					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
+					Main.mainWindow.remove(Display.slideCardLabel);
+					
+					Main.mainWindow.repaint();
+					
+					
+					cardSwipeWindow.dispose();
+				}
+				else
+					customer.paidGiftCard(5.0);	
 				
-				if(customer.amountPaid > customer.myCart.myTaxTotal)
-				cardSwipeWindow.dispose();
+					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+					amtPaidText.setText(Double.toString(customer.amountPaid));
+					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
 			}
 			else if( e.getSource() == tenDollar )
 			{
-				customer.paidGiftCard(10.0);
-				if(customer.amountPaid > customer.myCart.myTaxTotal)
-				cardSwipeWindow.dispose();
+				if(customer.amountPaid + 10.00 > customer.myCart.myTaxTotal)
+				{
+					customer.giftCardBalance = (customer.getAmountPaid() + 10) - customer.myCart.myTaxTotal;
+					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()));
+					System.out.println("Remaining Gift Card Balance:");
+					System.out.println(customer.getGiftCardBalance());
+					
+					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+					amtPaidText.setText(Double.toString(customer.amountPaid));
+					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					
+					
+					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
+					Display.giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftLabel.setLocation(450, 50);
+					Display.giftLabel.setSize(400, 150);
+					
+					NumberFormat formatter = new DecimalFormat("#0.00");
+					customer.getGiftCardBalance();
+					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
+					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftCardBalanceLabel.setLocation(523, 175);
+					Display.giftCardBalanceLabel.setSize(200, 25);
+					
+					Main.mainWindow.getContentPane().add(Display.giftLabel);
+					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
+					Main.mainWindow.remove(Display.slideCardLabel);
+					
+					Main.mainWindow.repaint();
+					
+					
+					cardSwipeWindow.dispose();
+				}
+				else
+					customer.paidGiftCard(10.0);	
+				
+				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+				amtPaidText.setText(Double.toString(customer.amountPaid));
+				amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
 			}
 			else if( e.getSource() == twentyFiveDollar )
 			{
-				customer.paidGiftCard(25.0);
-				if(customer.amountPaid > customer.myCart.myTaxTotal)
-				cardSwipeWindow.dispose();
+				if(customer.amountPaid + 25.00 > customer.myCart.myTaxTotal)
+				{
+					customer.giftCardBalance = (customer.getAmountPaid() + 25) - customer.myCart.myTaxTotal;
+					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()) );
+					System.out.println("Remaining Gift Card Balance:");
+					System.out.println(customer.getGiftCardBalance());
+					
+					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+					amtPaidText.setText(Double.toString(customer.amountPaid));
+					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					
+					
+					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
+					Display.giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftLabel.setLocation(450, 50);
+					Display.giftLabel.setSize(400, 150);
+					
+					NumberFormat formatter = new DecimalFormat("#0.00");
+					customer.getGiftCardBalance();
+					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
+					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftCardBalanceLabel.setLocation(523, 175);
+					Display.giftCardBalanceLabel.setSize(200, 25);
+					
+					Main.mainWindow.getContentPane().add(Display.giftLabel);
+					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
+					Main.mainWindow.remove(Display.slideCardLabel);
+					
+					Main.mainWindow.repaint();
+					
+					
+					cardSwipeWindow.dispose();
+				}
+				else
+					customer.paidGiftCard(25.0);
+				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+				amtPaidText.setText(Double.toString(customer.amountPaid));
+				amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
 			}
 			else if( e.getSource() == fiftyDollar )
 			{
-				customer.paidGiftCard(50.0);
-				if(customer.amountPaid > customer.myCart.myTaxTotal)
-				cardSwipeWindow.dispose();
+				if(customer.getAmountPaid() + 50.00 > customer.myCart.myTaxTotal)
+				{
+					customer.giftCardBalance = (customer.getAmountPaid() + 50) - customer.myCart.myTaxTotal;
+					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()));	
+					System.out.println("Remaining Gift Card Balance:");
+					System.out.println(customer.getGiftCardBalance());
+					
+					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+					amtPaidText.setText(Double.toString(customer.amountPaid));
+					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					
+					
+					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
+					Display.giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftLabel.setLocation(450, 50);
+					Display.giftLabel.setSize(400, 150);
+					
+					NumberFormat formatter = new DecimalFormat("#0.00");
+					customer.getGiftCardBalance();
+					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
+					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+					Display.giftCardBalanceLabel.setLocation(523, 175);
+					Display.giftCardBalanceLabel.setSize(200, 25);
+					
+					Main.mainWindow.getContentPane().add(Display.giftLabel);
+					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
+					Main.mainWindow.remove(Display.slideCardLabel);
+					
+					Main.mainWindow.repaint();
+					
+					cardSwipeWindow.dispose();
+				}
+				else
+					customer.paidGiftCard(50.0);		
+				
+				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+				amtPaidText.setText(Double.toString(customer.amountPaid));
+				amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+				
 			}
 			else if( e.getSource() == cancelButton )
 			{
@@ -260,12 +405,11 @@ public class CardSwipe extends JFrame
 			else if(e.getSource() == returnButton2 )
 			{
 				Main.mainWindow.lForButton.actionPerformed(e);
+				Main.mainWindow.remove(Display.slideCardLabel);
 				cardSwipeWindow.dispose();				
 				
 			}
-			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-			amtPaidText.setText(Double.toString(customer.amountPaid));
-			amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+			
 		}
 	}		
 

@@ -6,6 +6,7 @@ import javax.swing.*;
 import master.CardSwipe.ListenForButton;
 
 
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -82,6 +83,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel transactionApprovedLabel;
 	public static JLabel background;
 	public static JLabel remainingBalanceLabel;
+	public static JLabel giftCardBalanceLabel;
 	
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
@@ -217,12 +219,12 @@ public class Display extends JFrame {//extends POSRegister {
 				ListenForButton lForYesButton = new ListenForButton(); //Making object from within the object's class may be bad
 				proceedToCOButton.addActionListener(lForYesButton);
 				
-				/*
+				
 				Main.mainWindow.remove(yesButton);
 				Main.mainWindow.remove(noButton);
 				Main.mainWindow.remove(couponLabel);
 				Main.mainWindow.remove(mainframeAccess);
-				*/
+				
 				
 				//Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
@@ -269,7 +271,7 @@ public class Display extends JFrame {//extends POSRegister {
 				}
 				else if( e.getSource() == CardSwipe.returnButton2){
 					
-					Main.mainWindow.remove(giftLabel);
+					//Main.mainWindow.remove(giftLabel);
 					
 				}
 				else if( e.getSource() == CashInsertion.returnToPayMethods ){
@@ -631,19 +633,30 @@ public class Display extends JFrame {//extends POSRegister {
 				System.out.println("credit button pressed");
 				
 			} else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
-				
-				//If ( giftCardAmt >= totalCost ) == true
+				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+			/*
+				if( customer.getAmountPaid() >= customer.myCart.myTaxTotal )
+				{
+					
 				giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
 				giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				giftLabel.setLocation(450, 50);
 				giftLabel.setSize(400, 150);
 				
+				
+				giftCardBalanceLabel = new JLabel("$" + customer.getGiftCardBalance());
+				giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				giftCardBalanceLabel.setLocation(523, 175);
+				giftCardBalanceLabel.setSize(200, 25);
+				
 				Main.mainWindow.getContentPane().add(giftLabel);
+				Main.mainWindow.getContentPane().add(giftCardBalanceLabel);
 				Main.mainWindow.remove(slideCardLabel);
 				
 				Main.mainWindow.repaint();
-				
-				System.out.println("Gift button pressed");
+				}
+				*/
+				//System.out.println("Gift button pressed");
 				
 			} else if(e.getSource() == enterButton1) { //For credit
 
