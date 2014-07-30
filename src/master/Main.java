@@ -47,7 +47,7 @@ public class Main extends Display {
 		
 		//Adds 1 transaction to POSMainframe
 		dailyTotalsSummary.setNumOfTransactions();
-		dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
+		//dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 
 		Main.Customers.add(customer);
 
