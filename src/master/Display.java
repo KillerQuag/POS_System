@@ -244,7 +244,8 @@ public class Display extends JFrame {//extends POSRegister {
 				//Clears proper labels and buttons
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				//Laya's addition to set the total balance for POS Mainframe
-				Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
+				if (e.getSource() == noButton)
+					Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 				//String remBal = formatter.format(customer.myCart.myTaxTotal);
 				//remainingBalanceText.setText(remBal);
 				

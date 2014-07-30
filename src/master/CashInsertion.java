@@ -66,7 +66,7 @@ public class CashInsertion extends Display{
 		insertCashFrame = this;
 		
 		//button for hundreds
-		hundredButton = new JButton(new ImageIcon(getClass().getResource("Images/100bill.png")));
+		hundredButton = new JButton(new ImageIcon( getClass().getResource("Images/100bill.png") ) );
 		hundredButton.setFont(new Font("Ariel", Font.PLAIN, 12));
 		hundredButton.setLocation(120, 80);
 		hundredButton.setSize(50, 116);

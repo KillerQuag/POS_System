@@ -15,7 +15,12 @@ import java.util.Random;
 /** TODO
  * 
  * Check insertion puts event back to Display
+ * Apply magical number formatter to everything
+ * Uniform rounding calculation cause .19 seems to round to .20 in Display but .19 in console for Mainframe
  * 
+ * 
+ * Wishlist:
+ * 		after coupon insertion, go straight to select payment methods
  *
  */
 public class Main extends Display {
