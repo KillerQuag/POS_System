@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.lang.NumberFormatException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -67,12 +68,7 @@ public class CheckInsertion extends JFrame{
 
 		//this.getContentPane().setLayout(null);
 		
-	/*	amtDueText = new JTextField("Fuck you", 20);
-		amtDueText.setSize(100, 100);
-		amtDueText.setLocation(100, 100);
-		this.getContentPane().add(amtDueText);*/
-		
-		ImageIcon background = createImageIcon("images/BlankCheck.png", "A blank check");
+/*		ImageIcon background = createImageIcon("images/BlankCheck.png", "A blank check");
 		JLabel theCheck = new JLabel("", background, JLabel.CENTER);
 
 		//this.setSize(label1.getWidth(), label1.getHeight()); 
@@ -83,7 +79,7 @@ public class CheckInsertion extends JFrame{
 		janeSigLabel.setSize(275, 79);
 		janeSigLabel.setLocation(900, 300);
 		janeSigLabel.setOpaque(false);
-		sig.add(janeSigLabel);
+		sig.add(janeSigLabel);*/
 		
 		//NEW CODE BY EDGAR
 		
@@ -110,12 +106,14 @@ public class CheckInsertion extends JFrame{
         signatureBtn.setBorderPainted(false); // sets button boundaries off
         
         payTo = new JButton();
-        payTo.setBounds(620,350,470,80);  //X, Y, Wid, Hei
+        payTo.setSize(470, 80);
+        payTo.setBounds(180,140,470,80);  //X, Y, Wid, Hei
         payTo.setFocusPainted(false);  // Sets Focus off for the button
         payTo.setBorderPainted(false); // sets button boundaries off
         
         submitCheck = new JButton();
-        submitCheck.setBounds(620,350,470,80);
+        submitCheck.setSize(20, 20);
+        submitCheck.setBounds(5,5,20,20);
         submitCheck.setFocusPainted(false);  // Sets Focus off for the button
         submitCheck.setBorderPainted(false); // sets button boundaries off
         
@@ -160,12 +158,33 @@ public class CheckInsertion extends JFrame{
             	signatureBtn.setIcon(new ImageIcon(getClass().getResource("Images/JaneDoe.png")));
             }
         });
+        
+        payTo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	payTo.setIcon(new ImageIcon(getClass().getResource("Images/SMartTextSign.png")));
+            }
+        });
+        
+        submitCheck.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+            	try{
+            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );
+            	}
+            	catch (NumberFormatException e){
+            		System.out.println("Empty string or non number, change check amount.");
+            	}    	
+        		insertCheckFrame.dispose();
+        		myInstance = null;
+            }
+        });
  
 		
         this.getContentPane().add(amount);
         this.getContentPane().add(signatureBtn);
+        this.getContentPane().add(payTo);
+		this.getContentPane().add(submitCheck);
 		this.getContentPane().add(check);
-
 		}
 	
 	public static CheckInsertion getInstance() {

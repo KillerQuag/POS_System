@@ -66,62 +66,62 @@ public class CashInsertion extends Display{
 		insertCashFrame = this;
 		
 		//button for hundreds
-		hundredButton = new JButton("$100");
+		hundredButton = new JButton(new ImageIcon(getClass().getResource("Images/100bill.png")));
 		hundredButton.setFont(new Font("Ariel", Font.PLAIN, 12));
-		hundredButton.setLocation(120, 100);
-		hundredButton.setSize(75, 75);
+		hundredButton.setLocation(120, 80);
+		hundredButton.setSize(50, 116);
 		insertCashFrame.getContentPane().add(hundredButton);
 		ListenForButton lFoHundredButton = new ListenForButton();
 		hundredButton.addActionListener(lFoHundredButton);
 		
 		//button for fiftys
-		fiftyButton = new JButton("$50", new ImageIcon(getClass().getResource("Images/JaneDoe.png")));
+		fiftyButton = new JButton(new ImageIcon(getClass().getResource("Images/50bill.png")));
 		fiftyButton.setFont(new Font("Ariel", Font.PLAIN, 12));
-		fiftyButton.setLocation(120 + 100, 100);
-		fiftyButton.setSize(75, 75);
+		fiftyButton.setLocation(120 + 100, 80);
+		fiftyButton.setSize(50, 116);
 		insertCashFrame.getContentPane().add(fiftyButton);
 		ListenForButton lFoFiftyButton = new ListenForButton(); //Making object from within the object's class may be bad
 		fiftyButton.addActionListener(lFoFiftyButton);
 		//fiftyButton.setIcon(new ImageIcon(getClass().getResource("Images/JaneDoe.png")))
 		
 		//button for twankeys
-		twentyButton = new JButton("$20");
+		twentyButton = new JButton(new ImageIcon(getClass().getResource("Images/20bill.png")));
 		twentyButton.setFont(new Font("Ariel", Font.PLAIN, 12));
-		twentyButton.setLocation(120 + 200, 100);
-		twentyButton.setSize(75, 75);
+		twentyButton.setLocation(120 + 200, 80);
+		twentyButton.setSize(50, 116);
 		insertCashFrame.getContentPane().add(twentyButton);
 		ListenForButton lFoTwentyButton = new ListenForButton(); //Making object from within the object's class may be bad
 		twentyButton.addActionListener(lFoTwentyButton);
 		
 		//button for tens
-		tenButton = new JButton("$10");
+		tenButton = new JButton(new ImageIcon(getClass().getResource("Images/10bill.png")));
 		tenButton.setFont(new Font("Ariel", Font.PLAIN, 12));
-		tenButton.setLocation(120 + 300, 100);
-		tenButton.setSize(75, 75);
+		tenButton.setLocation(120 + 300, 80);
+		tenButton.setSize(50, 116);
 		insertCashFrame.getContentPane().add(tenButton);
 		ListenForButton lFoTenButton = new ListenForButton(); //Making object from within the object's class may be bad
 		tenButton.addActionListener(lFoTenButton);
 		
 		//button for five-spots
-		fiveButton = new JButton("$5");
+		fiveButton = new JButton(new ImageIcon(getClass().getResource("Images/5bill.png")));
 		fiveButton.setFont(new Font("Ariel", Font.PLAIN, 12));
-		fiveButton.setLocation(120 + 400, 100);
-		fiveButton.setSize(75, 75);
+		fiveButton.setLocation(120 + 400, 80);
+		fiveButton.setSize(50, 116);
 		insertCashFrame.getContentPane().add(fiveButton);
 		ListenForButton lFoFiveButton = new ListenForButton(); //Making object from within the object's class may be bad
 		fiveButton.addActionListener(lFoFiveButton);
 		
 		//button for singles
-		oneButton = new JButton("$1");
+		oneButton = new JButton(new ImageIcon(getClass().getResource("Images/1bill.png")));
 		oneButton.setFont(new Font("Ariel", Font.PLAIN, 12));
-		oneButton.setLocation(120 + 500, 100);
-		oneButton.setSize(75, 75);
+		oneButton.setLocation(120 + 500, 80);
+		oneButton.setSize(50, 116);
 		insertCashFrame.getContentPane().add(oneButton);
 		ListenForButton lFoOneButton = new ListenForButton(); //Making object from within the object's class may be bad
 		oneButton.addActionListener(lFoOneButton);
 		
 		//button for quarters
-		quarterButton = new JButton("0.25");
+		quarterButton = new JButton(new ImageIcon(getClass().getResource("Images/quarter.png")));
 		quarterButton.setFont(new Font("Ariel", Font.PLAIN, 12));
 		quarterButton.setLocation(220, 225);
 		quarterButton.setSize(75, 75);
@@ -130,7 +130,7 @@ public class CashInsertion extends Display{
 		quarterButton.addActionListener(lFoQuarterButton);
 		
 		//button for dimes
-		dimeButton = new JButton("0.10");
+		dimeButton = new JButton(new ImageIcon(getClass().getResource("Images/dime.png")));
 		dimeButton.setFont(new Font("Ariel", Font.PLAIN, 12));
 		dimeButton.setLocation(220 + 100, 225);
 		dimeButton.setSize(75, 75);
@@ -139,7 +139,7 @@ public class CashInsertion extends Display{
 		dimeButton.addActionListener(lFoDimeButton);
 		
 		//button for nickels
-		nickelButton = new JButton("0.05");
+		nickelButton = new JButton(new ImageIcon(getClass().getResource("Images/nickel.png")));
 		nickelButton.setFont(new Font("Ariel", Font.PLAIN, 12));
 		nickelButton.setLocation(220 + 200, 225);
 		nickelButton.setSize(75, 75);
@@ -148,7 +148,7 @@ public class CashInsertion extends Display{
 		nickelButton.addActionListener(lFoNickelButton);
 		
 		//button for pennies
-		pennyButton = new JButton("0.01");
+		pennyButton = new JButton(new ImageIcon(getClass().getResource("Images/penny.png")));
 		pennyButton.setFont(new Font("Ariel", Font.PLAIN, 12));
 		pennyButton.setLocation(220 + 300, 225);
 		pennyButton.setSize(75, 75);
