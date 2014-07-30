@@ -111,7 +111,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
-		this.getContentPane().setBackground(new Color(0,162,255));
+		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
 		
 		
@@ -599,9 +599,10 @@ public class Display extends JFrame {//extends POSRegister {
 				creditLabel.setSize(400, 150);
 				
 				
-				signatureField = new JTextField("Write your signature here", 15);
+				signatureField = new JTextField(15);
 				//currencyField.setColumns(10); // Change the size of the text field
 				//currencyField.setText("New Text Here"); // Change the initial value of the text field
+				signatureField.setHorizontalAlignment(JLabel.CENTER);
 				signatureField.setToolTipText("Use your finger or the stylus"); // Change the tool tip for the text field
 				signatureField.setLocation(450, 200);
 				signatureField.setSize(200, 40);

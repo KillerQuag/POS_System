@@ -282,9 +282,10 @@ public class CashInsertion extends Display{
 				Display.currencyField.setHorizontalAlignment(JLabel.CENTER);
 				insertCashFrame.dispose();
 				
-			}
+			} else {
 			amtPaidText.setText(formatter.format(customer.amountPaid));
 			amtDueText.setText(formatter.format(customer.myCart.myRemBal));
+			}
 		}
 		
 	}
