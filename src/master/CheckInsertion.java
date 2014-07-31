@@ -22,6 +22,7 @@ public class CheckInsertion extends JFrame{
 	private static CheckInsertion myInstance;
 
 	public JFrame insertCheckFrame;
+	public static JFrame errorFrame;
 	
 	public static JTextField amtDueText;
 	
@@ -224,7 +225,7 @@ public class CheckInsertion extends JFrame{
 	
 	public static void errorMessage()
 	{
-		JFrame errorFrame;
+		
 		JPanel errorPanel;
 		JLabel error;
 		JButton close;
@@ -259,6 +260,7 @@ public class CheckInsertion extends JFrame{
         close.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				
 				errorFrame.dispose();
 			}

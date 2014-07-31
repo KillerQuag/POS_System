@@ -8,20 +8,26 @@ import java.util.Random;
 
 /**
  * @author John
- *  This will act as the customer.  It will call the other classes/agents to do 
- *  the checkout process.
+ *  This is the main.  There are many like it, but this one is ours.
  */
 
 /** TODO
  * 
+ * USE:
+ * Format nubmers with Calculations.format(double)
+ * 
  * Check insertion, Credit, Debit send events back to Display indicating transaction state
- * Apply magical number formatter to everything
+ * 
  * Uniform rounding calculation cause .19 seems to round to .20 in Display but .19 in console for Mainframe
  * Card Swipe instancing to fix Remaining balance display in Main windows
- * Error check on CheckInsertion to make sure it's signed, payTo and amount is filled in before insert button in TL.
+ * Credit/Debit/Gift card and Checks needs final transaction flows.  
+ * 		IE, update remaining balance to 0 and put a line in for paid by credit/debit/card --Leah
  * Transaction CF branch dead ends, wait 5s then loop back to beginning "Welcome" screen
  * Add background image to Welcome screen, etc.
- * Random exception of scale imbalance. 
+ * Mainframe blue button doeesn't work after clicking yes on Coupon - Matt
+ * JUnit - JOHN
+ * Class diagram... can autogenerate these, ask Edgar for the program name.
+ * 
  * 
  * Wishlist:
  * 		after coupon insertion, go straight to select payment methods
@@ -46,6 +52,7 @@ public class Main extends Display {
 		mainWindow = new Display();	
 		dailyTotalsSummary = new POSMainframe();
 		//database = new POSMainframe();
+		
 
 	}
 	
@@ -67,6 +74,14 @@ public class Main extends Display {
 		//dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 
 		Main.Customers.add(customer);
+		
+		//Insert Scale exception code here.
+		boolean weightError = new Scale().error();
+		if (weightError){
+			HelpWindow.getInstance();
+			HelpWindow.getInstance().helpLabel.setText("<html><center>The scale and cart don't match weights.<br>Please wait."
+					+ "<br>An attendant will be with you shortly.</center></html>");
+		}
 
 		DisplayCart.display( customer.getCart() );
 
