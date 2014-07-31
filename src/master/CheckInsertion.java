@@ -1,5 +1,6 @@
 package master;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,17 +22,23 @@ public class CheckInsertion extends JFrame{
 	private static CheckInsertion myInstance;
 
 	public JFrame insertCheckFrame;
+	
 	public static JTextField amtDueText;
 	
 	private BufferedImage bckgrnd = null;
 	Font btnFnt = new Font("Serif", Font.ITALIC, 36);
 	
-	private JLabel check;
+	private JLabel check;	
 	
 	private JButton amount,
 				    signatureBtn,
 				    payTo,
 				    submitCheck;
+	
+	boolean amt = false;
+	boolean sig = false;
+	boolean pt = false;
+	boolean sub = false;
 	
 	private JDialog getAmount = null;
 	
@@ -86,23 +93,32 @@ public class CheckInsertion extends JFrame{
         amount.setFont(btnFnt);
         amount.setFocusPainted(false); // Sets Focus off for the button
         amount.setBorderPainted(false); // sets button boundaries off
+        amount.setOpaque(false);
+        amount.setContentAreaFilled(false);
         
         signatureBtn = new JButton();
         signatureBtn.setBounds(620,350,470,80);
         signatureBtn.setFocusPainted(false);  // Sets Focus off for the button
         signatureBtn.setBorderPainted(false); // sets button boundaries off
+        signatureBtn.setOpaque(false);
+        signatureBtn.setContentAreaFilled(false);
         
         payTo = new JButton();
         payTo.setSize(470, 80);
         payTo.setBounds(180,140,470,80);  //X, Y, Wid, Hei
         payTo.setFocusPainted(false);  // Sets Focus off for the button
         payTo.setBorderPainted(false); // sets button boundaries off
+        payTo.setOpaque(false);
+        payTo.setContentAreaFilled(false);
         
         submitCheck = new JButton();
         submitCheck.setSize(20, 20);
         submitCheck.setBounds(5,5,20,20);
         submitCheck.setFocusPainted(false);  // Sets Focus off for the button
         submitCheck.setBorderPainted(false); // sets button boundaries off
+        
+           
+        
         
         /*
          * The action listener of the button creates new fields that are placed in the dialog
@@ -129,7 +145,8 @@ public class CheckInsertion extends JFrame{
 		            public void actionPerformed(ActionEvent event) {
 		            	amount.setText(txtAmount.getText());
 		            	getAmount.setVisible(false);
-		            	getAmount.dispose();
+		            	getAmount.dispose();		            	
+		            	amt = true;
 		            }
 		    	});
 		 
@@ -143,29 +160,42 @@ public class CheckInsertion extends JFrame{
         signatureBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             	signatureBtn.setIcon(new ImageIcon(getClass().getResource("Images/JaneDoe.png")));
+            	sig = true;
             }
         });
         
         payTo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             	payTo.setIcon(new ImageIcon(getClass().getResource("Images/SMartTextSign.png")));
+            	pt = true;
             }
         });
         
         submitCheck.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             	Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+            	
+            	if( amt && sig && pt )
+            	{
+            	
             	try{
-            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );
+            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
+            		
             	}
             	catch (NumberFormatException e){
-            		System.out.println("Empty string or non number, change check amount.");
-            	}    	
-        		insertCheckFrame.dispose();
-        		myInstance = null;
-            }
-        });
- 
+            		System.out.println("Empty string or non number, change check amount.");	
+            	} 
+            	
+            	myInstance.dispose();
+            	myInstance = null;
+            	}
+            	else
+            	{
+            		System.out.println("Please make sure all required fields are filled out and resubmit your check.");
+            		errorMessage();
+            	}
+            }                        
+        }); 
 		
         this.getContentPane().add(amount);
         this.getContentPane().add(signatureBtn);
@@ -190,6 +220,49 @@ public class CheckInsertion extends JFrame{
 		System.err.println("Couldn't find file: " + path);
 		return null;
 		}
+	}
+	
+	public static void errorMessage()
+	{
+		JFrame errorFrame;
+		JPanel errorPanel;
+		JLabel error;
+		JButton close;
+		
+		errorFrame = new JFrame("Read Error");
+        errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+        errorFrame.setSize(600, 200); 
+        errorFrame.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+        errorFrame.setResizable(false);
+        errorFrame.setVisible(true);      
+        
+        errorPanel = new JPanel();
+        errorPanel.setSize(600, 200);
+        errorPanel.setBackground(Color.white);  
+        errorPanel.setLocation(0,0);
+        
+        error = new JLabel("<html>Please ensure all required fields are filled in and resubmit your check.<html>");
+        error.setFont(new Font("Ariel", Font.PLAIN, 18));
+        error.setLocation(20, 25);
+        error.setSize(600, 100);
+        errorFrame.add(error);
+        
+        close = new JButton("Close");        
+        close.setLocation(260, 140);  
+        close.setSize(75, 20);
+        close.setFocusPainted(false); // Sets Focus off for the button
+        close.setBorderPainted(false); // sets button boundaries off
+        errorFrame.add(close);
+        
+        errorFrame.add(errorPanel);
+        
+        close.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				errorFrame.dispose();
+			}
+		});
 	}
 	
 	
