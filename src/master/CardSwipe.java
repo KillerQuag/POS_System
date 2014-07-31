@@ -42,10 +42,10 @@ public class CardSwipe extends JFrame
 
 	Point windowLocation;	
 	
-	public static CardSwipe cardSwipeWindow;
+	public static JFrame cardSwipeWindow;
 	
 	
-	public void beginCardSwipe()
+	public CardSwipe()
 	{
 	
 	
@@ -66,7 +66,7 @@ public class CardSwipe extends JFrame
 	debitButton.setSize(100, 75);
 	ListenForButton lForDebitButton = new ListenForButton(); //Making object from within the object's class may be bad
 	debitButton.addActionListener(lForDebitButton);
-	this.getContentPane().add(debitButton);
+	cardSwipeWindow.getContentPane().add(debitButton);
 	
 	//creditButton
 	creditButton = new JButton("Credit");
@@ -74,7 +74,7 @@ public class CardSwipe extends JFrame
 	creditButton.setSize(100, 75);
 	ListenForButton lForCreditButton = new ListenForButton(); //Making object from within the object's class may be bad
 	creditButton.addActionListener(lForCreditButton);
-	this.getContentPane().add(creditButton);
+	cardSwipeWindow.getContentPane().add(creditButton);
 	
 	
 	//giftButton
@@ -83,7 +83,7 @@ public class CardSwipe extends JFrame
 	giftButton.setSize(100, 75);
 	ListenForButton lForGiftButton = new ListenForButton(); //Making object from within the object's class may be bad
 	giftButton.addActionListener(lForGiftButton);
-	this.getContentPane().add(giftButton);
+	cardSwipeWindow.getContentPane().add(giftButton);
 	
 	
 	//Return to Payment Method
@@ -94,16 +94,16 @@ public class CardSwipe extends JFrame
 	returnButton.setBackground(returnBackgroundButton );
 	ListenForButton lForreturnButton = new ListenForButton(); //Making object from within the object's class may be bad
 	returnButton.addActionListener(lForreturnButton);
-	this.getContentPane().add(returnButton);
+	cardSwipeWindow.getContentPane().add(returnButton);
 	
 	
 	chooseACardLabel = new JLabel("<html>Please select the type of card you are using.<html>");
 	chooseACardLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 	chooseACardLabel.setLocation(90, 50);
 	chooseACardLabel.setSize(400, 100);
-	this.getContentPane().add(chooseACardLabel);
+	cardSwipeWindow.getContentPane().add(chooseACardLabel);
 	
-	//this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
+	this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 	
 	
 	}	

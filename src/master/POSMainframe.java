@@ -48,14 +48,14 @@ public class POSMainframe
 					"---------------------------------------------------------------------------------------------------" + '\n' + 
 					"Number of Transactions:			 " + this.numOfTransactions + '\n' + 
 					"---------------------------------------------------------------------------------------------------" + '\n' + 
-					"Total Cash Received:			$" + this.totalCash + '\n' +
-					"Total Cash Returned:			$" + this.totalCashReturned + '\n' +
-					"Total Credit:				$" + this.totalCredit + '\n' +
-					"Total Checks:				$" + this.totalCheck + '\n' +
-					"Total Discounts:			$" + this.totalCouponAmount + '\n' +
-					"Total Gift Card:				$" + this.totalGiftCard + '\n' + 
+					"Total Cash Received:			$" + Calculations.format(this.totalCash) + '\n' +
+					"Total Cash Returned:			$" + Calculations.format(this.totalCashReturned) + '\n' +
+					"Total Credit:				$" + Calculations.format(this.totalCredit) + '\n' +
+					"Total Checks:				$" + Calculations.format(this.totalCheck) + '\n' +
+					"Total Discounts:			$" + Calculations.format(this.totalCouponAmount) + '\n' +
+					"Total Gift Card:				$" + Calculations.format(this.totalGiftCard) + '\n' + 
 					"---------------------------------------------------------------------------------------------------" + '\n' + 					
-					"Total Transactions:			$" + this.totalTransaction + '\n' +
+					"Total Transactions:			$" + Calculations.format(this.totalTransaction) + '\n' +
 					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n';
 		
 		return output;

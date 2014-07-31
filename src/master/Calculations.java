@@ -5,6 +5,9 @@ package master;
 
 //import com.sun.corba.se.impl.orbutil.closure.Constant;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import master.productDatabase;
 import master.Scale;
 import master.Items;
@@ -77,5 +80,11 @@ public class Calculations {
 	      return cart;
 	}
 	
+	static String format(double value){
+		NumberFormat formatter = new DecimalFormat("#0.00");
+		String formattedValue = formatter.format(value);
+		return formattedValue;
+		
+	}
 }
 
