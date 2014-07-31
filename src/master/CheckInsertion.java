@@ -180,6 +180,7 @@ public class CheckInsertion extends JFrame{
             	{
             	
             	try{
+<<<<<<< HEAD
             		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
             		
             	}
@@ -197,6 +198,19 @@ public class CheckInsertion extends JFrame{
             	}
             }                        
         }); 
+=======
+            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );
+            		//insertCheckFrame.dispose();
+            	}
+            	catch (NumberFormatException e){
+            		System.out.println("Empty string or non number, change check amount.");
+            	}    	
+        		myInstance.dispose();
+        		myInstance = null;
+            }
+        });
+ 
+>>>>>>> origin/Heath
 		
         this.getContentPane().add(amount);
         this.getContentPane().add(signatureBtn);
