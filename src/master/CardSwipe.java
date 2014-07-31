@@ -121,10 +121,6 @@ public class CardSwipe extends JFrame
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
 				myInstance = null;
-<<<<<<< HEAD
-				
-=======
->>>>>>> origin/matt
 			}
 			else if(e.getSource() == returnButton ){
 				NumberFormat formatter = new DecimalFormat("#0.00");
@@ -439,14 +435,9 @@ public class CardSwipe extends JFrame
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				Main.mainWindow.remove(Display.slideCardLabel);
-<<<<<<< HEAD
-				cardSwipeWindow.dispose();				
-				myInstance = null;
-=======
 				cardSwipeWindow.dispose();	
 				myInstance = null;
-				
->>>>>>> origin/matt
+
 			}
 			
 		}

@@ -6,25 +6,7 @@ public class Customer {
 	
 	public static Cart myCart;
 	public static double amountPaid = 0.0;
-	public static double amountPaidCash = 0.0;
-	public static double amountPaidGift = 0.0;
 	
-	public static double getAmountPaidCash() {
-		return amountPaidCash;
-	}
-
-	public static void setAmountPaidCash(double amountPaidCash) {
-		Customer.amountPaidCash = amountPaidCash;
-	}
-
-	public static double getAmountPaidGift() {
-		return amountPaidGift;
-	}
-
-	public static void setAmountPaidGift(double amountPaidGift) {
-		Customer.amountPaidGift = amountPaidGift;
-	}
-
 	public static PaymentMethod paidBy = new PaymentMethod();	
 	public static double giftCardBalance = 0.0;
 	public static double changeDue;

@@ -7,16 +7,6 @@ import com.sun.org.apache.bcel.internal.generic.BALOAD;
 
 import master.CardSwipe.ListenForButton;
 
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> origin/Heath
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
