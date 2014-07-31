@@ -13,6 +13,8 @@ public class CardSwipe extends JFrame
 {
 	private static final long serialVersionUID = 1L; //Ignore
 	
+	private static CardSwipe myInstance;
+	
 	public static JButton debitButton;
 	public static JButton creditButton;
 	public static JButton giftButton;
@@ -46,7 +48,7 @@ public class CardSwipe extends JFrame
 	public void beginCardSwipe()
 	{
 	
-	cardSwipeWindow = this;
+	
 	//this.setLocationRelativeTo();
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
@@ -55,6 +57,8 @@ public class CardSwipe extends JFrame
 	this.setResizable(false);
 	this.setVisible(true);
 	this.setLocation(0, 0);
+	
+	cardSwipeWindow = this;
 	
 	//debitButton
 	debitButton = new JButton("Debit");
@@ -99,7 +103,7 @@ public class CardSwipe extends JFrame
 	chooseACardLabel.setSize(400, 100);
 	this.getContentPane().add(chooseACardLabel);
 	
-	this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
+	//this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 	
 	
 	}	
@@ -119,6 +123,12 @@ public class CardSwipe extends JFrame
 				
 			}
 			else if(e.getSource() == returnButton ){
+				NumberFormat formatter = new DecimalFormat("#0.00");
+				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+				DisplayCart.textArea1.append("Gift payment:\n");
+				DisplayCart.textArea2.append("$" + formatter.format(customer.myCart.myRemBal) + "\n");
+				Main.mainWindow.remainingBalanceText.setText(" ");
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
 			}
@@ -133,7 +143,7 @@ public class CardSwipe extends JFrame
 			}
 			else if(e.getSource() == giftButton )
 			{
-				double remainingBalance = 0;
+				double remainingBalance = 0.0;
 				//full payment to be made with gift card?
 				Main.mainWindow.lForButton.actionPerformed(e);				
 				//cardSwipeWindow.dispose();
@@ -217,7 +227,7 @@ public class CardSwipe extends JFrame
 				cardSwipeWindow.getContentPane().add(amtRemaining);
 				
 				
-				amtDueText = new JTextField("$" + Double.toString(Cart.myTaxTotal), 15);
+				amtDueText = new JTextField("$" + Double.toString(Cart.myRemBal), 15);
 				
 				amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 				amtDueText.setHorizontalAlignment(JLabel.CENTER);
@@ -225,6 +235,11 @@ public class CardSwipe extends JFrame
 				amtDueText.setSize(200, 25);
 				//currencyField.setEditable(false);
 				cardSwipeWindow.getContentPane().add(amtDueText);
+				
+				NumberFormat formatter = new DecimalFormat("#0.00");
+				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+				Main.mainWindow.remainingBalanceText.setText(" ");
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.myCart.myRemBal));
 				
 			}
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
@@ -271,6 +286,7 @@ public class CardSwipe extends JFrame
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Double.toString(customer.amountPaid));
 					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					Main.mainWindow.repaint();
 			}
 			else if( e.getSource() == tenDollar )
 			{
@@ -404,6 +420,12 @@ public class CardSwipe extends JFrame
 			
 			else if(e.getSource() == returnButton2 )
 			{
+				NumberFormat formatter = new DecimalFormat("#0.00");
+				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+				DisplayCart.textArea1.append("Gift payment:\n");
+				DisplayCart.textArea2.append("$" + formatter.format(customer.myCart.myRemBal) + "\n");
+				Main.mainWindow.remainingBalanceText.setText(" ");
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				Main.mainWindow.remove(Display.slideCardLabel);
 				cardSwipeWindow.dispose();				
@@ -411,6 +433,14 @@ public class CardSwipe extends JFrame
 			}
 			
 		}
+	}
+
+	public static CardSwipe getInstance() {
+		// TODO Auto-generated method stub
+		 if (myInstance == null)
+	            myInstance = new CardSwipe();
+
+	        return myInstance;
 	}		
 
 }

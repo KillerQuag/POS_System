@@ -436,8 +436,7 @@ public class Display extends JFrame {//extends POSRegister {
 				//TODO We will need another window to pop up separately for simulating swiping a card 
 				//CardSwipe cardSwipeWindow = new CardSwipe(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
-				CardSwipe cardSwipeWindow = new CardSwipe();
-				cardSwipeWindow.beginCardSwipe();	
+				CardSwipe.getInstance();	
 				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);

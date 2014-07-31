@@ -13,19 +13,6 @@ import java.lang.NumberFormatException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-/*import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;*/
-
 //This class simulates the process of inserting a check
 public class CheckInsertion extends JFrame{
 	

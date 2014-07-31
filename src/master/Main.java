@@ -14,14 +14,19 @@ import java.util.Random;
 
 /** TODO
  * 
- * Check insertion puts event back to Display
+ * Check insertion, Credit, Debit send events back to Display indicating transaction state
  * Apply magical number formatter to everything
  * Uniform rounding calculation cause .19 seems to round to .20 in Display but .19 in console for Mainframe
- * 
+ * Card Swipe instancing to fix Remaining balance display in Main windows
+ * Error check on CheckInsertion to make sure it's signed, payTo and amount is filled in before insert button in TL.
+ * Transaction CF branch dead ends, wait 5s then loop back to beginning "Welcome" screen
+ * Add background image to Welcome screen, etc.
+ * Random exception of scale imbalance. 
  * 
  * Wishlist:
  * 		after coupon insertion, go straight to select payment methods
- *
+ * 		clean up comments
+ *		inventory quantity
  */
 public class Main extends Display {
 

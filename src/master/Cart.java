@@ -37,7 +37,7 @@ public class Cart {
 	public boolean hasItems(){
 		return (items[0].getUID() != -1);
 	}
-
+	
 	
 }
 	
