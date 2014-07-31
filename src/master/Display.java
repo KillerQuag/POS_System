@@ -244,7 +244,8 @@ public class Display extends JFrame {//extends POSRegister {
 				//Clears proper labels and buttons
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				//Laya's addition to set the total balance for POS Mainframe
-				Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
+				if (e.getSource() == noButton)
+					Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 				//String remBal = formatter.format(customer.myCart.myTaxTotal);
 				//remainingBalanceText.setText(remBal);
 				
@@ -632,7 +633,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				System.out.println("credit button pressed");
 				
-			} else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
+			}// else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
 				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			/*
 				if( customer.getAmountPaid() >= customer.myCart.myTaxTotal )
@@ -658,7 +659,8 @@ public class Display extends JFrame {//extends POSRegister {
 				*/
 				//System.out.println("Gift button pressed");
 				
-			} else if(e.getSource() == enterButton1) { //For credit
+			//}
+		else if(e.getSource() == enterButton1) { //For credit
 
 				//If we want to implement a way to approve or decline credit payment
 				

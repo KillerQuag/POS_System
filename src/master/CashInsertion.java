@@ -231,45 +231,48 @@ public class CashInsertion extends Display{
 			//	System.out.println(customer.myCart.myTotalPrice);
 			//	System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
-			
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+				//remainingBalanceText.setText(formatter.format(Customer.myCart.myRemBal));
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 			}
 			else if(e.getSource() == fiftyButton) {
 				customer.paidCash(50.00);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == twentyButton) {
 				customer.paidCash(20.00);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == tenButton) {
 				customer.paidCash(10.00);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == fiveButton) {
 				customer.paidCash(5.00);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == oneButton) {
 				customer.paidCash(1.00);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == quarterButton) {
 				customer.paidCash(0.25);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == dimeButton) {
 				customer.paidCash(00.10);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == nickelButton) {
 				customer.paidCash(00.05);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == pennyButton) {
 				customer.paidCash(0.01);
-				
+				currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
-			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;			
+			
 			if(customer.amountPaid >= customer.myCart.myTaxTotal){
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:");
