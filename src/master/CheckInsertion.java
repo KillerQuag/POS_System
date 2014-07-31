@@ -241,7 +241,6 @@ public class CheckInsertion extends JFrame{
 	
 	public static void errorMessage()
 	{
-		
 		JPanel errorPanel;
 		JLabel error;
 		JButton close;
@@ -283,7 +282,6 @@ public class CheckInsertion extends JFrame{
 	
 	public static void invalidAmount()
 	{
-		JFrame errorFrame;
 		JPanel errorPanel;
 		JLabel error;
 		JButton close;
