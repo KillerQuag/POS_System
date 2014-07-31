@@ -7,6 +7,8 @@ import master.CardSwipe.ListenForButton;
 
 
 
+
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -235,7 +237,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				
 			} 
-			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButton2 || e.getSource() == CashInsertion.returnToPayMethods) {
+			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButtonGift || e.getSource() == CashInsertion.returnToPayMethods) {
 				
 				
 				//Clears proper labels and buttons
@@ -267,10 +269,10 @@ public class Display extends JFrame {//extends POSRegister {
 										
 					Main.mainWindow.remove(slideCardLabel);
 				}
-				else if( e.getSource() == CardSwipe.returnButton2){
+				else if( e.getSource() == CardSwipe.returnButtonGift){
 					
 					//Main.mainWindow.remove(giftLabel);
-					
+					Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
 				}
 				else if( e.getSource() == CashInsertion.returnToPayMethods ){
 					Main.mainWindow.remove(cashInsertComplete);
@@ -285,7 +287,7 @@ public class Display extends JFrame {//extends POSRegister {
 					showDatabase.showMainframeDetails();
 				}
 				Main.mainWindow.getContentPane().add(remainingBalanceText);
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
+				Main.mainWindow.remainingBalanceText.setText("$ " + formatter.format(customer.myCart.myTaxTotal));
 				//remainingBalanceText.append(remBalance);
 				
 				selectPaymentLabel = new JLabel("<html>Select your payment method<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space

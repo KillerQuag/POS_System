@@ -222,8 +222,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(" ");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- cashThisTransaction));
+				Main.mainWindow.remainingBalanceText.setText("$ " + Calculations.format(customer.myCart.myTaxTotal- cashThisTransaction));
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
@@ -294,20 +293,19 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			
 			if(customer.amountPaid >= customer.myCart.myTaxTotal){
 				Display.cashInsertComplete.doClick(); //This statement must be before the Display.changeDueField statement
-				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
+				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:");
-				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
+				DisplayCart.textArea2.append("$" + formatter.format(customer.getAmountPaidCash()));
 				//Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows change to be returned to customer -Heath
 				
-				double changeDue = customer.myCart.myTaxTotal - customer.getAmountPaid();
+				double changeDue = Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid());
 				customer.setChangeDue(changeDue);
 				customer.paidCash(changeDue);
 				System.out.println("Change due:  $" + changeDue);
 				//Display.currencyField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
-				Main.mainWindow.remainingBalanceText.setText(" ");
-				Main.mainWindow.remainingBalanceText.setText("0.00");
+				Main.mainWindow.remainingBalanceText.setText("$ 0.00");
 
 				insertCashFrame.dispose();
 				
