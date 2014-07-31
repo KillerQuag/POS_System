@@ -6,6 +6,7 @@ public class Customer {
 	
 	public static Cart myCart;
 	public static double amountPaid = 0.0;
+	public static double amountReturned = 0.0;
 	
 	public static PaymentMethod paidBy = new PaymentMethod();	
 	public static double giftCardBalance = 0.0;
@@ -56,6 +57,16 @@ public class Customer {
 		Customer.changeDue = Math.round(changeDue*100)/100.00;
 	}
 	
+	
+	public static double getAmountReturned() {
+		return amountReturned;
+	}
+
+	public static void setAmountReturned(double amountReturned) {
+		paidBy.setCashReturned(amountReturned);
+		Customer.amountReturned += Math.round(amountReturned*100)/100.00;		
+	}
+
 	public Customer(){
 		Customer.myCart = new Cart();
 		myCart = ProductScanner.populateCart(myCart);

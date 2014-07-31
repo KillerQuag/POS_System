@@ -180,15 +180,30 @@ public class CheckInsertion extends JFrame{
             	{
             	
             	try{
-            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
+            		if( Double.parseDouble(amount.getText()) <= Customer.myCart.myTaxTotal )
+            		{
+            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) ); 
+            		myInstance.dispose();
+            		myInstance = null;
+            		}
+            		else
+            		{
+            			double changeDue = (Double.parseDouble( amount.getText()) - Customer.myCart.myTaxTotal);
+            			customer.paidBy.setCheck(Double.parseDouble( amount.getText())- changeDue);
+            			customer.setChangeDue(changeDue);
+            			Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
+            			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
+            			//System.out.println("")
+            			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());
+            			myInstance.dispose();            			
+            		}
             		
             	}
             	catch (NumberFormatException e){
             		System.out.println("Empty string or non number, change check amount.");	
-            	} 
+            		
+            	}             	
             	
-            	myInstance.dispose();
-            	myInstance = null;
             	}
             	else
             	{
@@ -231,7 +246,7 @@ public class CheckInsertion extends JFrame{
 		JLabel error;
 		JButton close;
 		
-		errorFrame = new JFrame("Read Error");
+		errorFrame = new JFrame("Processing Error");
         errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
         errorFrame.setSize(600, 200); 
         errorFrame.setLocationRelativeTo(null); //Centers frame in the middle of the screen
@@ -261,6 +276,49 @@ public class CheckInsertion extends JFrame{
         close.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				errorFrame.dispose();
+			}
+		});
+	}
+	
+	public static void invalidAmount()
+	{
+		JFrame errorFrame;
+		JPanel errorPanel;
+		JLabel error;
+		JButton close;
+		
+		errorFrame = new JFrame("Processing Error");
+        errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+        errorFrame.setSize(600, 200); 
+        errorFrame.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+        errorFrame.setResizable(false);
+        errorFrame.setVisible(true);      
+        
+        errorPanel = new JPanel();
+        errorPanel.setSize(600, 200);
+        errorPanel.setBackground(Color.white);  
+        errorPanel.setLocation(0,0);
+        
+        error = new JLabel("<html>Check amount may not exceed the total balance due.<html>");
+        error.setFont(new Font("Ariel", Font.PLAIN, 18));
+        error.setLocation(90, 25);
+        error.setSize(600, 100);
+        errorFrame.add(error);
+        
+        close = new JButton("Close");        
+        close.setLocation(260, 140);  
+        close.setSize(75, 20);
+        close.setFocusPainted(false); // Sets Focus off for the button
+        close.setBorderPainted(false); // sets button boundaries off
+        errorFrame.add(close);
+        
+        errorFrame.add(errorPanel);
+        
+        close.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
 				errorFrame.dispose();
 			}
 		});
