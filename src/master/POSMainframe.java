@@ -123,4 +123,11 @@ public class POSMainframe
 	public void setTotalCheck(double totalCheck) {
 		this.totalCheck += totalCheck;
 	}	
+	public double getTotalCashReturned() {
+		return totalCashReturned;
+	}
+
+	public void setTotalCashReturned(double totalCashReturned) {
+		this.totalCashReturned = totalCashReturned;
+	}
 }
