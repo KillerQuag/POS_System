@@ -275,9 +275,9 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			else if(e.getSource() == pennyButton) {
 				customer.paidCash(0.01);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
-
 			}
-			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
+			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;			
+			
 			if(customer.amountPaid >= customer.myCart.myTaxTotal){
 				Display.cashInsertComplete.doClick(); //This statement must be before the Display.changeDueField statement
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();

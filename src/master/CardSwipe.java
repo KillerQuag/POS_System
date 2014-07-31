@@ -113,6 +113,7 @@ public class CardSwipe extends JFrame
 	{		
 		public void actionPerformed(ActionEvent e)
 		{
+			
 			if(e.getSource() == debitButton )
 			{
 				//full payment be made with the card?
@@ -220,15 +221,16 @@ public class CardSwipe extends JFrame
 				amtPaid.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtPaid);
 				
+				/*
 				amtRemaining = new JLabel("<html>Balance Remaining:<html>");
 				amtRemaining.setFont(new Font("Ariel", Font.PLAIN, 12));
 				amtRemaining.setLocation(335, 180);
 				amtRemaining.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtRemaining);
+				*/
 				
 				
-				amtDueText = new JTextField("$" + Double.toString(Cart.myRemBal), 15);
-				
+				amtDueText = new JTextField("$" + Double.toString((Math.round(Cart.myRemBal)*100)/100.00), 15);
 				amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 				amtDueText.setHorizontalAlignment(JLabel.CENTER);
 				amtDueText.setLocation(290, 250);
