@@ -48,9 +48,8 @@ public class CardSwipe extends JFrame
 	public CardSwipe()
 	{
 	
-	
 	//this.setLocationRelativeTo();
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 	//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 	this.setSize(550, 450); //Where this method is invoked relative to other matters
 	//this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
@@ -121,6 +120,7 @@ public class CardSwipe extends JFrame
 				//debitPress.setSource(debitButton);
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
+				myInstance = null;
 				
 			}
 			else if(e.getSource() == returnButton ){
@@ -132,6 +132,7 @@ public class CardSwipe extends JFrame
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
+				myInstance = null;
 			}
 			else if(e.getSource() == creditButton )
 			{
@@ -141,6 +142,7 @@ public class CardSwipe extends JFrame
 				Main.mainWindow.lForButton.actionPerformed(e);
 				//Customer.paidCredit(amountPaid);
 				cardSwipeWindow.dispose();
+				myInstance = null;
 			}
 			else if(e.getSource() == giftButton )
 			{
@@ -281,6 +283,7 @@ public class CardSwipe extends JFrame
 					
 					
 					cardSwipeWindow.dispose();
+					myInstance = null;
 				}
 				else
 					customer.paidGiftCard(5.0);	
@@ -324,6 +327,7 @@ public class CardSwipe extends JFrame
 					
 					
 					cardSwipeWindow.dispose();
+					myInstance = null;
 				}
 				else
 					customer.paidGiftCard(10.0);	
@@ -366,6 +370,7 @@ public class CardSwipe extends JFrame
 					
 					
 					cardSwipeWindow.dispose();
+					myInstance = null;
 				}
 				else
 					customer.paidGiftCard(25.0);
@@ -406,6 +411,7 @@ public class CardSwipe extends JFrame
 					Main.mainWindow.repaint();
 					
 					cardSwipeWindow.dispose();
+					myInstance = null;
 				}
 				else
 					customer.paidGiftCard(50.0);		
@@ -418,6 +424,7 @@ public class CardSwipe extends JFrame
 			else if( e.getSource() == cancelButton )
 			{
 				cardSwipeWindow.dispose();
+				myInstance = null;
 			}
 			
 			else if(e.getSource() == returnButton2 )
@@ -431,7 +438,7 @@ public class CardSwipe extends JFrame
 				Main.mainWindow.lForButton.actionPerformed(e);
 				Main.mainWindow.remove(Display.slideCardLabel);
 				cardSwipeWindow.dispose();				
-				
+				myInstance = null;
 			}
 			
 		}
