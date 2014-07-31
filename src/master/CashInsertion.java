@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 //This class simulates the process of inserting cash
-public class CashInsertion extends Display{
+public class CashInsertion extends JFrame { //Extending Display causes some issues with the blue button
 	
 	private static final long serialVersionUID = 1L;
 
@@ -168,8 +168,8 @@ public class CashInsertion extends Display{
 		//Customer thisOne = (Customer)Main.Customers.get(Main.currentCustNum);
 		//double leftToPay = Cart.myTaxTotal - Customer.amountPaid;
 		
-		this.remove(welcomeLabel);
-		this.remove(startTransactionButton);
+		Main.mainWindow.remove(Main.welcomeLabel);
+		Main.mainWindow.remove(Main.startTransactionButton);
 		
 		double printAmt = Customer.getAmountPaid();
 		formatter.format(printAmt);
@@ -231,60 +231,76 @@ public class CashInsertion extends Display{
 			//	System.out.println(customer.myCart.myTotalPrice);
 			//	System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
-			
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash())); //This line updates the currencyField on the register screen as you insert cash. -Leah
 			}
 			else if(e.getSource() == fiftyButton) {
 				customer.paidCash(50.00);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == twentyButton) {
 				customer.paidCash(20.00);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == tenButton) {
 				customer.paidCash(10.00);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == fiveButton) {
 				customer.paidCash(5.00);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == oneButton) {
 				customer.paidCash(1.00);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == quarterButton) {
 				customer.paidCash(0.25);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == dimeButton) {
 				customer.paidCash(00.10);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == nickelButton) {
 				customer.paidCash(00.05);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			else if(e.getSource() == pennyButton) {
 				customer.paidCash(0.01);
-				
+				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
+
 			}
 			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 			if(customer.amountPaid >= customer.myCart.myTaxTotal){
+				Display.cashInsertComplete.doClick(); //This statement must be before the Display.changeDueField statement
 				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:");
 				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
-				Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid())));
+				//Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows how much cash as been inserted as you insert it -Heath
+				Display.changeDueField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows change to be returned to customer -Heath
+				
 				double changeDue = customer.myCart.myTaxTotal - customer.getAmountPaid();
 				customer.setChangeDue(changeDue);
 				customer.paidCash(changeDue);
 				System.out.println("Change due:  $" + changeDue);
-				Display.currencyField.setHorizontalAlignment(JLabel.CENTER);
+				//Display.currencyField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows how much cash as been inserted as you insert it -Heath
+				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
+				Main.mainWindow.remainingBalanceText.setText(" ");
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- cashThisTransaction));
+
 				insertCashFrame.dispose();
 				
-			}
+			} else {
 			amtPaidText.setText(formatter.format(customer.amountPaid));
 			amtDueText.setText(formatter.format(customer.myCart.myRemBal));
+			}
 		}
 		
 	}
