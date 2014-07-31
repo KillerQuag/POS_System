@@ -157,11 +157,12 @@ public class CheckInsertion extends JFrame{
             	Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
             	try{
             		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );
+            		//insertCheckFrame.dispose();
             	}
             	catch (NumberFormatException e){
             		System.out.println("Empty string or non number, change check amount.");
             	}    	
-        		insertCheckFrame.dispose();
+        		myInstance.dispose();
         		myInstance = null;
             }
         });

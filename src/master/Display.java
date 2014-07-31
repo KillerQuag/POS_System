@@ -3,7 +3,14 @@ package master;
 //import javax.swing.JFrame;
 import javax.swing.*;
 
+import com.sun.org.apache.bcel.internal.generic.BALOAD;
+
 import master.CardSwipe.ListenForButton;
+
+
+
+
+
 
 
 
@@ -14,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Heath
@@ -30,7 +39,7 @@ public class Display extends JFrame {//extends POSRegister {
 	//Employee Mainframe Access Buttons and Window
 	public static JButton mainframeAccess;
 	
-	
+	static RemindTask timer;
 	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
@@ -59,7 +68,12 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton jButton0; 
 	
 	public static JButton altPaymentMethodButton;
-
+	
+	public static JButton creditCompletedPayment;
+	public static JButton debitCompletedPayment;
+	public static JButton giftCardCompletedPayment;
+	public static JButton cashCompletedPayment;
+	public static JButton checkCompletedPayment;
 	
 	///TEMPORARY//
 	public static JButton cashInsertComplete;
@@ -102,6 +116,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JPasswordField passwordField;
 	
 	
+	
 	public Display() { 
 		
 		//this.setUndecorated(true);//remove comment on final build (or when navigation is stable throughout)
@@ -113,7 +128,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setVisible(true);
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
-		
+		timer = new RemindTask();
 		
 		
 		/*//This group is an alternate method to center frame in middle of screen
@@ -123,6 +138,12 @@ public class Display extends JFrame {//extends POSRegister {
 		int yPos = (dim.height / 2) - (this.getHeight() / 2);
 		this.setLocation(xPos, yPos);*/
 		
+		
+		//newTransaction = new JButton("New Transaction"); //Still need this line
+		//ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+		//newTransaction.addActionListener(lForButton); //Still need this line
+		//newTransaction.doClick();
+		//HEATH
 		//JPanel thePanel = new JPanel();
 		welcomeLabel = new JLabel("Welcome to S-Mart!");
 		welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -163,6 +184,7 @@ public class Display extends JFrame {//extends POSRegister {
 		//remainingBalanceText.setEditable(false);
 		remainingBalanceText.setLocation(150, 455);
 		remainingBalanceText.setSize(100, 25);
+		//HEATH*/
 		
 		/* Cannot get this to work properly **** Have not included MyCanvas class so this especially cannot work now ****
 		 * Deletion fodder
@@ -183,7 +205,66 @@ public class Display extends JFrame {//extends POSRegister {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			
-			if(e.getSource() == startTransactionButton) {
+			if(e.getSource() == creditCompletedPayment || e.getSource() == cashCompletedPayment) {
+	
+				if(e.getSource() == creditCompletedPayment) {
+					Main.mainWindow.remove(transactionApprovedLabel);
+				} else if(e.getSource() == cashCompletedPayment) {
+					Main.mainWindow.remove(changeDueLabel);
+					Main.mainWindow.remove(changeDueField);
+					Main.mainWindow.remove(remainingBalanceText);
+				}
+				
+				
+				//Removing old transaction Swing components
+				Main.mainWindow.getContentPane().remove(scrollPane1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
+				Main.mainWindow.getContentPane().remove(scrollPane2);
+				Main.mainWindow.getContentPane().remove(helpButton);
+				Main.mainWindow.getContentPane().remove(remainingBalanceLabel);
+
+				//JPanel thePanel = new JPanel();
+				welcomeLabel = new JLabel("Welcome to S-Mart!");
+				welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				welcomeLabel.setLocation(320, 150);
+				welcomeLabel.setSize(200, 100);
+				System.out.println("newTransaction clicked");
+				//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
+				Main.mainWindow.getContentPane().add(welcomeLabel);
+				
+				Main.mainWindow.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
+				
+				/*
+				//add the mainframeAccess button to the main screen
+				Color mainframeColor = Color.blue;		
+				mainframeAccess = new JButton();
+				mainframeAccess.setBackground(mainframeColor);
+				ListenForButton lFormainframeAccess = new ListenForButton(); //Making object from within the object's class may be bad
+				mainframeAccess.addActionListener(lFormainframeAccess);
+				mainframeAccess.setSize(30, 15);
+				mainframeAccess.setLocation(0, 0);		
+				Main.mainWindow.getContentPane().add(mainframeAccess);
+				*/
+						
+				startTransactionButton = new JButton("Start Transaction");
+				startTransactionButton.setLocation(400-100, 225);
+				startTransactionButton.setSize(200, 75);
+				Main.mainWindow.getContentPane().add(startTransactionButton);
+				ListenForButton lForButton = new ListenForButton();
+				lForButton = new ListenForButton();
+				startTransactionButton.addActionListener(lForButton);
+				
+				remainingBalanceLabel = new JLabel("Remaining Balance:");
+				remainingBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				remainingBalanceLabel.setLocation(130, 390);
+				remainingBalanceLabel.setSize(200, 100);
+				
+				remainingBalanceText = new JTextField();
+				remainingBalanceText.setFont(new Font("Ariel", Font.PLAIN, 18));
+				//remainingBalanceText.setEditable(false);
+				remainingBalanceText.setLocation(150, 455);
+				remainingBalanceText.setSize(100, 25);
+				
+			} else if(e.getSource() == startTransactionButton) {
 				
 				Main.StartTrans();
 				
@@ -474,6 +555,11 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
+				cashCompletedPayment = new JButton("New Transaction"); //Still need this line
+				ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+				cashCompletedPayment.addActionListener(lForButton); //Still need this line
+				cashCompletedPayment.doClick();
+				
 			} else if(e.getSource() == checkInsertComplete) {
 				
 				checkCompleteLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> Thank you for your business!<html>");
@@ -698,6 +784,8 @@ public class Display extends JFrame {//extends POSRegister {
 					transactionApprovedLabel.setLocation(450, 50);
 					transactionApprovedLabel.setSize(400, 150);
 					
+					
+					
 					Main.mainWindow.remove(enterButton1);
 					Main.mainWindow.remove(clearButton1);
 					Main.mainWindow.remove(signatureField);
@@ -706,6 +794,25 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
 					
 					Main.mainWindow.repaint();
+					//////////////////////////////////////////////////////////////////////////////////////////WORKING HERE
+					/*
+					newTransaction = new JButton("New Transaction"); //Still need this line
+					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+					newTransaction.addActionListener(lForButton); //Still need this line
+					newTransaction.doClick();
+					 */
+					creditCompletedPayment = new JButton("New Transaction"); //Still need this line
+					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+					creditCompletedPayment.addActionListener(lForButton); //Still need this line
+					
+					
+					
+					timer.run();
+					
+					creditCompletedPayment.doClick();
+					
+					
+					//Main.mainWindow.waitBob();
 					
 				}
 				
@@ -818,5 +925,33 @@ public class Display extends JFrame {//extends POSRegister {
 		}
 		// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
+	
+	public void waitBob() {
+		try {
+		    Thread.sleep(3000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+	}
+	
+	
+	class RemindTask extends TimerTask {
+
+        @Override
+        public synchronized void run() {
+            System.out.println("ReminderTask is completed by Java timer");
+            try {
+				timer.wait(5000);
+				timer.notify();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            timer.cancel(); //Not necessary because we call System.exit
+            //System.exit(0); //Stops the AWT thread (and everything else)
+        }
+    }
+
+
 	
 } //End of Display class

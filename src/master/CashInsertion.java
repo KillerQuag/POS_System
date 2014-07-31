@@ -219,11 +219,11 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			Main.mainWindow.lForButton.actionPerformed(e);
 		   
 			if(e.getSource() == returnToPayMethods) {
-				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
+				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:\n");
-				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction) + "\n");
+				DisplayCart.textArea2.append("$" + formatter.format(customer.getAmountPaidCash()) + "\n");
 				Main.mainWindow.remainingBalanceText.setText(" ");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- cashThisTransaction));
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.getAmountPaid()));
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
@@ -310,6 +310,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				Main.mainWindow.remainingBalanceText.setText("0.00");
 
 				insertCashFrame.dispose();
+				myInstance = null;
 				
 			} else {
 			amtPaidText.setText(formatter.format(customer.amountPaid));
