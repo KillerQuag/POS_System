@@ -223,7 +223,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(mainframeAccess);
 				
 				
-				//Main.mainWindow.getContentPane().add(insertCouponLabel);
+				Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
 				Main.mainWindow.repaint();
@@ -333,7 +333,7 @@ public class Display extends JFrame {//extends POSRegister {
 				////////////////////////////////////////////////////////////////////////////
 				CashInsertion.getInstance();
 					
-				insertCashLabel = new JLabel("<html>Thank you for your payment!<html>");
+				insertCashLabel = new JLabel("<html>Please insert cash now<html>");
 				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCashLabel.setLocation(450, 50);
 				insertCashLabel.setSize(400, 150);
@@ -341,13 +341,14 @@ public class Display extends JFrame {//extends POSRegister {
 				/*insertCashLabel2 = new JLabel("<html>Remining Balance: <html>");
 				insertCashLabel2.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCashLabel2.setLocation(450, 750);
-				insertCashLabel2.setSize(400, 150);*/
+				insertCashLabel2.setSize(400, 150);
+				*/
 					
 				
 				currencyField = new JTextField();
 				//currencyField.setColumns(10); // Change the size of the text field
 				currencyField.setText(formatter.format(Customer.myCart.myRemBal)); // Change the initial value of the text field
-				currencyField.setToolTipText("Change Due"); // Change the tool tip for the text field
+				currencyField.setToolTipText("Cash amount inserted"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
 				
@@ -358,16 +359,17 @@ public class Display extends JFrame {//extends POSRegister {
 				//balanceField.setText(Double.toString(me.getBalance()));
 				//Otherwise may want to create a eventListener like in the midterm review
 				
-				/////////TEMPORARY CODE/////////
-				//++++++++++++++++++++++++++++++
-				cashInsertComplete = new JButton("SEND PAID EVENT");
-				cashInsertComplete.setLocation(450, 175+75+10);
-				cashInsertComplete.setSize(200, 75);
+				
+				
+				//   NOT temporary code  - Don't need button on screen but still need button workings -Heath
+				cashInsertComplete = new JButton("SEND PAID EVENT"); //Still need this line
+				//cashInsertComplete.setLocation(450, 175+75+10);
+				//cashInsertComplete.setSize(200, 75);
 				ListenForButton lForCashInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
-				cashInsertComplete.addActionListener(lForCashInsertCompleteButton);
-				Main.mainWindow.getContentPane().add(cashInsertComplete);
-				//++++++++++++++++++++++++++++++
-				//////END OF TEMPORARY CODE/////
+				cashInsertComplete.addActionListener(lForCashInsertCompleteButton); //Still need this line
+				//Main.mainWindow.getContentPane().add(cashInsertComplete);
+				
+				
 				
 				
 				
