@@ -187,9 +187,14 @@ public class CheckInsertion extends JFrame{
             		}
             		else
             		{
-            			amt = false;            			
-            			System.out.println("Check amount cannot be greater than the balance due.");
-            			invalidAmount();
+            			double changeDue = (Double.parseDouble( amount.getText()) - Customer.myCart.myTaxTotal);
+            			customer.paidBy.setCheck(Double.parseDouble( amount.getText())- changeDue);
+            			customer.setChangeDue(changeDue);
+            			Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
+            			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
+            			//System.out.println("")
+            			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());
+            			myInstance.dispose();            			
             		}
             		
             	}
@@ -239,7 +244,7 @@ public class CheckInsertion extends JFrame{
 		JLabel error;
 		JButton close;
 		
-		errorFrame = new JFrame("Read Error");
+		errorFrame = new JFrame("Processing Error");
         errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
         errorFrame.setSize(600, 200); 
         errorFrame.setLocationRelativeTo(null); //Centers frame in the middle of the screen
@@ -282,7 +287,7 @@ public class CheckInsertion extends JFrame{
 		JLabel error;
 		JButton close;
 		
-		errorFrame = new JFrame("Invalid Amount");
+		errorFrame = new JFrame("Processing Error");
         errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
         errorFrame.setSize(600, 200); 
         errorFrame.setLocationRelativeTo(null); //Centers frame in the middle of the screen
@@ -296,7 +301,7 @@ public class CheckInsertion extends JFrame{
         
         error = new JLabel("<html>Check amount may not exceed the total balance due.<html>");
         error.setFont(new Font("Ariel", Font.PLAIN, 18));
-        error.setLocation(20, 25);
+        error.setLocation(90, 25);
         error.setSize(600, 100);
         errorFrame.add(error);
         

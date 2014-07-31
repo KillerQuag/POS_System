@@ -8,6 +8,8 @@ public class Customer {
 	public static double amountPaid = 0.0;
 	public static double amountPaidCash = 0.0;
 	public static double amountPaidGift = 0.0;
+	public static double amountReturned = 0.0;
+	
 	
 	public static double getAmountPaidCash() {
 		return amountPaidCash;
@@ -74,6 +76,16 @@ public class Customer {
 		Customer.changeDue = Math.round(changeDue*100)/100.00;
 	}
 	
+	
+	public static double getAmountReturned() {
+		return amountReturned;
+	}
+
+	public static void setAmountReturned(double amountReturned) {
+		paidBy.setCashReturned(amountReturned);
+		Customer.amountReturned += Math.round(amountReturned*100)/100.00;		
+	}
+
 	public Customer(){
 		Customer.myCart = new Cart();
 		myCart = ProductScanner.populateCart(myCart);

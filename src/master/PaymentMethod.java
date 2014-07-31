@@ -16,10 +16,12 @@ public class PaymentMethod
 	double Check = 0;
 	double GiftCard = 0;
 	double TotalPayment = 0;	
+	double CashReturned = 0;
 
 	public PaymentMethod()
 	{
 		Cash = 0;
+		CashReturned = 0;
 		Credit = 0;
 		Coupon = 0;
 		Check = 0;
@@ -34,7 +36,7 @@ public class PaymentMethod
 	public void setCash(double cash) {
 		Main.dailyTotalsSummary.setTotalCash(cash);
 		Cash += cash;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getCredit() {
@@ -44,7 +46,7 @@ public class PaymentMethod
 	public void setCredit(double credit) {
 		Main.dailyTotalsSummary.setTotalCredit(credit);
 		Credit += credit;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getCoupon() {
@@ -54,7 +56,7 @@ public class PaymentMethod
 	public void setCoupon(double coupon) {
 		Main.dailyTotalsSummary.setTotalCouponAmount(coupon);
 		Coupon += coupon;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 		
 		
 	}
@@ -66,7 +68,7 @@ public class PaymentMethod
 	public void setCheck(double check) {
 		Main.dailyTotalsSummary.setTotalCheck(check);
 		Check += check;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getTotalPayment() {
@@ -84,7 +86,18 @@ public class PaymentMethod
 	public void setGiftCard(double giftCard) {
 		Main.dailyTotalsSummary.setTotalGiftCard(giftCard);
 		GiftCard += giftCard;
+		//System.out.print(Main.dailyTotalsSummary);
+	}
+
+	public double getCashReturned() {
+		return CashReturned;
+	}
+
+	public void setCashReturned(double cashReturned) {
+		Main.dailyTotalsSummary.setTotalCashReturned(cashReturned);
+		CashReturned += cashReturned;
 		System.out.print(Main.dailyTotalsSummary);
 	}
+	
 	
 }

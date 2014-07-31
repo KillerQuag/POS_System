@@ -7,7 +7,7 @@ public class POSMainframe
 	public int numOfTransactions = 0;
 	public double totalCouponAmount = 0;
 	public double totalCash = 0;
-	public double totalCashReturned;
+	public double TotalCashReturned = 0;
 	public double totalCredit = 0;
 	public double totalGiftCard = 0;
 	public double totalCheck = 0;
@@ -19,7 +19,7 @@ public class POSMainframe
 		numOfTransactions = 0;
 		totalCouponAmount = 0;
 		totalCash = 0;
-		totalCashReturned = 0;
+		TotalCashReturned = 0;
 		totalCredit = 0;
 		totalGiftCard = 0;
 		totalCheck = 0;
@@ -49,7 +49,7 @@ public class POSMainframe
 					"Number of Transactions:			 " + this.numOfTransactions + '\n' + 
 					"---------------------------------------------------------------------------------------------------" + '\n' + 
 					"Total Cash Received:			$" + Calculations.format(this.totalCash) + '\n' +
-					"Total Cash Returned:			$" + Calculations.format(this.totalCashReturned) + '\n' +
+					"Total Cash Returned:			$" + Calculations.format(this.TotalCashReturned) + '\n' +
 					"Total Credit:				$" + Calculations.format(this.totalCredit) + '\n' +
 					"Total Checks:				$" + Calculations.format(this.totalCheck) + '\n' +
 					"Total Discounts:			$" + Calculations.format(this.totalCouponAmount) + '\n' +
@@ -122,5 +122,14 @@ public class POSMainframe
 
 	public void setTotalCheck(double totalCheck) {
 		this.totalCheck += totalCheck;
+	}
+
+	public double getTotalCashReturned() {
+		return TotalCashReturned;
+	}
+
+	public void setTotalCashReturned(double totalCashReturned) {
+		this.TotalCashReturned += totalCashReturned;
 	}	
+	
 }

@@ -302,7 +302,8 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				
 				double changeDue = customer.myCart.myTaxTotal - customer.getAmountPaid();
 				customer.setChangeDue(changeDue);
-				customer.paidCash(changeDue);
+				//customer.paidCash(changeDue);
+				Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
 				System.out.println("Change due:  $" + changeDue);
 				//Display.currencyField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
