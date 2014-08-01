@@ -55,7 +55,7 @@ public class Customer {
 	}
 	
 	public static void paidCheck(double amountPaid) {
-		paidBy.setCheck(Calculations.round(amountPaid, 2));
+		paidBy.setCheck(amountPaid);
 		Customer.amountPaid += amountPaid ;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
 		System.out.println(getRemainingBalance());

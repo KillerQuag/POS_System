@@ -184,17 +184,24 @@ public class CheckInsertion extends JFrame{
 //<<<<<<< HEAD
 //           		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
 //=======
-            		if( Double.parseDouble(amount.getText()) <= Customer.myCart.myTaxTotal )
+            		if( Double.parseDouble(amount.getText()) == customer.getRemainingBalance())
             		{
-            			customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) ); 
+            			customer.paidCheck(Double.parseDouble( amount.getText() ) );             			
             			Display.checkInsertComplete.doClick();
+            			myInstance.dispose();
+            			myInstance = null;
+            		}
+            		else if (Double.parseDouble(amount.getText()) < customer.getRemainingBalance())
+            		{
+            			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
+            		
             			myInstance.dispose();
             			myInstance = null;
             		}
             		else
             		{
-            			double changeDue = (Double.parseDouble( amount.getText()) - Customer.myCart.myTaxTotal);
-            			customer.paidBy.setCheck(Double.parseDouble( amount.getText()));
+            			double changeDue = (Double.parseDouble( amount.getText()) - customer.getRemainingBalance());
+            			customer.paidCheck(Double.parseDouble( amount.getText()));
             			customer.setChangeDue(changeDue);
             			customer.setAmountReturned(changeDue);            			
             			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
