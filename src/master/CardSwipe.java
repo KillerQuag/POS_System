@@ -204,7 +204,7 @@ public class CardSwipe extends JFrame
 				
 				
 				double printAmt = Customer.getAmountPaid();
-				amtPaidText = new JTextField("$" + Double.toString(printAmt ), 15);				
+				amtPaidText = new JTextField("$" + Calculations.format(printAmt));				
 
 				//currencyField.setColumns(10); // Change the size of the text field
 				//currencyField.setText("New Text Here"); // Change the initial value of the text field
@@ -221,16 +221,16 @@ public class CardSwipe extends JFrame
 				amtPaid.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtPaid);
 				
-				/*
+				
 				amtRemaining = new JLabel("<html>Balance Remaining:<html>");
 				amtRemaining.setFont(new Font("Ariel", Font.PLAIN, 12));
 				amtRemaining.setLocation(335, 180);
 				amtRemaining.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtRemaining);
-				*/
 				
 				
-				amtDueText = new JTextField("$" + Double.toString((Math.round(Cart.myRemBal)*100)/100.00), 15);
+				
+				amtDueText = new JTextField("$" + Calculations.format(Cart.myTaxTotal - Cart.myRemBal));
 				amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 				amtDueText.setHorizontalAlignment(JLabel.CENTER);
 				amtDueText.setLocation(290, 250);
@@ -285,8 +285,8 @@ public class CardSwipe extends JFrame
 					customer.paidGiftCard(5.0);	
 				
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-					amtPaidText.setText(Double.toString(customer.amountPaid));
-					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					amtPaidText.setText(Calculations.format(customer.amountPaid));
+					amtDueText.setText(Calculations.format(Cart.myRemBal));
 					Main.mainWindow.repaint();
 			}
 			else if( e.getSource() == tenDollar )
@@ -299,8 +299,8 @@ public class CardSwipe extends JFrame
 					System.out.println(customer.getGiftCardBalance());
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-					amtPaidText.setText(Double.toString(customer.amountPaid));
-					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					amtPaidText.setText(Calculations.format(customer.amountPaid));
+					amtDueText.setText(Calculations.format(Cart.myRemBal));
 					
 					
 					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
@@ -329,8 +329,8 @@ public class CardSwipe extends JFrame
 					customer.paidGiftCard(10.0);	
 				
 				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-				amtPaidText.setText(Double.toString(customer.amountPaid));
-				amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+				amtPaidText.setText(Calculations.format(customer.amountPaid));
+				amtDueText.setText(Calculations.format(Cart.myRemBal));
 			}
 			else if( e.getSource() == twentyFiveDollar )
 			{
@@ -342,8 +342,8 @@ public class CardSwipe extends JFrame
 					System.out.println(customer.getGiftCardBalance());
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-					amtPaidText.setText(Double.toString(customer.amountPaid));
-					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					amtPaidText.setText(Calculations.format(customer.amountPaid));
+					amtDueText.setText(Calculations.format(Cart.myRemBal));
 					
 					
 					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
@@ -370,8 +370,8 @@ public class CardSwipe extends JFrame
 				else
 					customer.paidGiftCard(25.0);
 				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-				amtPaidText.setText(Double.toString(customer.amountPaid));
-				amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+				amtPaidText.setText(Calculations.format(customer.amountPaid));
+				amtDueText.setText(Calculations.format(Cart.myRemBal));
 			}
 			else if( e.getSource() == fiftyDollar )
 			{

@@ -7,6 +7,8 @@ import com.sun.org.apache.bcel.internal.generic.BALOAD;
 
 import master.CardSwipe.ListenForButton;
 
+
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -120,9 +122,12 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
-		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
+		//\this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
+		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new MyDispatcher());
+        
 		timer = new RemindTask();
 		
 		
@@ -951,6 +956,27 @@ public class Display extends JFrame {//extends POSRegister {
         }
     }
 
+	    
+	    private class MyDispatcher implements KeyEventDispatcher {
+	        @Override
+	        public boolean dispatchKeyEvent(KeyEvent e) {
+	            if (e.getID() == KeyEvent.KEY_PRESSED) {
+	            	if(e.getKeyCode()==27) {//check if the Keycode is 27 which is esc
+	            		JOptionPane.showMessageDialog(null,"Program Shutting Down");//display a good bye messege
+	            		System.exit(0);//exit
+	            	    }
+	            	if(e.getKeyCode()==192){//check if keycode is 77, which is the 'm' key for mainframe
+	        			databases showDatabase = new databases();
+	        			showDatabase.showMainframeDetails();
+	        		}
+	            } else if (e.getID() == KeyEvent.KEY_RELEASED) {
+	                
+	            } else if (e.getID() == KeyEvent.KEY_TYPED) {
+	                
+	            }
+	            return false;
+	        }
+	    }
 
 	
 } //End of Display class
