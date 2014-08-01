@@ -51,7 +51,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
 		
-		//this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
@@ -285,10 +285,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				//customer.paidBy.setCash(0.01);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
-			else if( e.getSource() == Main.mainWindow.mainframeAccess ){
-				databases showDatabase = new databases();
-				showDatabase.showMainframeDetails();
-			}
+			
 			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;			
 			
 			if(customer.amountPaid >= customer.myCart.myTaxTotal){

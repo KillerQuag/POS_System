@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+import java.awt.event.*;
 
 /**
  * @author Heath
@@ -30,7 +31,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public CardSwipe cardSwipeWindow;
 	
 	//Employee Mainframe Access Buttons and Window
-	public static JButton mainframeAccess;
+	//public static JButton mainframeAccess;
 	
 	static RemindTask timer;
 	
@@ -119,6 +120,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
+		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
 		timer = new RemindTask();
@@ -150,14 +152,14 @@ public class Display extends JFrame {//extends POSRegister {
 		
 		
 		//add the mainframeAccess button to the main screen
-		Color mainframeColor = Color.blue;		
+		/*Color mainframeColor = Color.blue;		
 		mainframeAccess = new JButton();
 		mainframeAccess.setBackground(mainframeColor);
 		ListenForButton lFormainframeAccess = new ListenForButton(); //Making object from within the object's class may be bad
 		mainframeAccess.addActionListener(lFormainframeAccess);
 		mainframeAccess.setSize(30, 15);
 		mainframeAccess.setLocation(0, 0);		
-		this.getContentPane().add(mainframeAccess);
+		this.getContentPane().add(mainframeAccess);*/
 				
 		startTransactionButton = new JButton("Start Transaction");
 		startTransactionButton.setLocation(400-100, 225);
@@ -264,10 +266,10 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.StartTrans();
 				
 			}
-			else if( e.getSource() == mainframeAccess ){
+			/*else if( e.getSource() == mainframeAccess ){
 				databases showDatabase = new databases();
 				showDatabase.showMainframeDetails();
-			}
+			}*/
 			else if(e.getSource() == helpButton) {
 				
 				HelpWindow.getInstance();
@@ -297,16 +299,16 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(yesButton);
 				Main.mainWindow.remove(noButton);
 				Main.mainWindow.remove(couponLabel);
-				Main.mainWindow.remove(mainframeAccess);
+				//Main.mainWindow.remove(mainframeAccess);
 				
-				Main.mainWindow.getContentPane().add(mainframeAccess);
+				//Main.mainWindow.getContentPane().add(mainframeAccess);
 				Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
 				Main.mainWindow.repaint();
 	
 			} ///////////////////////////////////////////////////////////////////////////////////////////////
-			else if(e.getSource() == mainframeAccess || e.getSource() == noButton || e.getSource() == proceedToCOButton 
+			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton 
 					|| e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton 
 					|| e.getSource() == CardSwipe.returnButtonGift || e.getSource() == CashInsertion.returnToPayMethods) {
 				

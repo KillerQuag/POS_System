@@ -52,10 +52,10 @@ public class CardSwipe extends JFrame
 	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 	//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 	this.setSize(550, 450); //Where this method is invoked relative to other matters
-	//this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+	this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 	this.setResizable(false);
 	this.setVisible(true);
-	this.setLocation(0, 0);
+	//this.setLocation(0, 0);
 	
 	cardSwipeWindow = this;
 	

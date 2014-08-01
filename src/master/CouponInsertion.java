@@ -152,15 +152,9 @@ public class CouponInsertion extends Display {
 				Main.dailyTotalsSummary.setTotalTransaction(roundTotal);
 				customer.paidCoupon(couponAmount);
 				
-				
 				insertCouponFrame.dispose();
 				myInstance = null;
 			}
-			else if( e.getSource() == mainframeAccess ){
-				databases showDatabase = new databases();
-				showDatabase.showMainframeDetails();
-			}
-			
 		}
 	}
 	public static CouponInsertion getInstance() {
