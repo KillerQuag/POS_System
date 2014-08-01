@@ -222,7 +222,6 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.getCash()) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(" ");
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.getAmountPaid()));
 				insertCashFrame.dispose();
 				myInstance = null;
@@ -231,59 +230,59 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			//	System.out.println(customer.myCart.myTotalPrice);
 			//	System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
-				customer.paidBy.setCash(100.00);
+				//customer.paidBy.setCash(100.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash())); //This line updates the currencyField on the register screen as you insert cash. -Leah
 			}
 			else if(e.getSource() == fiftyButton) {
 				customer.paidCash(50.00);
-				customer.paidBy.setCash(50.00);
+				//customer.paidBy.setCash(50.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == twentyButton) {
 				customer.paidCash(20.00);
-				customer.paidBy.setCash(20.00);
+				//customer.paidBy.setCash(20.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == tenButton) {
 				customer.paidCash(10.00);
-				customer.paidBy.setCash(10.00);
+				//customer.paidBy.setCash(10.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == fiveButton) {
 				customer.paidCash(5.00);
-				customer.paidBy.setCash(5.00);
+				//customer.paidBy.setCash(5.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == oneButton) {
 				customer.paidCash(1.00);
-				customer.paidBy.setCash(1.00);
+				//customer.paidBy.setCash(1.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == quarterButton) {
 				customer.paidCash(0.25);
-				customer.paidBy.setCash(0.25);
+				//customer.paidBy.setCash(0.25);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == dimeButton) {
 				customer.paidCash(00.10);
-				customer.paidBy.setCash(0.10);
+				//customer.paidBy.setCash(0.10);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == nickelButton) {
 				customer.paidCash(00.05);
-				customer.paidBy.setCash(0.05);
+				//customer.paidBy.setCash(0.05);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == pennyButton) {
 				customer.paidCash(0.01);
-				customer.paidBy.setCash(0.01);
+				//customer.paidBy.setCash(0.01);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if( e.getSource() == Main.mainWindow.mainframeAccess ){

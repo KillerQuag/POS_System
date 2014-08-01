@@ -127,7 +127,6 @@ public class CardSwipe extends JFrame
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				DisplayCart.textArea1.append("Gift payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.myCart.myRemBal) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(" ");
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
@@ -241,8 +240,7 @@ public class CardSwipe extends JFrame
 				
 				NumberFormat formatter = new DecimalFormat("#0.00");
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-				Main.mainWindow.remainingBalanceText.setText(" ");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.myCart.myRemBal));
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				
 			}
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
@@ -354,7 +352,6 @@ public class CardSwipe extends JFrame
 					Display.giftLabel.setSize(400, 150);
 					
 					NumberFormat formatter = new DecimalFormat("#0.00");
-					customer.getGiftCardBalance();
 					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
 					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					Display.giftCardBalanceLabel.setLocation(523, 175);
@@ -386,8 +383,8 @@ public class CardSwipe extends JFrame
 					System.out.println(customer.getGiftCardBalance());
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-					amtPaidText.setText(Double.toString(customer.amountPaid));
-					amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+					amtPaidText.setText(Calculations.format(customer.amountPaid));
+					amtDueText.setText(Calculations.format(Cart.myRemBal));
 					
 					
 					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
@@ -415,8 +412,8 @@ public class CardSwipe extends JFrame
 					customer.paidGiftCard(50.0);		
 				
 				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
-				amtPaidText.setText(Double.toString(customer.amountPaid));
-				amtDueText.setText(Double.toString(Calculations.round(Cart.myRemBal, 2)));
+				amtPaidText.setText(Calculations.format(customer.amountPaid));
+				amtDueText.setText(Calculations.format(Cart.myRemBal));
 				
 			}
 			else if( e.getSource() == cancelButton )
@@ -431,8 +428,7 @@ public class CardSwipe extends JFrame
 				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				DisplayCart.textArea1.append("Gift payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.GiftCard) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(" ");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
+				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				Main.mainWindow.remove(Display.slideCardLabel);
 				cardSwipeWindow.dispose();	

@@ -92,7 +92,6 @@ public class CouponInsertion extends Display {
 			       roundTotal;
 			String formattedTotal;		
 			       
-			
 			if(e.getSource() == returnToPayMethods) {
 				
 				insertCouponFrame.dispose();
@@ -156,6 +155,10 @@ public class CouponInsertion extends Display {
 				
 				insertCouponFrame.dispose();
 				myInstance = null;
+			}
+			else if( e.getSource() == mainframeAccess ){
+				databases showDatabase = new databases();
+				showDatabase.showMainframeDetails();
 			}
 			
 		}

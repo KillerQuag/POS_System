@@ -3,8 +3,10 @@
  */
 package master;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.event.KeyEvent;
 
 /**
  * @author John
@@ -68,11 +70,16 @@ public class Main extends Display {
 		customer.myCart.myWeight = Calculations.getTotalWeight(customer.myCart);
 		customer.myCart.myTaxTotal = Calculations.getTotalPriceWithTax(customer.myCart);
 		customer.myCart.myTax = Calculations.getTax(customer.myCart);
+		customer.amountPaid = 0;//needs to be set to 0 for successive transactions
+		customer.amountReturned = 0;
 		
 		//Adds 1 transaction to POSMainframe
 		dailyTotalsSummary.setNumOfTransactions();
-		//dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
-
+		/*if(dailyTotalsSummary.getNumOfTransactions() > 5){
+			databases showDatabase = new databases();
+			showDatabase.showMainframeDetails();
+		}*/
+		
 		Main.Customers.add(customer);
 		
 		//Insert Scale exception code here.

@@ -57,8 +57,6 @@ public class PaymentMethod
 		Main.dailyTotalsSummary.setTotalCouponAmount(coupon);
 		Coupon += coupon;
 		//System.out.print(Main.dailyTotalsSummary);
-		
-		
 	}
 
 	public double getCheck() {

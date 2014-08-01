@@ -17,22 +17,22 @@ public class Customer {
 	}
 
 	public static void paidCash(double amountPaid) {
-		paidBy.setCash(Math.round(amountPaid*100)/100.00);		
+		paidBy.setCash(Calculations.round(amountPaid, 2));		
 		Customer.amountPaid += amountPaid ;
 	}
 	
 	public static void paidCredit(double amountPaid) {
-		paidBy.setCredit(Math.round(amountPaid*100)/100.00);
+		paidBy.setCredit(Calculations.round(amountPaid, 2));
 		Customer.amountPaid += amountPaid ;
 	}
 	
 	public static void paidCoupon(double amountPaid) {
-		paidBy.setCoupon(Math.round(amountPaid*100)/100.00);
-		Customer.amountPaid += amountPaid ;
+		paidBy.setCoupon(Calculations.round(amountPaid, 2));
+		//Customer.amountPaid += amountPaid;//took this out because coupons are discounts, not payments
 	}
 	
 	public static void paidCheck(double amountPaid) {
-		paidBy.setCheck(Math.round(amountPaid*100)/100.00);
+		paidBy.setCheck(Calculations.round(amountPaid, 2));
 		Customer.amountPaid += amountPaid ;
 	}
 	
@@ -54,7 +54,7 @@ public class Customer {
 	}
 
 	public static void setChangeDue(double changeDue) {
-		Customer.changeDue = Math.round(changeDue*100)/100.00;
+		Customer.changeDue = (Calculations.round(amountPaid, 2));
 	}
 	
 	
@@ -64,7 +64,7 @@ public class Customer {
 
 	public static void setAmountReturned(double amountReturned) {
 		paidBy.setCashReturned(amountReturned);
-		Customer.amountReturned += Math.round(amountReturned*100)/100.00;		
+		Customer.amountReturned += (Calculations.round(amountReturned, 2));		
 	}
 
 	public Customer(){

@@ -49,7 +49,7 @@ public class POSMainframe
 					"Number of Transactions:			 " + this.numOfTransactions + '\n' + 
 					"---------------------------------------------------------------------------------------------------" + '\n' + 
 					"Total Cash Received:			$" + Calculations.format(this.totalCash) + '\n' +
-					"Total Cash Returned:			$" + Calculations.format(this.TotalCashReturned) + '\n' +
+					"Total Cash Returned:			$-" + Calculations.format(this.TotalCashReturned) + '\n' +
 					"Total Credit:				$" + Calculations.format(this.totalCredit) + '\n' +
 					"Total Checks:				$" + Calculations.format(this.totalCheck) + '\n' +
 					"Total Discounts:			$" + Calculations.format(this.totalCouponAmount) + '\n' +
@@ -69,7 +69,7 @@ public class POSMainframe
 
 	public void setTotalTransaction(double tt) //Changed this from taking a cart to a double -John
 	{
-		this.totalTransaction = tt;
+		this.totalTransaction += tt;
 	}
 
 	public int getNumOfTransactions() 

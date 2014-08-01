@@ -209,6 +209,7 @@ public class Display extends JFrame {//extends POSRegister {
 				}
 				
 				
+				
 				//Removing old transaction Swing components
 				Main.mainWindow.getContentPane().remove(scrollPane1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
 				Main.mainWindow.getContentPane().remove(scrollPane2);
@@ -257,11 +258,13 @@ public class Display extends JFrame {//extends POSRegister {
 				remainingBalanceText.setLocation(150, 455);
 				remainingBalanceText.setSize(100, 25);
 				
+				
 			} else if(e.getSource() == startTransactionButton) {
 				
 				Main.StartTrans();
 				
-			}else if( e.getSource() == mainframeAccess ){
+			}
+			else if( e.getSource() == mainframeAccess ){
 				databases showDatabase = new databases();
 				showDatabase.showMainframeDetails();
 			}
@@ -296,25 +299,22 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(couponLabel);
 				Main.mainWindow.remove(mainframeAccess);
 				
-				
+				Main.mainWindow.getContentPane().add(mainframeAccess);
 				Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
 				Main.mainWindow.repaint();
-				
-				if( e.getSource() == mainframeAccess ){
-					databases showDatabase = new databases();
-					showDatabase.showMainframeDetails();
-				}
-				
-				
-			} 
-			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton || e.getSource() == CardSwipe.returnButtonGift || e.getSource() == CashInsertion.returnToPayMethods) {
+	
+			} ///////////////////////////////////////////////////////////////////////////////////////////////
+			else if(e.getSource() == mainframeAccess || e.getSource() == noButton || e.getSource() == proceedToCOButton 
+					|| e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton 
+					|| e.getSource() == CardSwipe.returnButtonGift || e.getSource() == CashInsertion.returnToPayMethods) {
 				
 				
 				//Clears proper labels and buttons
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				//Laya's addition to set the total balance for POS Mainframe
+				
 				if (e.getSource() == noButton)
 					Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
 				//String remBal = formatter.format(customer.myCart.myTaxTotal);
@@ -344,7 +344,7 @@ public class Display extends JFrame {//extends POSRegister {
 				else if( e.getSource() == CardSwipe.returnButtonGift){
 					
 					//Main.mainWindow.remove(giftLabel);
-					Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal));
+					Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				}
 				else if( e.getSource() == CashInsertion.returnToPayMethods ){
 					Main.mainWindow.remove(cashInsertComplete);
@@ -354,12 +354,9 @@ public class Display extends JFrame {//extends POSRegister {
 					
 					
 				}
-				else if( e.getSource() == mainframeAccess ){
-					databases showDatabase = new databases();
-					showDatabase.showMainframeDetails();
-				}
+				//This is the point that Payment methods gets to remaining balance text, so at this point, for some reason, at this point, myRemBal = 0
 				Main.mainWindow.getContentPane().add(remainingBalanceText);
-				Main.mainWindow.remainingBalanceText.setText("$ " + formatter.format(customer.myCart.myTaxTotal));
+				Main.mainWindow.remainingBalanceText.setText("$ " + formatter.format(customer.myCart.myTaxTotal - customer.amountPaid));
 				//remainingBalanceText.append(remBalance);
 				
 				selectPaymentLabel = new JLabel("<html>Select your payment method<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
@@ -536,6 +533,7 @@ public class Display extends JFrame {//extends POSRegister {
 				changeDueField.setSize(200, 25);
 				//currencyField.setEditable(false);
 				
+				
 				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(cashInsertComplete);
 				////////////////////////////
@@ -553,7 +551,10 @@ public class Display extends JFrame {//extends POSRegister {
 				cashCompletedPayment.addActionListener(lForButton); //Still need this line
 				cashCompletedPayment.doClick();
 				
-			} else if(e.getSource() == checkInsertComplete) {
+			} 
+		
+				
+				else if(e.getSource() == checkInsertComplete) {
 				
 				checkCompleteLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> Thank you for your business!<html>");
 				checkCompleteLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -800,7 +801,7 @@ public class Display extends JFrame {//extends POSRegister {
 					
 					
 					
-					timer.run();
+					//timer.run();
 					
 					creditCompletedPayment.doClick();
 					
@@ -915,7 +916,10 @@ public class Display extends JFrame {//extends POSRegister {
 				passwordField.setText(passwordField.getText() + '9');
 			} 
 			
+			
+			
 		}
+		
 		// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
 	
