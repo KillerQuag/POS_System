@@ -51,7 +51,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
 		
-		//this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
@@ -221,8 +221,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			if(e.getSource() == returnToPayMethods) {
 				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:\n");
-				DisplayCart.textArea2.append("$" + formatter.format(customer.getAmountPaidCash()) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(" ");
+				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.getCash()) + "\n");
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.getAmountPaid()));
 				insertCashFrame.dispose();
 				myInstance = null;
@@ -231,83 +230,80 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			//	System.out.println(customer.myCart.myTotalPrice);
 			//	System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
-				customer.setAmountPaidCash(100.00);
+				//customer.paidBy.setCash(100.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash())); //This line updates the currencyField on the register screen as you insert cash. -Leah
 			}
 			else if(e.getSource() == fiftyButton) {
 				customer.paidCash(50.00);
-				customer.setAmountPaidCash(50.00);
+				//customer.paidBy.setCash(50.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
 			else if(e.getSource() == twentyButton) {
 				customer.paidCash(20.00);
-				customer.setAmountPaidCash(20.00);
+				//customer.paidBy.setCash(20.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == tenButton) {
 				customer.paidCash(10.00);
-				customer.setAmountPaidCash(10.00);
+				//customer.paidBy.setCash(10.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == fiveButton) {
 				customer.paidCash(5.00);
-				customer.setAmountPaidCash(5.00);
+				//customer.paidBy.setCash(5.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == oneButton) {
 				customer.paidCash(1.00);
-				customer.setAmountPaidCash(1.00);
+				//customer.paidBy.setCash(1.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == quarterButton) {
 				customer.paidCash(0.25);
-				customer.setAmountPaidCash(0.25);
+				//customer.paidBy.setCash(0.25);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == dimeButton) {
 				customer.paidCash(00.10);
-				customer.setAmountPaidCash(0.10);
+				//customer.paidBy.setCash(0.10);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == nickelButton) {
 				customer.paidCash(00.05);
-				customer.setAmountPaidCash(0.05);
+				//customer.paidBy.setCash(0.05);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 
 			}
 			else if(e.getSource() == pennyButton) {
 				customer.paidCash(0.01);
-				customer.setAmountPaidCash(0.01);
+				//customer.paidBy.setCash(0.01);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash()));
 			}
-			else if( e.getSource() == Main.mainWindow.mainframeAccess ){
-				databases showDatabase = new databases();
-				showDatabase.showMainframeDetails();
-			}
+			
 			customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;			
 			
 			if(customer.amountPaid >= customer.myCart.myTaxTotal){
 				Display.cashInsertComplete.doClick(); //This statement must be before the Display.changeDueField statement
-				cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
+				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:");
-				DisplayCart.textArea2.append("$" + formatter.format(cashThisTransaction));
+				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.getCash()));
 				//Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows change to be returned to customer -Heath
 				
-				double changeDue = customer.myCart.myTaxTotal - customer.getAmountPaid();
+				double changeDue = Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid());
 				customer.setChangeDue(changeDue);
-				customer.paidCash(changeDue);
+				//customer.paidCash(changeDue);
+				Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
 				System.out.println("Change due:  $" + changeDue);
 				//Display.currencyField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
-				Main.mainWindow.remainingBalanceText.setText(" ");
-				Main.mainWindow.remainingBalanceText.setText("0.00");
+				Main.mainWindow.remainingBalanceText.setText("$ 0.00");
 
 				insertCashFrame.dispose();
 				myInstance = null;

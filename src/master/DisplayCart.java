@@ -23,8 +23,8 @@ public class DisplayCart extends Display {
 		Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 		NumberFormat formatter = new DecimalFormat("#0.00");
 		String formattedPrice,
-		 	   formattedTax,
-		 	   formattedTotal;
+		 	   formattedTax;
+		 	   
 		//WILL USE A GETTER TO LOAD THE TRANSACTION WINDOW (SET EQUAL TO BELOW VARIABLE)
 		//******************************************************************************
 	
@@ -110,6 +110,7 @@ public class DisplayCart extends Display {
 		helpButton.setSize(100, 50);
 		ListenForButton lForHelpButton = new ListenForButton(); //Making object from within the object's class may be bad
 		helpButton.addActionListener(lForHelpButton);
+		
 
 		
 

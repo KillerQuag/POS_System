@@ -6,25 +6,8 @@ public class Customer {
 	
 	public static Cart myCart;
 	public static double amountPaid = 0.0;
-	public static double amountPaidCash = 0.0;
-	public static double amountPaidGift = 0.0;
+	public static double amountReturned = 0.0;
 	
-	public static double getAmountPaidCash() {
-		return amountPaidCash;
-	}
-
-	public static void setAmountPaidCash(double amountPaidCash) {
-		Customer.amountPaidCash = amountPaidCash;
-	}
-
-	public static double getAmountPaidGift() {
-		return amountPaidGift;
-	}
-
-	public static void setAmountPaidGift(double amountPaidGift) {
-		Customer.amountPaidGift = amountPaidGift;
-	}
-
 	public static PaymentMethod paidBy = new PaymentMethod();	
 	public static double giftCardBalance = 0.0;
 	public static double changeDue;
@@ -34,22 +17,22 @@ public class Customer {
 	}
 
 	public static void paidCash(double amountPaid) {
-		paidBy.setCash(Math.round(amountPaid*100)/100.00);		
+		paidBy.setCash(Calculations.round(amountPaid, 2));		
 		Customer.amountPaid += amountPaid ;
 	}
 	
 	public static void paidCredit(double amountPaid) {
-		paidBy.setCredit(Math.round(amountPaid*100)/100.00);
+		paidBy.setCredit(Calculations.round(amountPaid, 2));
 		Customer.amountPaid += amountPaid ;
 	}
 	
 	public static void paidCoupon(double amountPaid) {
-		paidBy.setCoupon(Math.round(amountPaid*100)/100.00);
-		Customer.amountPaid += amountPaid ;
+		paidBy.setCoupon(Calculations.round(amountPaid, 2));
+		//Customer.amountPaid += amountPaid;//took this out because coupons are discounts, not payments
 	}
 	
 	public static void paidCheck(double amountPaid) {
-		paidBy.setCheck(Math.round(amountPaid*100)/100.00);
+		paidBy.setCheck(Calculations.round(amountPaid, 2));
 		Customer.amountPaid += amountPaid ;
 	}
 	
@@ -71,9 +54,19 @@ public class Customer {
 	}
 
 	public static void setChangeDue(double changeDue) {
-		Customer.changeDue = Math.round(changeDue*100)/100.00;
+		Customer.changeDue = (Calculations.round(amountPaid, 2));
 	}
 	
+	
+	public static double getAmountReturned() {
+		return amountReturned;
+	}
+
+	public static void setAmountReturned(double amountReturned) {
+		paidBy.setCashReturned(amountReturned);
+		Customer.amountReturned += (Calculations.round(amountReturned, 2));		
+	}
+
 	public Customer(){
 		Customer.myCart = new Cart();
 		myCart = ProductScanner.populateCart(myCart);

@@ -31,6 +31,7 @@ public class databases extends JFrame{
 	F1 = new JFrame("POS Mainframe");
 	F1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
+	F1.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	F1.setSize(400, 500); //Where this method is invoked relative to other matters
 	F1.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 	F1.setResizable(false);

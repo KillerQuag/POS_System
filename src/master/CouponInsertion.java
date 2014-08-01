@@ -92,7 +92,6 @@ public class CouponInsertion extends Display {
 			       roundTotal;
 			String formattedTotal;		
 			       
-			
 			if(e.getSource() == returnToPayMethods) {
 				
 				insertCouponFrame.dispose();
@@ -153,11 +152,9 @@ public class CouponInsertion extends Display {
 				Main.dailyTotalsSummary.setTotalTransaction(roundTotal);
 				customer.paidCoupon(couponAmount);
 				
-				
 				insertCouponFrame.dispose();
 				myInstance = null;
 			}
-			
 		}
 	}
 	public static CouponInsertion getInstance() {
