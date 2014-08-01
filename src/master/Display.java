@@ -126,6 +126,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
+
 		//this.setIconImage( new Image(getClass().getResource("Images/SMart.png")));
 		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
@@ -136,6 +137,15 @@ public class Display extends JFrame {//extends POSRegister {
 		ListenForButton lForPaymentSelectionDoClick = new ListenForButton(); //Making object from within the object's class may be bad
 		paymentSelection.addActionListener(lForPaymentSelectionDoClick); //Still need this line
 		//Main.mainWindow.getContentPane().add(cashInsertComplete);
+
+		//\this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
+		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
+			    
+		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new MyDispatcher());
+        
+		//timer = new RemindTask();
+		
 		
 		/*//This group is an alternate method to center frame in middle of screen
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -1026,6 +1036,44 @@ public class Display extends JFrame {//extends POSRegister {
 	        end = new Date();
 	    }
 	}
+
+/*	class RemindTask extends TimerTask {
+
+        @Override
+        public synchronized void run() {
+            System.out.println("ReminderTask is completed by Java timer");
+            try {
+				timer.wait(5000);
+				timer.notify();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            timer.cancel(); //Not necessary because we call System.exit
+            //System.exit(0); //Stops the AWT thread (and everything else)
+        }
+    }*/
+
+	    
+	    private class MyDispatcher implements KeyEventDispatcher {
+	        public boolean dispatchKeyEvent(KeyEvent e) {
+	            if (e.getID() == KeyEvent.KEY_PRESSED) {
+	            	if(e.getKeyCode()==27) {//check if the Keycode is 27 which is esc
+	            		JOptionPane.showMessageDialog(null,"Program Shutting Down");//display a good bye messege
+	            		System.exit(0);//exit
+	            	    }
+	            	if(e.getKeyCode()==192){//check if keycode is 77, which is the 'm' key for mainframe
+	        			databases showDatabase = new databases();
+	        			showDatabase.showMainframeDetails();
+	        		}
+	            } else if (e.getID() == KeyEvent.KEY_RELEASED) {
+	                
+	            } else if (e.getID() == KeyEvent.KEY_TYPED) {
+	                
+	            }
+	            return false;
+	        }
+	    }
 
 	
 } //End of Display class
