@@ -189,9 +189,9 @@ public class CheckInsertion extends JFrame{
             		else
             		{
             			double changeDue = (Double.parseDouble( amount.getText()) - Customer.myCart.myTaxTotal);
-            			customer.paidBy.setCheck(Double.parseDouble( amount.getText())- changeDue);
+            			customer.paidBy.setCheck(Double.parseDouble( amount.getText()));
             			customer.setChangeDue(changeDue);
-            			Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
+            			customer.paidBy.setCashReturned(changeDue);            			
             			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
             			//System.out.println("")
             			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());

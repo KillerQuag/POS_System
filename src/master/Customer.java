@@ -10,7 +10,7 @@ public class Customer {
 	
 	public static PaymentMethod paidBy = new PaymentMethod();	
 	public static double giftCardBalance = 0.0;
-	public static double changeDue;
+	public static double changeDue = 0.0;
 	
 	public static double getAmountPaid() {
 		return amountPaid;

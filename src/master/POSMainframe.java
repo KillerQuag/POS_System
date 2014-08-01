@@ -131,5 +131,5 @@ public class POSMainframe
 	public void setTotalCashReturned(double totalCashReturned) {
 		this.TotalCashReturned += totalCashReturned;
 	}	
-
+	
 }

@@ -66,7 +66,7 @@ public class PaymentMethod
 	public void setCheck(double check) {
 		Main.dailyTotalsSummary.setTotalCheck(check);
 		Check += check;
-		//System.out.print(Main.dailyTotalsSummary);
+		System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getTotalPayment() {
