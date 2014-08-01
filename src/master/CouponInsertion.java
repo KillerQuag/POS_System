@@ -30,15 +30,15 @@ public class CouponInsertion extends Display {
 	public CouponInsertion(){
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(605, 600);
+		this.setSize(605, 515);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
 		this.getContentPane().setLayout(null);
 		
-		insertCouponLabel = new JLabel("<html>Please insert coupon now.<html>");//possibly add a return to payment methods option once this works
+		insertCouponLabel = new JLabel("<html><div style=\"text-align: center;\">Coupon simulator: <br> Please insert coupon now.<html>");//possibly add a return to payment methods option once this works
 		insertCouponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-		insertCouponLabel.setLocation(150, 0);
+		insertCouponLabel.setLocation(200, 0);
 		insertCouponLabel.setSize(400,100);
 		this.getContentPane().add(insertCouponLabel);
 		
@@ -46,8 +46,8 @@ public class CouponInsertion extends Display {
 		
 		//button for 5 percent off
 		fivePerOff = new JButton(new ImageIcon(getClass().getResource("Images/5%smartCoupon149x252.jpg")));
-		fivePerOff.setFont(new Font("Ariel", Font.PLAIN, 12));				
-		fivePerOff.setLocation(50, 150);
+		fivePerOff.setFont(new Font("Ariel", Font.PLAIN, 12));
+		fivePerOff.setLocation(50, 100);
 		fivePerOff.setSize(149, 252);
 		insertCouponFrame.getContentPane().add(fivePerOff);
 		ListenForButton lFofivePerButton = new ListenForButton();
@@ -55,8 +55,8 @@ public class CouponInsertion extends Display {
 		
 		//button for 15 percent off
 		fifteenPerOff = new JButton(new ImageIcon(getClass().getResource("Images/15%smartCoupon149x252.jpg")));
-		fifteenPerOff.setFont(new Font("Ariel", Font.PLAIN, 12));				
-		fifteenPerOff.setLocation(50 + 149 + 25, 150);
+		fifteenPerOff.setFont(new Font("Ariel", Font.PLAIN, 12));
+		fifteenPerOff.setLocation(50 + 149 + 25, 100);
 		fifteenPerOff.setSize(149, 252);
 		insertCouponFrame.getContentPane().add(fifteenPerOff);
 		ListenForButton lFofifteenPerButton = new ListenForButton();
@@ -65,7 +65,7 @@ public class CouponInsertion extends Display {
 		//button for 25 percent off
 		twentyfivePerOff = new JButton(new ImageIcon(getClass().getResource("Images/25%smartCoupon149x252.jpg")));
 		twentyfivePerOff.setFont(new Font("Ariel", Font.PLAIN, 12));
-		twentyfivePerOff.setLocation(50 + 149 + 25 + 149 + 25, 150);
+		twentyfivePerOff.setLocation(50 + 149 + 25 + 149 + 25, 100);
 		twentyfivePerOff.setSize(149, 252);
 		insertCouponFrame.getContentPane().add(twentyfivePerOff);
 		ListenForButton lFotwentyfivePerButton = new ListenForButton();
@@ -73,7 +73,7 @@ public class CouponInsertion extends Display {
 		
 		returnToPayMethods = new JButton("Return to Payment Methods");
 		returnToPayMethods.setFont(new Font("Ariel", Font.PLAIN, 18));
-		returnToPayMethods.setLocation(156, 430);
+		returnToPayMethods.setLocation(156, 380);
 		returnToPayMethods.setSize(300, 75);
 		insertCouponFrame.getContentPane().add(returnToPayMethods);
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad

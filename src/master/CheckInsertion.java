@@ -55,7 +55,7 @@ public class CheckInsertion extends JFrame{
 	
 	public CheckInsertion(){
 		
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(1139, 542); 
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
@@ -184,17 +184,21 @@ public class CheckInsertion extends JFrame{
 //<<<<<<< HEAD
 //           		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
 //=======
-            		if( Double.parseDouble(amount.getText()) <= Customer.myCart.myTaxTotal )
+            		if( Double.parseDouble(amount.getText()) == Customer.getRemainingBalance() )
             		{
-            			customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) ); 
+            			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
             			Display.checkInsertComplete.doClick();
             			myInstance.dispose();
             			myInstance = null;
+            		} else if ( Double.parseDouble(amount.getText()) < Customer.getRemainingBalance() ) {
+            			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
+            			Display.paymentSelection.doClick();
+            			myInstance.dispose();
+            			myInstance = null;
             		}
-            		else
-            		{
+            		else {
             			double changeDue = (Double.parseDouble( amount.getText()) - Customer.myCart.myTaxTotal);
-            			customer.paidBy.setCheck(Double.parseDouble( amount.getText()));
+            			customer.paidCheck(Double.parseDouble( amount.getText()));
             			customer.setChangeDue(changeDue);
             			customer.setAmountReturned(changeDue);            			
             			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
