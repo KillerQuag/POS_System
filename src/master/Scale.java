@@ -9,7 +9,21 @@ import java.util.Random;
  *  Presently, it's just ignored.
  */
 
-public class Scale extends ProductScanner {
+public class Scale {
 	Random rnd = new Random();
-	float weight = rnd.nextFloat();
+	int rand = rnd.nextInt(100);
+	float weight;
+	
+	public Scale(){
+		
+	}
+	
+	public boolean error (){
+		boolean failed = false;
+		
+		if (rand >= 90)
+			failed = true;
+		
+		return failed;
+	}
 }

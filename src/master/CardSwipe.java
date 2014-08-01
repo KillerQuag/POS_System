@@ -432,7 +432,7 @@ public class CardSwipe extends JFrame
 				NumberFormat formatter = new DecimalFormat("#0.00");
 				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				DisplayCart.textArea1.append("Gift payment:\n");
-				DisplayCart.textArea2.append("$" + formatter.format(customer.myCart.myRemBal) + "\n");
+				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.GiftCard) + "\n");
 				Main.mainWindow.remainingBalanceText.setText(" ");
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);

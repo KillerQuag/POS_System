@@ -39,7 +39,6 @@ public class Display extends JFrame {//extends POSRegister {
 	//Employee Mainframe Access Buttons and Window
 	public static JButton mainframeAccess;
 	
-	static RemindTask timer;
 	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
@@ -128,8 +127,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setVisible(true);
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
-		timer = new RemindTask();
-		
+
 		
 		/*//This group is an alternate method to center frame in middle of screen
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -807,9 +805,8 @@ public class Display extends JFrame {//extends POSRegister {
 					
 					
 					
-					timer.run();
-					
 					creditCompletedPayment.doClick();
+					
 					
 					
 					//Main.mainWindow.waitBob();
@@ -934,23 +931,6 @@ public class Display extends JFrame {//extends POSRegister {
 		}
 	}
 	
-	
-	class RemindTask extends TimerTask {
-
-        @Override
-        public synchronized void run() {
-            System.out.println("ReminderTask is completed by Java timer");
-            try {
-				timer.wait(5000);
-				timer.notify();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            timer.cancel(); //Not necessary because we call System.exit
-            //System.exit(0); //Stops the AWT thread (and everything else)
-        }
-    }
 
 
 	
