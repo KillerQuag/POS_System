@@ -9,8 +9,10 @@ public class POSMainframe
 	public double totalCash = 0;
 	public double TotalCashReturned = 0;
 	public double totalCredit = 0;
+	public double totalDebit = 0;
 	public double totalGiftCard = 0;
 	public double totalCheck = 0;
+	public double checkTotalCalc = (totalCash + totalCheck + totalCredit + totalDebit + totalGiftCard ) - TotalCashReturned;
 	
 	//constructor
 	public POSMainframe()
@@ -21,8 +23,10 @@ public class POSMainframe
 		totalCash = 0;
 		TotalCashReturned = 0;
 		totalCredit = 0;
+		totalDebit = 0;
 		totalGiftCard = 0;
 		totalCheck = 0;
+		checkTotalCalc = 0;
 		/*
 		Main.dailyTotalsSummary.totalTransaction$ = getTotalTransaction$();
 		Main.dailyTotalsSummary.numOfTransactions = getNumOfTransactions();
@@ -51,12 +55,14 @@ public class POSMainframe
 					"Total Cash Received:			$" + Calculations.format(this.totalCash) + '\n' +
 					"Total Cash Returned:			$-" + Calculations.format(this.TotalCashReturned) + '\n' +
 					"Total Credit:				$" + Calculations.format(this.totalCredit) + '\n' +
+					"Total Debit:				$" + Calculations.format(this.totalDebit) + '\n' +
 					"Total Checks:				$" + Calculations.format(this.totalCheck) + '\n' +
-					"Total Discounts:			$" + Calculations.format(this.totalCouponAmount) + '\n' +
+					"Total Discounts:			$-" + Calculations.format(this.totalCouponAmount) + '\n' +
 					"Total Gift Card:				$" + Calculations.format(this.totalGiftCard) + '\n' + 
 					"---------------------------------------------------------------------------------------------------" + '\n' + 					
 					"Total Transactions:			$" + Calculations.format(this.totalTransaction) + '\n' +
-					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n';
+					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n' +
+					"Total Transactions Should Match:		$" + Calculations.format(this.checkTotalCalc) + '\n';
 		
 		return output;
 	}
@@ -98,6 +104,7 @@ public class POSMainframe
 
 	public void setTotalCash(double totalCash) {
 		this.totalCash += totalCash;
+		this.setCheckTotalCalc();
 	}
 
 	public double getTotalCredit() {
@@ -106,6 +113,16 @@ public class POSMainframe
 
 	public void setTotalCredit(double totalCredit) {
 		this.totalCredit += totalCredit;
+		this.setCheckTotalCalc();
+	}
+	
+	public double getTotalDebit() {
+		return totalDebit;
+	}
+
+	public void setTotalDebit(double totalDebit) {
+		this.totalDebit += totalDebit;
+		this.setCheckTotalCalc();
 	}
 
 	public double getTotalGiftCard() {
@@ -114,6 +131,7 @@ public class POSMainframe
 
 	public void setTotalGiftCard(double totalGiftCard) {
 		this.totalGiftCard += totalGiftCard;
+		this.setCheckTotalCalc();
 	}
 	
 	public double getTotalCheck() {
@@ -122,6 +140,7 @@ public class POSMainframe
 
 	public void setTotalCheck(double totalCheck) {
 		this.totalCheck += totalCheck;
+		this.setCheckTotalCalc();
 	}
 
 	public double getTotalCashReturned() {
@@ -130,6 +149,16 @@ public class POSMainframe
 
 	public void setTotalCashReturned(double totalCashReturned) {
 		this.TotalCashReturned += totalCashReturned;
+		this.setCheckTotalCalc();
+	}
+
+	public double getCheckTotalCalc() {
+		return checkTotalCalc;
+	}
+
+	public void setCheckTotalCalc() {
+		this.checkTotalCalc = (totalCash + totalCheck + totalCredit + totalDebit + totalGiftCard ) - TotalCashReturned;
 	}	
+	
 	
 }

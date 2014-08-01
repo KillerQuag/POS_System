@@ -198,7 +198,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 		this.getContentPane().add(amtRemaining);
 		
 		formatter.format(Cart.myTaxTotal);
-		amtDueText = new JTextField("$" + formatter.format(customer.myCart.myTaxTotal - customer.getAmountPaid()));
+		amtDueText = new JTextField("$" + customer.getRemainingBalance());
 		
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 		amtDueText.setHorizontalAlignment(JLabel.CENTER);
@@ -222,7 +222,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
 				DisplayCart.textArea1.append("Cash payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.getCash()) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.getAmountPaid()));
+				//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.getAmountPaid()));
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
@@ -298,12 +298,12 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				
 				double changeDue = Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid());
 				customer.setChangeDue(changeDue);
-				//customer.paidCash(changeDue);
-				Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
+				customer.setAmountReturned(changeDue);
+				//Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
 				System.out.println("Change due:  $" + changeDue);
 				//Display.currencyField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
-				Main.mainWindow.remainingBalanceText.setText("$ 0.00");
+				//Main.mainWindow.remainingBalanceText.setText("$ 0.00");
 
 				insertCashFrame.dispose();
 				myInstance = null;

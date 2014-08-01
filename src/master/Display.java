@@ -7,6 +7,7 @@ import com.sun.org.apache.bcel.internal.generic.BALOAD;
 
 import master.CardSwipe.ListenForButton;
 
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -346,7 +347,7 @@ public class Display extends JFrame {//extends POSRegister {
 				else if( e.getSource() == CardSwipe.returnButtonGift){
 					
 					//Main.mainWindow.remove(giftLabel);
-					Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
+					//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				}
 				else if( e.getSource() == CashInsertion.returnToPayMethods ){
 					Main.mainWindow.remove(cashInsertComplete);
@@ -710,6 +711,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().add(creditLabel);
 				Main.mainWindow.remove(slideCardLabel);
 				
+				
 				Main.mainWindow.repaint();
 				
 				System.out.println("credit button pressed");
@@ -746,6 +748,9 @@ public class Display extends JFrame {//extends POSRegister {
 				//If we want to implement a way to approve or decline credit payment
 				
 				System.out.println("enterButton1 button pressed");
+				Main.mainWindow.remove(remainingBalanceLabel);
+				Main.mainWindow.remove(remainingBalanceText);
+				Main.mainWindow.repaint();
 				
 				if(signatureField.getText().equals("Rodion")) { //Would query a big database IRL
 					
@@ -768,6 +773,7 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.remove(signatureField);
 					Main.mainWindow.remove(creditLabel);
 					
+					
 					Main.mainWindow.getContentPane().add(transactionDeniedLabel);
 					Main.mainWindow.getContentPane().add(altPaymentMethodButton);
 					
@@ -775,6 +781,9 @@ public class Display extends JFrame {//extends POSRegister {
 					
 				} else {
 					System.out.println("sig " +signatureField.getText()+ " pressed");
+					
+					Customer.paidCredit(Customer.getRemainingBalance());
+					
 					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
 					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					transactionApprovedLabel.setLocation(450, 50);
@@ -861,6 +870,8 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.repaint();
 					
 				} else {
+					
+					Customer.paidDebit(Customer.myCart.myTaxTotal - Customer.amountPaid);
 					
 					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
 					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));

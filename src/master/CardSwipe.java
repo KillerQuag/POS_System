@@ -89,8 +89,8 @@ public class CardSwipe extends JFrame
 	returnButton = new JButton("Return to Payment Method");
 	returnButton.setLocation(115, 280);
 	returnButton.setSize(300, 75);
-	Color returnBackgroundButton = Color.yellow;
-	returnButton.setBackground(returnBackgroundButton );
+	//Color returnBackgroundButton = Color.yellow;
+	//returnButton.setBackground(returnBackgroundButton );
 	ListenForButton lForreturnButton = new ListenForButton(); //Making object from within the object's class may be bad
 	returnButton.addActionListener(lForreturnButton);
 	cardSwipeWindow.getContentPane().add(returnButton);
@@ -117,7 +117,7 @@ public class CardSwipe extends JFrame
 			{
 				//full payment be made with the card?
 				//ActionEvent debitPress = null;
-				//debitPress.setSource(debitButton);
+				//debitPress.setSource(debitButton);				
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
 				myInstance = null;
@@ -127,7 +127,7 @@ public class CardSwipe extends JFrame
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				DisplayCart.textArea1.append("Gift payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.myCart.myRemBal) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
+				//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
 				myInstance = null;
@@ -139,7 +139,9 @@ public class CardSwipe extends JFrame
 				//full payment be made with card? 
 				Main.mainWindow.lForButton.actionPerformed(e);
 				//Customer.paidCredit(amountPaid);
+				
 				cardSwipeWindow.dispose();
+				
 				myInstance = null;
 			}
 			else if(e.getSource() == giftButton )
@@ -221,27 +223,27 @@ public class CardSwipe extends JFrame
 				amtPaid.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtPaid);
 				
-				/*
+				
 				amtRemaining = new JLabel("<html>Balance Remaining:<html>");
 				amtRemaining.setFont(new Font("Ariel", Font.PLAIN, 12));
 				amtRemaining.setLocation(335, 180);
 				amtRemaining.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtRemaining);
-				*/
 				
 				
-				amtDueText = new JTextField("$" + Double.toString((Math.round(Cart.myRemBal)*100)/100.00), 15);
+				
+				amtDueText = new JTextField("$" + Customer.getRemainingBalance());
 				amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 				amtDueText.setHorizontalAlignment(JLabel.CENTER);
 				amtDueText.setLocation(290, 250);
 				amtDueText.setSize(200, 25);
 				//currencyField.setEditable(false);
 				cardSwipeWindow.getContentPane().add(amtDueText);
-				
+				/*
 				NumberFormat formatter = new DecimalFormat("#0.00");
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
-				
+				*/
 			}
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			String totalAmountPaid = Double.toString(customer.getAmountPaid());
@@ -428,7 +430,7 @@ public class CardSwipe extends JFrame
 				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				DisplayCart.textArea1.append("Gift payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.GiftCard) + "\n");
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
+				//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				Main.mainWindow.lForButton.actionPerformed(e);
 				Main.mainWindow.remove(Display.slideCardLabel);
 				cardSwipeWindow.dispose();	
