@@ -74,7 +74,8 @@ public class CheckInsertion extends JFrame{
 		janeSigLabel.setSize(275, 79);
 		janeSigLabel.setLocation(900, 300);
 		janeSigLabel.setOpaque(false);
-		sig.add(janeSigLabel);*/
+		sig.add(janeSigLabel);
+		*/
 		
 		//NEW CODE BY EDGAR
 		
@@ -180,11 +181,15 @@ public class CheckInsertion extends JFrame{
             	{
             	
             	try{
+//<<<<<<< HEAD
+//           		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
+//=======
             		if( Double.parseDouble(amount.getText()) <= Customer.myCart.myTaxTotal )
             		{
-            		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) ); 
-            		myInstance.dispose();
-            		myInstance = null;
+            			customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) ); 
+            			Display.checkInsertComplete.doClick();
+            			myInstance.dispose();
+            			myInstance = null;
             		}
             		else
             		{
@@ -195,9 +200,12 @@ public class CheckInsertion extends JFrame{
             			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
             			//System.out.println("")
             			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());
+            			Display.checkInsertComplete.doClick();
             			myInstance.dispose();            			
             		}
             		
+//>>>>>>> origin/master
+
             	}
             	catch (NumberFormatException e){
             		System.out.println("Empty string or non number, change check amount.");	

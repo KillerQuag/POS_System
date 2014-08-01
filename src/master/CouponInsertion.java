@@ -30,7 +30,7 @@ public class CouponInsertion extends Display {
 	public CouponInsertion(){
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(800, 600);
+		this.setSize(605, 600);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -45,28 +45,28 @@ public class CouponInsertion extends Display {
 		insertCouponFrame = this;
 		
 		//button for 5 percent off
-		fivePerOff = new JButton("5% off Total Purchase!");
+		fivePerOff = new JButton(new ImageIcon(getClass().getResource("Images/5%smartCoupon149x252.jpg")));
 		fivePerOff.setFont(new Font("Ariel", Font.PLAIN, 12));				
-		fivePerOff.setLocation(75, 200);
-		fivePerOff.setSize(200, 100);
+		fivePerOff.setLocation(50, 150);
+		fivePerOff.setSize(149, 252);
 		insertCouponFrame.getContentPane().add(fivePerOff);
 		ListenForButton lFofivePerButton = new ListenForButton();
 		fivePerOff.addActionListener(lFofivePerButton);
 		
 		//button for 15 percent off
-		fifteenPerOff = new JButton("15% off Total Purchase!!");
+		fifteenPerOff = new JButton(new ImageIcon(getClass().getResource("Images/15%smartCoupon149x252.jpg")));
 		fifteenPerOff.setFont(new Font("Ariel", Font.PLAIN, 12));				
-		fifteenPerOff.setLocation(75 + 225, 200);
-		fifteenPerOff.setSize(200, 100);
+		fifteenPerOff.setLocation(50 + 149 + 25, 150);
+		fifteenPerOff.setSize(149, 252);
 		insertCouponFrame.getContentPane().add(fifteenPerOff);
 		ListenForButton lFofifteenPerButton = new ListenForButton();
 		fifteenPerOff.addActionListener(lFofifteenPerButton);
 		
 		//button for 25 percent off
-		twentyfivePerOff = new JButton("25% off Total Purchase!!!");
-		twentyfivePerOff.setFont(new Font("Ariel", Font.PLAIN, 12));				
-		twentyfivePerOff.setLocation(75 + 225 + 225, 200);
-		twentyfivePerOff.setSize(200, 100);
+		twentyfivePerOff = new JButton(new ImageIcon(getClass().getResource("Images/25%smartCoupon149x252.jpg")));
+		twentyfivePerOff.setFont(new Font("Ariel", Font.PLAIN, 12));
+		twentyfivePerOff.setLocation(50 + 149 + 25 + 149 + 25, 150);
+		twentyfivePerOff.setSize(149, 252);
 		insertCouponFrame.getContentPane().add(twentyfivePerOff);
 		ListenForButton lFotwentyfivePerButton = new ListenForButton();
 		twentyfivePerOff.addActionListener(lFotwentyfivePerButton);

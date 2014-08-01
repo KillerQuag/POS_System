@@ -102,7 +102,7 @@ public class Main extends Display {
 		mainWindow.getContentPane().add(Display.scrollPane2);
 
 		mainWindow.getContentPane().add(Display.helpButton);
-		mainWindow.getContentPane().add(remainingBalanceLabel);
+		//mainWindow.getContentPane().add(remainingBalanceLabel); //Moved to be added at same time as Remaining balance JTextField in Display -Heath
 		
 
 		mainWindow.repaint();  //Critical after every refresh.
