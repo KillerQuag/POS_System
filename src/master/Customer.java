@@ -84,7 +84,6 @@ public class Customer {
 
 	public static void setChangeDue(double changeDue) {
 		Customer.changeDue = (Calculations.round(changeDue, 2));
-		
 	}
 	
 	
@@ -108,7 +107,6 @@ public class Customer {
 	public Customer(){
 		Customer.myCart = new Cart();
 		myCart = ProductScanner.populateCart(myCart);
-		//myCart = Calculations.SortCart(myCart);  //WIP
 	}
 	
 	public Cart getCart(){

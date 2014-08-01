@@ -8,6 +8,7 @@ import com.sun.org.apache.bcel.internal.generic.BALOAD;
 import master.CardSwipe.ListenForButton;
 
 
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -124,6 +125,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
+		//this.setIconImage( new Image(getClass().getResource("Images/SMart.png")));
 		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    

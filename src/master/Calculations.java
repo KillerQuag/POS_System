@@ -37,7 +37,7 @@ public class Calculations {
 	    return (double) tmp / factor;
 	}
 	 
-	static double getTotalPrice(Cart cart){
+	public static double getTotalPrice(Cart cart){
 		double totalCost = 0.0;
 		for (int i = 0; i < Cart.items.length; i++ ){
 			totalCost += Cart.items[i].getPrice();

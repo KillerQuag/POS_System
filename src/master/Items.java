@@ -7,7 +7,7 @@ package master;
 public class Items{
 		
 		double weight = 0;
-		double price = 0;
+		public double price = 0;
 		String itemName = "";
 		int UID = -1;
 

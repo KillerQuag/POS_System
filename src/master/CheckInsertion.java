@@ -181,9 +181,6 @@ public class CheckInsertion extends JFrame{
             	{
             	
             	try{
-//<<<<<<< HEAD
-//           		customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) );           		
-//=======
             		if( Double.parseDouble(amount.getText()) <= Customer.myCart.myTaxTotal )
             		{
             			customer.paidBy.setCheck(Double.parseDouble( amount.getText() ) ); 
@@ -204,8 +201,6 @@ public class CheckInsertion extends JFrame{
             			myInstance.dispose();            			
             		}
             		
-//>>>>>>> origin/master
-
             	}
             	catch (NumberFormatException e){
             		System.out.println("Empty string or non number, change check amount.");	
