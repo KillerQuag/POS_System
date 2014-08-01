@@ -38,7 +38,7 @@ public class CouponInsertion extends Display {
 		
 		insertCouponLabel = new JLabel("<html>Please insert coupon now.<html>");//possibly add a return to payment methods option once this works
 		insertCouponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-		insertCouponLabel.setLocation(320, 0);
+		insertCouponLabel.setLocation(150, 0);
 		insertCouponLabel.setSize(400,100);
 		this.getContentPane().add(insertCouponLabel);
 		
@@ -73,7 +73,7 @@ public class CouponInsertion extends Display {
 		
 		returnToPayMethods = new JButton("Return to Payment Methods");
 		returnToPayMethods.setFont(new Font("Ariel", Font.PLAIN, 18));
-		returnToPayMethods.setLocation(265, 500);
+		returnToPayMethods.setLocation(156, 430);
 		returnToPayMethods.setSize(300, 75);
 		insertCouponFrame.getContentPane().add(returnToPayMethods);
 		ListenForButton lFoReturnToPayMethods = new ListenForButton(); //Making object from within the object's class may be bad
