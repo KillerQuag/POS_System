@@ -245,6 +245,7 @@ public class CardSwipe extends JFrame
 			}
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			String totalAmountPaid = Double.toString(customer.getAmountPaid());
+			amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 			if(e.getSource() == fiveDollar )
 			{	
 				if( customer.amountPaid + 5.00 > customer.myCart.myTaxTotal )	
@@ -257,7 +258,7 @@ public class CardSwipe extends JFrame
 					//
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Calculations.format(customer.amountPaid));
-					amtDueText.setText(Calculations.format(customer.myCart.myRemBal));
+					amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 					
 					
 					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
@@ -286,7 +287,7 @@ public class CardSwipe extends JFrame
 				
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Calculations.format(customer.amountPaid));
-					amtDueText.setText(Calculations.format(Cart.myRemBal));
+					amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 					Main.mainWindow.repaint();
 			}
 			else if( e.getSource() == tenDollar )
@@ -330,7 +331,7 @@ public class CardSwipe extends JFrame
 				
 				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 				amtPaidText.setText(Calculations.format(customer.amountPaid));
-				amtDueText.setText(Calculations.format(Cart.myRemBal));
+				amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 			}
 			else if( e.getSource() == twentyFiveDollar )
 			{
@@ -343,7 +344,7 @@ public class CardSwipe extends JFrame
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Calculations.format(customer.amountPaid));
-					amtDueText.setText(Calculations.format(Cart.myRemBal));
+					amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 					
 					
 					Display.giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
@@ -371,7 +372,7 @@ public class CardSwipe extends JFrame
 					customer.paidGiftCard(25.0);
 				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 				amtPaidText.setText(Calculations.format(customer.amountPaid));
-				amtDueText.setText(Calculations.format(Cart.myRemBal));
+				amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 			}
 			else if( e.getSource() == fiftyDollar )
 			{
@@ -413,7 +414,7 @@ public class CardSwipe extends JFrame
 				
 				customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 				amtPaidText.setText(Calculations.format(customer.amountPaid));
-				amtDueText.setText(Calculations.format(Cart.myRemBal));
+				amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
 				
 			}
 			else if( e.getSource() == cancelButton )
