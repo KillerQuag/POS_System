@@ -803,9 +803,7 @@ public class Display extends JFrame {//extends POSRegister {
 
 				//If we want to implement a way to approve or decline credit payment
 				
-				System.out.println("enterButton1 button pressed");
-				Main.mainWindow.remove(remainingBalanceLabel);
-				Main.mainWindow.remove(remainingBalanceText);
+				System.out.println("enterButton1 button pressed");				
 				Main.mainWindow.repaint();
 				
 				if(signatureField.getText().equals("Rodion")) { //Credit Denied - Would query a big database IRL
