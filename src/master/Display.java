@@ -14,6 +14,7 @@ import master.CardSwipe.ListenForButton;
 
 
 
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.awt.*;
@@ -21,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Date;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
@@ -78,6 +80,8 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton cashInsertComplete;
 	public static JButton checkInsertComplete;
 	/////////////
+	
+	public static JButton doneButton;
 	
 	public static JLabel welcomeLabel;
 	public static JLabel couponLabel;
@@ -204,6 +208,7 @@ public class Display extends JFrame {//extends POSRegister {
 			//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			
 			if(e.getSource() == creditCompletedPayment || e.getSource() == cashCompletedPayment) {
+				Main.currentCustNum +=1;
 	
 				if(e.getSource() == creditCompletedPayment) {
 					Main.mainWindow.remove(transactionApprovedLabel);
@@ -792,6 +797,7 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
 					
 					Main.mainWindow.repaint();
+					Main.mainWindow.getContentPane().repaint();
 					//////////////////////////////////////////////////////////////////////////////////////////WORKING HERE
 					/*
 					newTransaction = new JButton("New Transaction"); //Still need this line
@@ -799,15 +805,23 @@ public class Display extends JFrame {//extends POSRegister {
 					newTransaction.addActionListener(lForButton); //Still need this line
 					newTransaction.doClick();
 					 */
+					/*
 					creditCompletedPayment = new JButton("New Transaction"); //Still need this line
 					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
 					creditCompletedPayment.addActionListener(lForButton); //Still need this line
 					
 					
-					
 					creditCompletedPayment.doClick();
+					*/
 					
+					doneButton = new JButton("New Transaction"); //Still need this line
+					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+					doneButton.addActionListener(lForButton); //Still need this line
 					
+					altPaymentMethodButton.setLocation(515, 175+75+10);
+					altPaymentMethodButton.setSize(100, 75);
+					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
+					altPaymentMethodButton.addActionListener(lForAltButton);
 					
 					//Main.mainWindow.waitBob();
 					
@@ -931,7 +945,13 @@ public class Display extends JFrame {//extends POSRegister {
 		}
 	}
 	
-
+	public static void pause(int seconds){
+	    Date start = new Date();
+	    Date end = new Date();
+	    while(end.getTime() - start.getTime() < seconds * 1000){
+	        end = new Date();
+	    }
+	}
 
 	
 } //End of Display class
