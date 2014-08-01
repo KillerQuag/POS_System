@@ -35,6 +35,7 @@ public class CardSwipe extends JFrame
 	
 	public static JLabel amtPaid;
 	public static JLabel amtRemaining;
+	public static JLabel giftCardLabel;
 	
 	public static JTextField CardSwipeField;
 	public static JTextField amtPaidText;
@@ -198,8 +199,8 @@ public class CardSwipe extends JFrame
 				returnButtonGift = new JButton("Return to Payment Method");
 				returnButtonGift.setLocation(130, 300);
 				returnButtonGift.setSize(300, 75);
-				Color returnBackgroundButton = Color.yellow;
-				returnButtonGift.setBackground(returnBackgroundButton );
+				//Color returnBackgroundButton = Color.yellow;
+				//returnButtonGift.setBackground(returnBackgroundButton );
 				ListenForButton lForreturnButtonGift = new ListenForButton(); //Making object from within the object's class may be bad
 				returnButtonGift.addActionListener(lForreturnButtonGift);
 				cardSwipeWindow.getContentPane().add(returnButtonGift);
