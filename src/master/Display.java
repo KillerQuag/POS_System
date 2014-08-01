@@ -77,6 +77,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton checkInsertComplete;
 	/////////////
 	
+	public static JButton paymentSelection;
 	
 	public static JLabel welcomeLabel;
 	public static JLabel couponLabel;
@@ -129,7 +130,12 @@ public class Display extends JFrame {//extends POSRegister {
 		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
-
+		paymentSelection = new JButton("to payment selection"); //Still need this line
+		//cashInsertComplete.setLocation(450, 175+75+10);
+		//cashInsertComplete.setSize(200, 75);
+		ListenForButton lForPaymentSelectionDoClick = new ListenForButton(); //Making object from within the object's class may be bad
+		paymentSelection.addActionListener(lForPaymentSelectionDoClick); //Still need this line
+		//Main.mainWindow.getContentPane().add(cashInsertComplete);
 		
 		/*//This group is an alternate method to center frame in middle of screen
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -342,7 +348,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.repaint();
 	
 			} ///////////////////////////////////////////////////////////////////////////////////////////////
-			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton 
+			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == paymentSelection
 					|| e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton 
 					|| e.getSource() == CardSwipe.returnButtonGift || e.getSource() == CashInsertion.returnToPayMethods) {
 				
@@ -388,6 +394,10 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.remove(insertCashLabel);
 					//Main.mainWindow.remainingBalanceText.setText(" ");
 					
+					
+				} else if(e.getSource() == paymentSelection) {
+					Main.mainWindow.remove(insertCheckLabel);
+					Main.mainWindow.remove(currencyField);
 					
 				}
 				//This is the point that Payment methods gets to remaining balance text, so at this point, for some reason, at this point, myRemBal = 0
@@ -804,6 +814,7 @@ public class Display extends JFrame {//extends POSRegister {
 				//If we want to implement a way to approve or decline credit payment
 				
 				System.out.println("enterButton1 button pressed");				
+
 				Main.mainWindow.repaint();
 				
 				if(signatureField.getText().equals("Rodion")) { //Credit Denied - Would query a big database IRL
