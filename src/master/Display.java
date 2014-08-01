@@ -69,13 +69,13 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton giftCardCompletedPayment;
 	public static JButton cashCompletedPayment;
 	public static JButton checkCompletedPayment;
+	public static ListenForButton lForGIFTCARDCOMPLETEDPAYMENTButton = new ListenForButton();
 	
 	///TEMPORARY//
 	public static JButton cashInsertComplete;
 	public static JButton checkInsertComplete;
 	/////////////
 	
-	public static JButton doneButton;
 	
 	public static JLabel welcomeLabel;
 	public static JLabel couponLabel;
@@ -93,8 +93,9 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel transactionDeniedLabel;
 	public static JLabel transactionApprovedLabel;
 	public static JLabel background;
-	public static JLabel remainingBalanceLabel;
+	public static JLabel remainingBalanceLabel  = new JLabel("Remaining Balance:");
 	public static JLabel giftCardBalanceLabel;
+	
 	
 	
 	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
@@ -105,7 +106,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JScrollPane scrollPane1;
 	public static JScrollPane scrollPane2;
 	
-	public static JTextField remainingBalanceText;
+	public static JTextField remainingBalanceText = new JTextField(); 
 	public static JTextField currencyField;
 	public static JTextField changeDueField;
 	public static JTextField signatureField;
@@ -171,7 +172,8 @@ public class Display extends JFrame {//extends POSRegister {
 		lForButton = new ListenForButton();
 		startTransactionButton.addActionListener(lForButton);
 		
-		remainingBalanceLabel = new JLabel("Remaining Balance:");
+		/* This needs to stay commented or be deleted -Heath
+		 * remainingBalanceLabel = new JLabel("Remaining Balance:");
 		remainingBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 		remainingBalanceLabel.setLocation(130, 390);
 		remainingBalanceLabel.setSize(200, 100);
@@ -181,7 +183,7 @@ public class Display extends JFrame {//extends POSRegister {
 		//remainingBalanceText.setEditable(false);
 		remainingBalanceText.setLocation(150, 455);
 		remainingBalanceText.setSize(100, 25);
-		//HEATH*/
+		*/
 		
 		/* Cannot get this to work properly **** Have not included MyCanvas class so this especially cannot work now ****
 		 * Deletion fodder
@@ -202,17 +204,41 @@ public class Display extends JFrame {//extends POSRegister {
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			
-			if(e.getSource() == creditCompletedPayment || e.getSource() == cashCompletedPayment) {
+			if(e.getSource() == cashCompletedPayment || e.getSource() == creditCompletedPayment || e.getSource() == debitCompletedPayment || e.getSource() == giftCardCompletedPayment || e.getSource() == checkCompletedPayment) {
 				Main.currentCustNum +=1;
 	
-				if(e.getSource() == creditCompletedPayment) {
-					Main.mainWindow.remove(transactionApprovedLabel);
-				} else if(e.getSource() == cashCompletedPayment) {
+				if(e.getSource() == cashCompletedPayment) {
 					Main.mainWindow.remove(changeDueLabel);
 					Main.mainWindow.remove(changeDueField);
-					Main.mainWindow.remove(remainingBalanceText);
-				}
+					Main.mainWindow.remove(cashCompletedPayment);
+					Main.mainWindow.repaint();
+				} else if(e.getSource() == creditCompletedPayment) {
+					Main.mainWindow.remove(transactionApprovedLabel);
+					Main.mainWindow.remove(creditCompletedPayment);
+					Main.mainWindow.repaint();
+				} else if(e.getSource() == debitCompletedPayment) {
+					Main.mainWindow.remove(transactionApprovedLabel);
+					Main.mainWindow.remove(debitCompletedPayment);
+					Main.mainWindow.repaint();
+				} else if(e.getSource() == giftCardCompletedPayment) {
+					Main.mainWindow.remove(giftLabel);
+					Main.mainWindow.remove(giftCardBalanceLabel);
+					Main.mainWindow.remove(giftCardCompletedPayment);
+					Main.mainWindow.repaint();
+				} else if(e.getSource() == checkCompletedPayment) {
+					Main.mainWindow.remove(checkCompletedPayment);
+					Main.mainWindow.remove(checkCompleteLabel);
+				}//End of remove stuff logic block
+					
+					/* For reference DELELTE
+	public static JButton creditCompletedPayment;
+	public static JButton debitCompletedPayment;
+	public static JButton giftCardCompletedPayment;
+	public static JButton cashCompletedPayment;
+	public static JButton checkCompletedPayment;
+					 */
 				
+				System.out.println(e.getSource());
 				
 				
 				//Removing old transaction Swing components
@@ -220,13 +246,14 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().remove(scrollPane2);
 				Main.mainWindow.getContentPane().remove(helpButton);
 				Main.mainWindow.getContentPane().remove(remainingBalanceLabel);
+				Main.mainWindow.getContentPane().remove(remainingBalanceText);
+
 
 				//JPanel thePanel = new JPanel();
 				welcomeLabel = new JLabel("Welcome to S-Mart!");
 				welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				welcomeLabel.setLocation(320, 150);
 				welcomeLabel.setSize(200, 100);
-				System.out.println("newTransaction clicked");
 				//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
 				Main.mainWindow.getContentPane().add(welcomeLabel);
 				
@@ -252,9 +279,10 @@ public class Display extends JFrame {//extends POSRegister {
 				lForButton = new ListenForButton();
 				startTransactionButton.addActionListener(lForButton);
 				
-				remainingBalanceLabel = new JLabel("Remaining Balance:");
+				/* This block needs to stay commented out or be deleted -Heath
+				 * remainingBalanceLabel = new JLabel("Remaining Balance:");
 				remainingBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				remainingBalanceLabel.setLocation(130, 390);
+				remainingBalanceLabel.setLocation(0, 0);
 				remainingBalanceLabel.setSize(200, 100);
 				
 				remainingBalanceText = new JTextField();
@@ -262,7 +290,8 @@ public class Display extends JFrame {//extends POSRegister {
 				//remainingBalanceText.setEditable(false);
 				remainingBalanceText.setLocation(150, 455);
 				remainingBalanceText.setSize(100, 25);
-				
+				*/
+				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == startTransactionButton) {
 				
@@ -360,6 +389,18 @@ public class Display extends JFrame {//extends POSRegister {
 					
 				}
 				//This is the point that Payment methods gets to remaining balance text, so at this point, for some reason, at this point, myRemBal = 0
+				//remainingBalanceLabel = new JLabel("Remaining Balance:");
+				remainingBalanceLabel.setFont(new Font("Ariel", Font.BOLD, 15));
+				remainingBalanceLabel.setLocation(100, 465);
+				remainingBalanceLabel.setSize(200, 20);
+				
+				//remainingBalanceText = new JTextField();
+				remainingBalanceText.setFont(new Font("Ariel", Font.PLAIN, 18));
+				remainingBalanceText.setHorizontalAlignment(JLabel.RIGHT);
+				//remainingBalanceText.setEditable(false);
+				remainingBalanceText.setLocation(250, 465);
+				remainingBalanceText.setSize(100, 25);
+				
 				Main.mainWindow.getContentPane().add(remainingBalanceText);
 				Main.mainWindow.remainingBalanceText.setText("$ " + formatter.format(customer.myCart.myTaxTotal - customer.amountPaid));
 				//remainingBalanceText.append(remBalance);
@@ -392,6 +433,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				//Adding Labels and buttons
 				Main.mainWindow.getContentPane().add(selectPaymentLabel);
+				Main.mainWindow.getContentPane().add(remainingBalanceLabel);
 				
 				Main.mainWindow.getContentPane().add(cashButton);
 				Main.mainWindow.getContentPane().add(checkButton);
@@ -479,16 +521,14 @@ public class Display extends JFrame {//extends POSRegister {
 				currencyField.setSize(200, 25);
 				//currencyField.setEditable(false);
 				
-				/////////TEMPORARY CODE/////////
-				//++++++++++++++++++++++++++++++
+				//Necessary code/////////
 				checkInsertComplete = new JButton("<html>SEND CHECK ACCEPTED<br> EVENT<html>");
-				checkInsertComplete.setLocation(450, 175+75+10);
-				checkInsertComplete.setSize(200, 75);
+				//checkInsertComplete.setLocation(450, 175+75+10);
+				//checkInsertComplete.setSize(200, 75);
 				ListenForButton lForCheckInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
 				checkInsertComplete.addActionListener(lForCheckInsertCompleteButton);
 				Main.mainWindow.getContentPane().add(checkInsertComplete);
-				//++++++++++++++++++++++++++++++
-				//////END OF TEMPORARY CODE/////
+
 				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);
@@ -538,6 +578,14 @@ public class Display extends JFrame {//extends POSRegister {
 				changeDueField.setSize(200, 25);
 				//currencyField.setEditable(false);
 				
+				cashCompletedPayment = new JButton("Done"); //Still need this line
+				cashCompletedPayment.setLocation(515, 175+75+10);
+				cashCompletedPayment.setSize(100, 75);
+				ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+				cashCompletedPayment.addActionListener(lForButton); //Still need this line
+
+				Main.mainWindow.getContentPane().add(cashCompletedPayment);
+				
 				
 				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(cashInsertComplete);
@@ -551,15 +599,10 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-				cashCompletedPayment = new JButton("New Transaction"); //Still need this line
-				ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
-				cashCompletedPayment.addActionListener(lForButton); //Still need this line
-				cashCompletedPayment.doClick();
+				//cashCompletedPayment.doClick();
 				
-			} 
-		
 				
-				else if(e.getSource() == checkInsertComplete) {
+			} else if(e.getSource() == checkInsertComplete) {
 				
 				checkCompleteLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> Thank you for your business!<html>");
 				checkCompleteLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -570,6 +613,15 @@ public class Display extends JFrame {//extends POSRegister {
 				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(checkInsertComplete);
 				////////////////////////////
+				
+				
+				checkCompletedPayment = new JButton("Done"); //Still need this line
+				checkCompletedPayment.setLocation(515, 175+75+10);
+				checkCompletedPayment.setSize(100, 75);
+				ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+				checkCompletedPayment.addActionListener(lForButton); //Still need this line
+				Main.mainWindow.getContentPane().add(checkCompletedPayment);
+				
 				
 				Main.mainWindow.getContentPane().add(checkCompleteLabel);
 				Main.mainWindow.remove(insertCheckLabel);
@@ -750,7 +802,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				System.out.println("enterButton1 button pressed");
 				
-				if(signatureField.getText().equals("Rodion")) { //Would query a big database IRL
+				if(signatureField.getText().equals("Rodion")) { //Credit Denied - Would query a big database IRL
 					
 					System.out.println("sig Rodion button pressed");
 					
@@ -766,6 +818,8 @@ public class Display extends JFrame {//extends POSRegister {
 					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
 					altPaymentMethodButton.addActionListener(lForAltButton);
 					
+					
+					
 					Main.mainWindow.remove(enterButton1);
 					Main.mainWindow.remove(clearButton1);
 					Main.mainWindow.remove(signatureField);
@@ -776,14 +830,13 @@ public class Display extends JFrame {//extends POSRegister {
 					
 					Main.mainWindow.repaint();
 					
-				} else {
+				} else { //Credit Approved
 					System.out.println("sig " +signatureField.getText()+ " pressed");
 					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
 					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					transactionApprovedLabel.setLocation(450, 50);
 					transactionApprovedLabel.setSize(400, 150);
-					
-					
+		
 					
 					Main.mainWindow.remove(enterButton1);
 					Main.mainWindow.remove(clearButton1);
@@ -792,34 +845,27 @@ public class Display extends JFrame {//extends POSRegister {
 					
 					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
 					
-					Main.mainWindow.repaint();
-					Main.mainWindow.getContentPane().repaint();
-					//////////////////////////////////////////////////////////////////////////////////////////WORKING HERE
-					/*
-					newTransaction = new JButton("New Transaction"); //Still need this line
-					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
-					newTransaction.addActionListener(lForButton); //Still need this line
-					newTransaction.doClick();
-					 */
-					/*
-					creditCompletedPayment = new JButton("New Transaction"); //Still need this line
+					
+					creditCompletedPayment = new JButton("Done"); //Still need this line
+					creditCompletedPayment.setLocation(515, 175+75+10);
+					creditCompletedPayment.setSize(100, 75);
 					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
 					creditCompletedPayment.addActionListener(lForButton); //Still need this line
+					Main.mainWindow.getContentPane().add(creditCompletedPayment);
+					
+					Main.mainWindow.repaint();
+					
+
+					//creditCompletedPayment.doClick();
 					
 					
 
-					creditCompletedPayment.doClick();
-					*/
-					
-					doneButton = new JButton("New Transaction"); //Still need this line
-					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
-					doneButton.addActionListener(lForButton); //Still need this line
-					
+					/*
 					altPaymentMethodButton.setLocation(515, 175+75+10);
 					altPaymentMethodButton.setSize(100, 75);
 					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
 					altPaymentMethodButton.addActionListener(lForAltButton);
-					
+					*/
 					//Main.mainWindow.waitBob();
 					
 				}
@@ -837,7 +883,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				
 				//Below is the Wigmore function
-				if(charArray[password.length()-1] == '0') { //Would query a big database IRL
+				if(charArray[password.length()-1] == '0') { //Debit Denied //Would query a big database IRL
 					
 					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
 					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -872,12 +918,19 @@ public class Display extends JFrame {//extends POSRegister {
 					
 					Main.mainWindow.repaint();
 					
-				} else {
+				} else { //Debit Approved
 					
 					transactionApprovedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been approved. <br> Thank you for your business.<html>");
 					transactionApprovedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					transactionApprovedLabel.setLocation(450, 50);
 					transactionApprovedLabel.setSize(400, 150);
+					
+					debitCompletedPayment = new JButton("Done"); 
+					debitCompletedPayment.setLocation(515, 175+75+10);
+					debitCompletedPayment.setSize(100, 75);
+					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
+					debitCompletedPayment.addActionListener(lForButton); 
+					Main.mainWindow.getContentPane().add(debitCompletedPayment);
 					
 					Main.mainWindow.remove(debitLabel);
 					Main.mainWindow.remove(passwordField);

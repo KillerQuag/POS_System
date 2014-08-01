@@ -2,6 +2,8 @@ package master;
 
 import javax.swing.*;
 
+import master.Display.ListenForButton;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +30,9 @@ public class CardSwipe extends JFrame
 	public static JButton twentyFiveDollar;
 	public static JButton fiftyDollar;	
 	public static JButton cancelButton;
+	
+	//Added 8/1 -Heath
+	public static JButton giftCardCompletedPayment;
 	
 	public static JLabel chooseACardLabel;
 	public static JLabel couponLabel;
@@ -154,7 +159,7 @@ public class CardSwipe extends JFrame
 				cardSwipeWindow.remove(giftButton);
 				cardSwipeWindow.remove(returnButton);
 				cardSwipeWindow.remove(chooseACardLabel);
-				cardSwipeWindow.repaint();	
+				cardSwipeWindow.repaint();
 				
 				fiveDollar = new JButton("$5");
 				fiveDollar.setLocation(40, 100);
@@ -221,13 +226,13 @@ public class CardSwipe extends JFrame
 				amtPaid.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtPaid);
 				
-				/*
+				//Uncommented this 8/1 -Heath
 				amtRemaining = new JLabel("<html>Balance Remaining:<html>");
 				amtRemaining.setFont(new Font("Ariel", Font.PLAIN, 12));
 				amtRemaining.setLocation(335, 180);
 				amtRemaining.setSize(400,100);
 				cardSwipeWindow.getContentPane().add(amtRemaining);
-				*/
+				
 				
 				
 				amtDueText = new JTextField("$" + Double.toString((Math.round(Cart.myRemBal)*100)/100.00), 15);
@@ -270,6 +275,16 @@ public class CardSwipe extends JFrame
 					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					Display.giftCardBalanceLabel.setLocation(523, 175);
 					Display.giftCardBalanceLabel.setSize(200, 25);
+					
+					//Added 8/1 -Heath
+					Display.giftCardCompletedPayment = new JButton("Done"); 
+					Display.giftCardCompletedPayment.setLocation(515, 175+75+10);
+					Display.giftCardCompletedPayment.setSize(100, 75);
+					//ListenForButton lForGIFTCARDCOMPLETEDPAYMENTButton = new ListenForButton(); //Making object from within the object's class may be bad
+					Display.giftCardCompletedPayment.addActionListener(Display.lForGIFTCARDCOMPLETEDPAYMENTButton);
+					Main.mainWindow.getContentPane().add(Display.giftCardCompletedPayment);
+					// -Heath
+
 					
 					Main.mainWindow.getContentPane().add(Display.giftLabel);
 					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
@@ -315,6 +330,15 @@ public class CardSwipe extends JFrame
 					Display.giftCardBalanceLabel.setLocation(523, 175);
 					Display.giftCardBalanceLabel.setSize(200, 25);
 					
+					//Added 8/1 -Heath
+					Display.giftCardCompletedPayment = new JButton("Done"); 
+					Display.giftCardCompletedPayment.setLocation(515, 175+75+10);
+					Display.giftCardCompletedPayment.setSize(100, 75);
+					//ListenForButton lForGIFTCARDCOMPLETEDPAYMENTButton = new ListenForButton(); //Making object from within the object's class may be bad
+					Display.giftCardCompletedPayment.addActionListener(Display.lForGIFTCARDCOMPLETEDPAYMENTButton);
+					Main.mainWindow.getContentPane().add(Display.giftCardCompletedPayment);
+					// -Heath
+					
 					Main.mainWindow.getContentPane().add(Display.giftLabel);
 					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
 					Main.mainWindow.remove(Display.slideCardLabel);
@@ -356,6 +380,15 @@ public class CardSwipe extends JFrame
 					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					Display.giftCardBalanceLabel.setLocation(523, 175);
 					Display.giftCardBalanceLabel.setSize(200, 25);
+					
+					//Added 8/1 -Heath
+					Display.giftCardCompletedPayment = new JButton("Done"); 
+					Display.giftCardCompletedPayment.setLocation(515, 175+75+10);
+					Display.giftCardCompletedPayment.setSize(100, 75);
+					//ListenForButton lForGIFTCARDCOMPLETEDPAYMENTButton = new ListenForButton(); //Making object from within the object's class may be bad
+					Display.giftCardCompletedPayment.addActionListener(Display.lForGIFTCARDCOMPLETEDPAYMENTButton);
+					Main.mainWindow.getContentPane().add(Display.giftCardCompletedPayment);
+					// -Heath
 					
 					Main.mainWindow.getContentPane().add(Display.giftLabel);
 					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
@@ -399,6 +432,17 @@ public class CardSwipe extends JFrame
 					Display.giftCardBalanceLabel.setLocation(523, 175);
 					Display.giftCardBalanceLabel.setSize(200, 25);
 					
+					
+					//Added 8/1 -Heath
+					Display.giftCardCompletedPayment = new JButton("Done"); 
+					Display.giftCardCompletedPayment.setLocation(515, 175+75+10);
+					Display.giftCardCompletedPayment.setSize(100, 75);
+					//ListenForButton lForGIFTCARDCOMPLETEDPAYMENTButton = new ListenForButton(); //Making object from within the object's class may be bad
+					Display.giftCardCompletedPayment.addActionListener(Display.lForGIFTCARDCOMPLETEDPAYMENTButton);
+					Main.mainWindow.getContentPane().add(Display.giftCardCompletedPayment);
+					// -Heath
+					
+					
 					Main.mainWindow.getContentPane().add(Display.giftLabel);
 					Main.mainWindow.getContentPane().add(Display.giftCardBalanceLabel);
 					Main.mainWindow.remove(Display.slideCardLabel);
@@ -434,6 +478,9 @@ public class CardSwipe extends JFrame
 				cardSwipeWindow.dispose();	
 				myInstance = null;
 
+			} 
+			else if(e.getSource() == giftCardCompletedPayment) {
+				Display.giftCardCompletedPayment.doClick();
 			}
 			
 		}
