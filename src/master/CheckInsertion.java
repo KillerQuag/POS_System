@@ -205,7 +205,8 @@ public class CheckInsertion extends JFrame{
             			//System.out.println("")
             			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());
             			Display.checkInsertComplete.doClick();
-            			myInstance.dispose();            			
+            			myInstance.dispose();
+            			myInstance = null;
             		}
             		
             	}
@@ -283,7 +284,6 @@ public class CheckInsertion extends JFrame{
         errorFrame.add(errorPanel);
         
         close.addActionListener(new ActionListener() {			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				errorFrame.dispose();
 			}
@@ -324,7 +324,6 @@ public class CheckInsertion extends JFrame{
         errorFrame.add(errorPanel);
         
         close.addActionListener(new ActionListener() {			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				errorFrame.dispose();
