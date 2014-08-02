@@ -53,7 +53,7 @@ public class Main extends Display {
 		// iteration of the code, I think Matt has the answer.
 		mainWindow = new Display();	
 		dailyTotalsSummary = new POSMainframe();
-		Key1 listenForMain = new Key1();
+		//Key1 listenForMain = new Key1();
 		//database = new POSMainframe();
 	}
 	

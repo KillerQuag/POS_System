@@ -1,11 +1,14 @@
 package master;
 
 //import javax.swing.JFrame;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import com.sun.org.apache.bcel.internal.generic.BALOAD;
 
 import master.CardSwipe.ListenForButton;
+
+
 
 
 
@@ -20,6 +23,8 @@ import java.util.Date;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * @author Heath
@@ -72,10 +77,8 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JButton checkCompletedPayment;
 	public static ListenForButton lForGIFTCARDCOMPLETEDPAYMENTButton = new ListenForButton();
 	
-	///TEMPORARY//
 	public static JButton cashInsertComplete;
 	public static JButton checkInsertComplete;
-	/////////////
 	
 	public static JButton paymentSelection;
 	
@@ -117,7 +120,7 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	public static JPasswordField passwordField;
 	
-	
+
 	
 	public Display() { 
 		
@@ -128,7 +131,8 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
-		//this.setIconImage( new Image(getClass().getResource("Images/SMart.png")));
+		this.setLayout(null); 
+		
 		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
 		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
@@ -138,21 +142,19 @@ public class Display extends JFrame {//extends POSRegister {
 		ListenForButton lForPaymentSelectionDoClick = new ListenForButton(); //Making object from within the object's class may be bad
 		paymentSelection.addActionListener(lForPaymentSelectionDoClick); //Still need this line
 		//Main.mainWindow.getContentPane().add(cashInsertComplete);
-		
-		/*//This group is an alternate method to center frame in middle of screen
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		Dimension dim = tk.getScreenSize();
-		int xPos = (dim.width / 2) - (this.getWidth() / 2);
-		int yPos = (dim.height / 2) - (this.getHeight() / 2);
-		this.setLocation(xPos, yPos);*/
-		
-		
-		//newTransaction = new JButton("New Transaction"); //Still need this line
-		//ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
-		//newTransaction.addActionListener(lForButton); //Still need this line
-		//newTransaction.doClick();
-		//HEATH
-		//JPanel thePanel = new JPanel();
+
+		//\this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
+		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
+			    
+		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new MyDispatcher());
+        
+        
+        /*background = new JLabel ( new ImageIcon(getClass().getResource("Images/SMartSmall.png") ));
+		background.setBounds(677,0,123,93);
+		this.getContentPane().add(background);*/
+         //doesn't seem to work.
+        
 		welcomeLabel = new JLabel("Welcome to S-Mart!");
 		welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 		welcomeLabel.setLocation(320, 150);
@@ -161,49 +163,18 @@ public class Display extends JFrame {//extends POSRegister {
 		//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
 		this.getContentPane().add(welcomeLabel);
 		
-		this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
-		
-		
-		//add the mainframeAccess button to the main screen
-		/*Color mainframeColor = Color.blue;		
-		mainframeAccess = new JButton();
-		mainframeAccess.setBackground(mainframeColor);
-		ListenForButton lFormainframeAccess = new ListenForButton(); //Making object from within the object's class may be bad
-		mainframeAccess.addActionListener(lFormainframeAccess);
-		mainframeAccess.setSize(30, 15);
-		mainframeAccess.setLocation(0, 0);		
-		this.getContentPane().add(mainframeAccess);*/
-				
+		//Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
+						
 		startTransactionButton = new JButton("Start Transaction");
 		startTransactionButton.setLocation(400-100, 225);
 		startTransactionButton.setSize(200, 75);
 		this.getContentPane().add(startTransactionButton);
+		
 		//ListenForButton lForButton = new ListenForButton();
 		lForButton = new ListenForButton();
 		startTransactionButton.addActionListener(lForButton);
 		
-		/* This needs to stay commented or be deleted -Heath
-		 * remainingBalanceLabel = new JLabel("Remaining Balance:");
-		remainingBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-		remainingBalanceLabel.setLocation(130, 390);
-		remainingBalanceLabel.setSize(200, 100);
 		
-		remainingBalanceText = new JTextField();
-		remainingBalanceText.setFont(new Font("Ariel", Font.PLAIN, 18));
-		//remainingBalanceText.setEditable(false);
-		remainingBalanceText.setLocation(150, 455);
-		remainingBalanceText.setSize(100, 25);
-		*/
-		
-		/* Cannot get this to work properly **** Have not included MyCanvas class so this especially cannot work now ****
-		 * Deletion fodder
-		MyCanvas backDrop = new MyCanvas();
-		backDrop.setLocation(300, 225);
-		backDrop.setSize(200, 75);
-		backDrop.setVisible(true);
-		//backDrop.setComponentZOrder(backDrop, 100); //Doesn't seem to work for the MyCanvas class
-		this.getContentPane().add(backDrop);
-		*/
 	}
 	
 	
@@ -236,11 +207,16 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.remove(giftCardCompletedPayment);
 					Main.mainWindow.repaint();
 				} else if(e.getSource() == checkCompletedPayment) {
+					Main.mainWindow.remove(changeDueLabel);
+					Main.mainWindow.remove(changeDueField);
 					Main.mainWindow.remove(checkCompletedPayment);
+<<<<<<< HEAD
 					Main.mainWindow.remove(checkCompleteLabel);
 					Main.mainWindow.remove(checkOverpayLabel);
 					Main.mainWindow.remove(checkOverpayTextField);
 					Main.mainWindow.repaint();
+=======
+>>>>>>> origin/master
 				}//End of remove stuff logic block
 					
 					/* For reference DELELTE
@@ -482,7 +458,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				currencyField = new JTextField();
 				//currencyField.setColumns(10); // Change the size of the text field
-				currencyField.setText(formatter.format(Customer.myCart.myRemBal)); // Change the initial value of the text field
+				//currencyField.setText(formatter.format(Customer.myCart.myRemBal)); // Change the initial value of the text field
 				currencyField.setToolTipText("Cash amount inserted"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
@@ -621,11 +597,12 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == checkInsertComplete) {
 				
-				checkCompleteLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> Thank you for your business!<html>");
-				checkCompleteLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				checkCompleteLabel.setLocation(450, 50);
-				checkCompleteLabel.setSize(400, 150);
+				changeDueLabel = new JLabel("<html><div style=\"text-align: center;\">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
+				changeDueLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				changeDueLabel.setLocation(450, 50);
+				changeDueLabel.setSize(400, 150);
 				
+<<<<<<< HEAD
 				checkOverpayTextField = new JTextField();				
 				checkOverpayTextField.setLocation(515, 200);
 				checkOverpayTextField.setSize(100, 25);
@@ -636,6 +613,14 @@ public class Display extends JFrame {//extends POSRegister {
 				checkOverpayLabel.setSize(200, 150);
 				
 				
+=======
+				changeDueField = new JTextField("$0.0", 15);
+				changeDueField.setText("$" + formatter.format(Math.abs(Customer.myCart.myTaxTotal - Customer.getAmountPaid())));
+				changeDueField.setHorizontalAlignment(JLabel.CENTER);
+				changeDueField.setToolTipText("Change to be returned to you"); // Change the tool tip for the text field
+				changeDueField.setLocation(450, 200);
+				changeDueField.setSize(200, 25);
+>>>>>>> origin/master
 				
 				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(checkInsertComplete);
@@ -650,12 +635,17 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().add(checkCompletedPayment);
 				
 				
+<<<<<<< HEAD
 				Main.mainWindow.getContentPane().add(checkCompleteLabel);
 				Main.mainWindow.getContentPane().add(checkOverpayLabel);
 				Main.mainWindow.getContentPane().add(checkOverpayTextField);
+=======
+				Main.mainWindow.getContentPane().add(changeDueLabel);
+				Main.mainWindow.getContentPane().add(changeDueField);
+>>>>>>> origin/master
 				Main.mainWindow.remove(insertCheckLabel);
 				Main.mainWindow.remove(currencyField);
-				
+								
 				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == CardSwipe.debitButton) { //From CardSwipe class
@@ -1028,6 +1018,17 @@ public class Display extends JFrame {//extends POSRegister {
 		// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
 	
+	/*public void paintComponent(Graphics g){
+		try {
+            background = ImageIO.read(getClass().getResource("Images/SMartLight.png"));
+        } 
+        catch (IOException e) {
+            System.out.println("Display couldn't find SMartLight.png");
+            e.printStackTrace();
+        }
+		g.drawImage(background, 0, 0, null);
+	}
+	*/
 	public void waitBob() {
 		try {
 		    Thread.sleep(3000);
@@ -1043,6 +1044,44 @@ public class Display extends JFrame {//extends POSRegister {
 	        end = new Date();
 	    }
 	}
+
+/*	class RemindTask extends TimerTask {
+
+        @Override
+        public synchronized void run() {
+            System.out.println("ReminderTask is completed by Java timer");
+            try {
+				timer.wait(5000);
+				timer.notify();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            timer.cancel(); //Not necessary because we call System.exit
+            //System.exit(0); //Stops the AWT thread (and everything else)
+        }
+    }*/
+
+	    
+	    private class MyDispatcher implements KeyEventDispatcher {
+	        public boolean dispatchKeyEvent(KeyEvent e) {
+	            if (e.getID() == KeyEvent.KEY_PRESSED) {
+	            	if(e.getKeyCode()==27) {//check if the Keycode is 27 which is esc
+	            		JOptionPane.showMessageDialog(null,"Program Shutting Down");//display a good bye messege
+	            		System.exit(0);//exit
+	            	    }
+	            	if(e.getKeyCode()==192){//check if keycode is 77, which is the 'm' key for mainframe
+	        			databases showDatabase = new databases();
+	        			showDatabase.showMainframeDetails();
+	        		}
+	            } else if (e.getID() == KeyEvent.KEY_RELEASED) {
+	                
+	            } else if (e.getID() == KeyEvent.KEY_TYPED) {
+	                
+	            }
+	            return false;
+	        }
+	    }
 
 	
 } //End of Display class
