@@ -184,8 +184,6 @@ public class CheckInsertion extends JFrame{
             		if( Double.parseDouble(amount.getText()) == customer.getRemainingBalance() )
             		{
             			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
-
-            			//Display.checkInsertComplete.doClick();
             			myInstance.dispose();
             			myInstance = null;
             		} else if ( Double.parseDouble(amount.getText()) < customer.getRemainingBalance() ) {
