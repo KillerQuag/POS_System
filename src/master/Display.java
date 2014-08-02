@@ -97,6 +97,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel background;
 	public static JLabel remainingBalanceLabel  = new JLabel("Remaining Balance:");
 	public static JLabel giftCardBalanceLabel;
+	public static JLabel checkOverpayLabel;
 	
 	
 	
@@ -112,6 +113,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JTextField currencyField;
 	public static JTextField changeDueField;
 	public static JTextField signatureField;
+	public static JTextField checkOverpayTextField;
 	
 	public static JPasswordField passwordField;
 	
@@ -236,6 +238,9 @@ public class Display extends JFrame {//extends POSRegister {
 				} else if(e.getSource() == checkCompletedPayment) {
 					Main.mainWindow.remove(checkCompletedPayment);
 					Main.mainWindow.remove(checkCompleteLabel);
+					Main.mainWindow.remove(checkOverpayLabel);
+					Main.mainWindow.remove(checkOverpayTextField);
+					Main.mainWindow.repaint();
 				}//End of remove stuff logic block
 					
 					/* For reference DELELTE
@@ -621,6 +626,16 @@ public class Display extends JFrame {//extends POSRegister {
 				checkCompleteLabel.setLocation(450, 50);
 				checkCompleteLabel.setSize(400, 150);
 				
+				checkOverpayTextField = new JTextField();				
+				checkOverpayTextField.setLocation(515, 200);
+				checkOverpayTextField.setSize(100, 25);
+				
+				checkOverpayLabel = new JLabel("<html><div style=\"text-align: center;\">Change Due:<html>");
+				checkOverpayLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+				checkOverpayLabel.setLocation(515, 100);
+				checkOverpayLabel.setSize(200, 150);
+				
+				
 				
 				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(checkInsertComplete);
@@ -636,6 +651,8 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				
 				Main.mainWindow.getContentPane().add(checkCompleteLabel);
+				Main.mainWindow.getContentPane().add(checkOverpayLabel);
+				Main.mainWindow.getContentPane().add(checkOverpayTextField);
 				Main.mainWindow.remove(insertCheckLabel);
 				Main.mainWindow.remove(currencyField);
 				

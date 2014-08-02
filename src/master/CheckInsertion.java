@@ -196,6 +196,7 @@ public class CheckInsertion extends JFrame{
             		}
             		else
             		{
+            			NumberFormat formatter = new DecimalFormat("#0.00");
             			double changeDue = (Double.parseDouble( amount.getText()) - customer.getRemainingBalance());
 
             			customer.paidCheck(Double.parseDouble( amount.getText()));
@@ -205,6 +206,8 @@ public class CheckInsertion extends JFrame{
             			//System.out.println("")
             			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());
             			Display.checkInsertComplete.doClick();
+            			Main.mainWindow.checkOverpayTextField.setText("	$" + formatter.format(changeDue));
+            			
             			myInstance.dispose();            			
             		}
             		
