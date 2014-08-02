@@ -4,16 +4,6 @@ package master;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import com.sun.org.apache.bcel.internal.generic.BALOAD;
-
-import master.CardSwipe.ListenForButton;
-
-
-
-
-
-//import java.awt.Dimension;
-//import java.awt.Toolkit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,9 +87,9 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel giftLabel;
 	public static JLabel transactionDeniedLabel;
 	public static JLabel transactionApprovedLabel;
-	public static JLabel background;
 	public static JLabel remainingBalanceLabel  = new JLabel("Remaining Balance:");
 	public static JLabel giftCardBalanceLabel;
+	public static JLabel background;
 	
 	
 	
@@ -118,61 +108,68 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	public static JPasswordField passwordField;
 	
+/*	public static JPanel background;
+	private BufferedImage bckgrnd;*/
+	
 
 	
 	public Display() { 
-		
-		//this.setUndecorated(true);//remove comment on final build (or when navigation is stable throughout)
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setLayout(null); 
+					   
+/*		background = new JPanel(){
+		 	@Override
+		 	public void paintComponent(Graphics g){
+		 		try {
+		 			bckgrnd= ImageIO.read(getClass().getResource("Images/SMartLight.png"));
+		 		} 
+		 		catch (IOException e) {
+		 			System.out.println("Display couldn't find SMartLight.png");
+		 			e.printStackTrace();
+		 		}
+		 		g.drawImage(bckgrnd, 0, 0, null);
+		 	}
+		 	 
+	 	};
+		*/ 	 
+	 	
+		background = new JLabel(new ImageIcon(getClass().getResource("Images/SMartSmall.png")));
+		background.setSize(124,93);
+	 	background.setBounds(670, 0, 124, 93);
 		
-		//this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
-		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
-			    
 		paymentSelection = new JButton("to payment selection"); //Still need this line
-		//cashInsertComplete.setLocation(450, 175+75+10);
-		//cashInsertComplete.setSize(200, 75);
 		ListenForButton lForPaymentSelectionDoClick = new ListenForButton(); //Making object from within the object's class may be bad
 		paymentSelection.addActionListener(lForPaymentSelectionDoClick); //Still need this line
-		//Main.mainWindow.getContentPane().add(cashInsertComplete);
-
-		//\this.addKeyListener(new jaevva.awt.ent.KeyAdapter() {
-		//this.getContentPane().setBackground(new Color(0,162,255)); //How to color the background
 			    
 		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyDispatcher());
-        
-        
-        /*background = new JLabel ( new ImageIcon(getClass().getResource("Images/SMartSmall.png") ));
-		background.setBounds(677,0,123,93);
-		this.getContentPane().add(background);*/
-         //doesn't seem to work.
-        
+               
 		welcomeLabel = new JLabel("Welcome to S-Mart!");
 		welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 		welcomeLabel.setLocation(320, 150);
 		welcomeLabel.setSize(200, 100);
 		
 		//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
-		this.getContentPane().add(welcomeLabel);
+		
 		
 		//Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 						
 		startTransactionButton = new JButton("Start Transaction");
 		startTransactionButton.setLocation(400-100, 225);
 		startTransactionButton.setSize(200, 75);
-		this.getContentPane().add(startTransactionButton);
 		
 		//ListenForButton lForButton = new ListenForButton();
 		lForButton = new ListenForButton();
 		startTransactionButton.addActionListener(lForButton);
 		
-		
+		this.getContentPane().add(background);
+		this.getContentPane().add(welcomeLabel);
+		this.getContentPane().add(startTransactionButton);
+		this.repaint();
 	}
 	
 	
@@ -209,25 +206,15 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.remove(changeDueField);
 					Main.mainWindow.remove(checkCompletedPayment);
 				}//End of remove stuff logic block
-					
-					/* For reference DELELTE
-	public static JButton creditCompletedPayment;
-	public static JButton debitCompletedPayment;
-	public static JButton giftCardCompletedPayment;
-	public static JButton cashCompletedPayment;
-	public static JButton checkCompletedPayment;
-					 */
-				
+								
 				System.out.println(e.getSource());
-				
-				
+					
 				//Removing old transaction Swing components
 				Main.mainWindow.getContentPane().remove(scrollPane1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
 				Main.mainWindow.getContentPane().remove(scrollPane2);
 				Main.mainWindow.getContentPane().remove(helpButton);
 				Main.mainWindow.getContentPane().remove(remainingBalanceLabel);
 				Main.mainWindow.getContentPane().remove(remainingBalanceText);
-
 
 				//JPanel thePanel = new JPanel();
 				welcomeLabel = new JLabel("Welcome to S-Mart!");
@@ -238,19 +225,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().add(welcomeLabel);
 				
 				Main.mainWindow.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
-				
-				/*
-				//add the mainframeAccess button to the main screen
-				Color mainframeColor = Color.blue;		
-				mainframeAccess = new JButton();
-				mainframeAccess.setBackground(mainframeColor);
-				ListenForButton lFormainframeAccess = new ListenForButton(); //Making object from within the object's class may be bad
-				mainframeAccess.addActionListener(lFormainframeAccess);
-				mainframeAccess.setSize(30, 15);
-				mainframeAccess.setLocation(0, 0);		
-				Main.mainWindow.getContentPane().add(mainframeAccess);
-				*/
-						
+										
 				startTransactionButton = new JButton("Start Transaction");
 				startTransactionButton.setLocation(400-100, 225);
 				startTransactionButton.setSize(200, 75);
@@ -259,18 +234,6 @@ public class Display extends JFrame {//extends POSRegister {
 				lForButton = new ListenForButton();
 				startTransactionButton.addActionListener(lForButton);
 				
-				/* This block needs to stay commented out or be deleted -Heath
-				 * remainingBalanceLabel = new JLabel("Remaining Balance:");
-				remainingBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				remainingBalanceLabel.setLocation(0, 0);
-				remainingBalanceLabel.setSize(200, 100);
-				
-				remainingBalanceText = new JTextField();
-				remainingBalanceText.setFont(new Font("Ariel", Font.PLAIN, 18));
-				//remainingBalanceText.setEditable(false);
-				remainingBalanceText.setLocation(150, 455);
-				remainingBalanceText.setSize(100, 25);
-				*/
 				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == startTransactionButton) {
@@ -278,10 +241,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.StartTrans();
 				
 			}
-			/*else if( e.getSource() == mainframeAccess ){
-				databases showDatabase = new databases();
-				showDatabase.showMainframeDetails();
-			}*/
+
 			else if(e.getSource() == helpButton) {
 				
 				HelpWindow.getInstance();
@@ -293,27 +253,22 @@ public class Display extends JFrame {//extends POSRegister {
 				//CouponInsertion couponInsertionWindow = new CouponInsertion(); //Works, but not used so commented out because I don't like warnings
 				////////////////////////////////////////////////////////////////////////////
 				CouponInsertion.getInstance();		
-				
-				
+						
 				insertCouponLabel = new JLabel("<html>Please insert all coupons<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;into the reader<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
 				insertCouponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCouponLabel.setLocation(450, 50); 
 				insertCouponLabel.setSize(400, 150);
-				
-				
+							
 				proceedToCOButton = new JButton("Proceed to checkout");
 				proceedToCOButton.setLocation(450, 225);
 				proceedToCOButton.setSize(200, 100);
 				ListenForButton lForYesButton = new ListenForButton(); //Making object from within the object's class may be bad
 				proceedToCOButton.addActionListener(lForYesButton);
-				
-				
+						
 				Main.mainWindow.remove(yesButton);
 				Main.mainWindow.remove(noButton);
 				Main.mainWindow.remove(couponLabel);
-				//Main.mainWindow.remove(mainframeAccess);
-				
-				//Main.mainWindow.getContentPane().add(mainframeAccess);
+
 				Main.mainWindow.getContentPane().add(insertCouponLabel);
 				Main.mainWindow.getContentPane().add(proceedToCOButton);
 				
@@ -331,8 +286,6 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				if (e.getSource() == noButton)
 					Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
-				//String remBal = formatter.format(customer.myCart.myTaxTotal);
-				//remainingBalanceText.setText(remBal);
 				
 				if(e.getSource() == noButton) {	
 					//appends total later to give room for coupons (if any)
@@ -354,11 +307,6 @@ public class Display extends JFrame {//extends POSRegister {
 				else if( e.getSource() == CardSwipe.returnButton ){
 										
 					Main.mainWindow.remove(slideCardLabel);
-				}
-				else if( e.getSource() == CardSwipe.returnButtonGift){
-					
-					//Main.mainWindow.remove(giftLabel);
-					//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
 				}
 				else if( e.getSource() == CashInsertion.returnToPayMethods ){
 					Main.mainWindow.remove(cashInsertComplete);
@@ -426,8 +374,6 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.repaint();
 				
 			} else if(e.getSource() == cashButton) {	
-			
-				
 				
 				////////////////////////////////////////////////////////////////////////////
 				//TODO We will need another window to pop up separately for cash insertion
@@ -439,42 +385,18 @@ public class Display extends JFrame {//extends POSRegister {
 				insertCashLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				insertCashLabel.setLocation(450, 50);
 				insertCashLabel.setSize(400, 150);
-					
-				/*insertCashLabel2 = new JLabel("<html>Remining Balance: <html>");
-				insertCashLabel2.setFont(new Font("Ariel", Font.PLAIN, 18));
-				insertCashLabel2.setLocation(450, 750);
-				insertCashLabel2.setSize(400, 150);
-				*/
-					
-				
+										
 				currencyField = new JTextField();
-				//currencyField.setColumns(10); // Change the size of the text field
-				//currencyField.setText(formatter.format(Customer.myCart.myRemBal)); // Change the initial value of the text field
 				currencyField.setToolTipText("Cash amount inserted"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
-				
-				//currencyField.setEditable(false);
-				//DisplayCart.textArea1.append("Cash payment:");
-				//DisplayCart.textArea2.append(Double.toString(Customer.amountPaid));
-				//From account manager program - We may be able to use this to update the currencyFields 
-				//balanceField.setText(Double.toString(me.getBalance()));
-				//Otherwise may want to create a eventListener like in the midterm review
-				
-				
-				
+					
 				//   NOT temporary code  - Don't need button on screen but still need button workings -Heath
 				cashInsertComplete = new JButton("SEND PAID EVENT"); //Still need this line
-				//cashInsertComplete.setLocation(450, 175+75+10);
-				//cashInsertComplete.setSize(200, 75);
+
 				ListenForButton lForCashInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
 				cashInsertComplete.addActionListener(lForCashInsertCompleteButton); //Still need this line
-				//Main.mainWindow.getContentPane().add(cashInsertComplete);
-				
-				
-				
-				
-				
+
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);
 				Main.mainWindow.remove(checkButton);
@@ -498,8 +420,6 @@ public class Display extends JFrame {//extends POSRegister {
 				insertCheckLabel.setSize(400, 150);
 				
 				currencyField = new JTextField("$0.0", 15);
-				//currencyField.setColumns(10); // Change the size of the text field
-				//currencyField.setText("New Text Here"); // Change the initial value of the text field
 				currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
@@ -507,12 +427,9 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				//Necessary code/////////
 				checkInsertComplete = new JButton("<html>SEND CHECK ACCEPTED<br> EVENT<html>");
-				//checkInsertComplete.setLocation(450, 175+75+10);
-				//checkInsertComplete.setSize(200, 75);
 				ListenForButton lForCheckInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
 				checkInsertComplete.addActionListener(lForCheckInsertCompleteButton);
 				Main.mainWindow.getContentPane().add(checkInsertComplete);
-
 				
 				Main.mainWindow.remove(selectPaymentLabel);
 				Main.mainWindow.remove(cashButton);

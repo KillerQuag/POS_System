@@ -23,21 +23,16 @@ public class CardSwipe extends JFrame
 	public static JButton returnButton;
 	public static JButton returnButtonGift;
 	public static JButton enterButton;
-	
-	//Gift card buttons
 	public static JButton fiveDollar;
 	public static JButton tenDollar;
 	public static JButton twentyFiveDollar;
 	public static JButton fiftyDollar;	
 	public static JButton cancelButton;
-	
-	//Added 8/1 -Heath
 	public static JButton giftCardCompletedPayment;
 	
 	public static JLabel chooseACardLabel;
 	public static JLabel couponLabel;
 	public static JLabel giftCardAmountLabel;
-	
 	public static JLabel amtPaid;
 	public static JLabel amtRemaining;
 	public static JLabel giftCardLabel;
@@ -50,67 +45,60 @@ public class CardSwipe extends JFrame
 	
 	public static JFrame cardSwipeWindow;
 	
-	
 	public CardSwipe()
 	{
-	
-	//this.setLocationRelativeTo();
-	this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
-	this.setSize(550, 450); //Where this method is invoked relative to other matters
-	this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
-	this.setResizable(false);
-	this.setVisible(true);
-	//this.setLocation(0, 0);
-	
-	cardSwipeWindow = this;
-	
-	//debitButton
-	debitButton = new JButton("Debit");
-	debitButton.setLocation(95, 160);
-	debitButton.setSize(100, 75);
-	ListenForButton lForDebitButton = new ListenForButton(); //Making object from within the object's class may be bad
-	debitButton.addActionListener(lForDebitButton);
-	cardSwipeWindow.getContentPane().add(debitButton);
-	
-	//creditButton
-	creditButton = new JButton("Credit");
-	creditButton.setLocation(210, 160);
-	creditButton.setSize(100, 75);
-	ListenForButton lForCreditButton = new ListenForButton(); //Making object from within the object's class may be bad
-	creditButton.addActionListener(lForCreditButton);
-	cardSwipeWindow.getContentPane().add(creditButton);
-	
-	
-	//giftButton
-	giftButton = new JButton("Gift");
-	giftButton.setLocation(330, 160);
-	giftButton.setSize(100, 75);
-	ListenForButton lForGiftButton = new ListenForButton(); //Making object from within the object's class may be bad
-	giftButton.addActionListener(lForGiftButton);
-	cardSwipeWindow.getContentPane().add(giftButton);
-	
-	
-	//Return to Payment Method
-	returnButton = new JButton("Return to Payment Method");
-	returnButton.setLocation(115, 280);
-	returnButton.setSize(300, 75);
-	//Color returnBackgroundButton = Color.yellow;
-	//returnButton.setBackground(returnBackgroundButton );
-	ListenForButton lForreturnButton = new ListenForButton(); //Making object from within the object's class may be bad
-	returnButton.addActionListener(lForreturnButton);
-	cardSwipeWindow.getContentPane().add(returnButton);
-	
-	
-	chooseACardLabel = new JLabel("<html>Please select the type of card you are using.<html>");
-	chooseACardLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-	chooseACardLabel.setLocation(90, 50);
-	chooseACardLabel.setSize(400, 100);
-	cardSwipeWindow.getContentPane().add(chooseACardLabel);
-	
-	this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
-	
-	
+		//this.setLocationRelativeTo();
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//this.setBounds(30, 30, 300, 300); //An alternate method for setting size and location of frame
+		this.setSize(550, 450); //Where this method is invoked relative to other matters
+		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
+		this.setResizable(false);
+		this.setVisible(true);
+		//this.setLocation(0, 0);
+		
+		cardSwipeWindow = this;
+		
+		//debitButton
+		debitButton = new JButton("Debit");
+		debitButton.setLocation(95, 160);
+		debitButton.setSize(100, 75);
+		ListenForButton lForDebitButton = new ListenForButton(); //Making object from within the object's class may be bad
+		debitButton.addActionListener(lForDebitButton);
+		cardSwipeWindow.getContentPane().add(debitButton);
+		
+		//creditButton
+		creditButton = new JButton("Credit");
+		creditButton.setLocation(210, 160);
+		creditButton.setSize(100, 75);
+		ListenForButton lForCreditButton = new ListenForButton(); //Making object from within the object's class may be bad
+		creditButton.addActionListener(lForCreditButton);
+		cardSwipeWindow.getContentPane().add(creditButton);
+		
+		//giftButton
+		giftButton = new JButton("Gift");
+		giftButton.setLocation(330, 160);
+		giftButton.setSize(100, 75);
+		ListenForButton lForGiftButton = new ListenForButton(); //Making object from within the object's class may be bad
+		giftButton.addActionListener(lForGiftButton);
+		cardSwipeWindow.getContentPane().add(giftButton);
+		
+		//Return to Payment Method
+		returnButton = new JButton("Return to Payment Method");
+		returnButton.setLocation(115, 280);
+		returnButton.setSize(300, 75);
+		//Color returnBackgroundButton = Color.yellow;
+		//returnButton.setBackground(returnBackgroundButton );
+		ListenForButton lForreturnButton = new ListenForButton(); //Making object from within the object's class may be bad
+		returnButton.addActionListener(lForreturnButton);
+		cardSwipeWindow.getContentPane().add(returnButton);
+		
+		chooseACardLabel = new JLabel("<html>Please select the type of card you are using.<html>");
+		chooseACardLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
+		chooseACardLabel.setLocation(90, 50);
+		chooseACardLabel.setSize(400, 100);
+		cardSwipeWindow.getContentPane().add(chooseACardLabel);
+		
+		this.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 	}	
 		 
 	//Implement listeners
@@ -118,12 +106,8 @@ public class CardSwipe extends JFrame
 	{		
 		public void actionPerformed(ActionEvent e)
 		{
-			
 			if(e.getSource() == debitButton )
-			{
-				//full payment be made with the card?
-				//ActionEvent debitPress = null;
-				//debitPress.setSource(debitButton);				
+			{			
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
 				myInstance = null;
@@ -133,19 +117,14 @@ public class CardSwipe extends JFrame
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 				DisplayCart.textArea1.append("Gift payment:\n");
 				DisplayCart.textArea2.append("$" + formatter.format(customer.myCart.myRemBal) + "\n");
-				//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
+
 				Main.mainWindow.lForButton.actionPerformed(e);
 				cardSwipeWindow.dispose();
 				myInstance = null;
 			}
 			else if(e.getSource() == creditButton )
 			{
-				
-				
-				//full payment be made with card? 
-				Main.mainWindow.lForButton.actionPerformed(e);
-				//Customer.paidCredit(amountPaid);
-				
+				Main.mainWindow.lForButton.actionPerformed(e);		
 				cardSwipeWindow.dispose();
 				
 				myInstance = null;
@@ -154,9 +133,8 @@ public class CardSwipe extends JFrame
 			{
 				//full payment to be made with gift card?
 				Main.mainWindow.lForButton.actionPerformed(e);				
-				//cardSwipeWindow.dispose();
+
 				myInstance = null;
-				//cardSwipeWindow.remove(CardSwipeField);
 				cardSwipeWindow.remove(creditButton);
 				cardSwipeWindow.remove(debitButton);
 				cardSwipeWindow.remove(giftButton);
@@ -191,36 +169,23 @@ public class CardSwipe extends JFrame
 				ListenForButton lForfiftyDollar = new ListenForButton(); //Making object from within the object's class may be bad
 				fiftyDollar.addActionListener(lForfiftyDollar);
 				cardSwipeWindow.getContentPane().add(fiftyDollar);	
-/*	
-				cancelButton = new JButton("Cancel");
-				cancelButton.setLocation(200, 270);
-				cancelButton.setSize(150, 75);
-				Color cancelBackgroundColor = Color.yellow;
-				cancelButton.setBackground(cancelBackgroundColor);
-				ListenForButton lForcancelButton = new ListenForButton(); //Making object from within the object's class may be bad
-				cancelButton.addActionListener(lForcancelButton);
-				cardSwipeWindow.getContentPane().add(cancelButton);
-*/				
+			
 				returnButtonGift = new JButton("Return to Payment Method");
 				returnButtonGift.setLocation(130, 300);
 				returnButtonGift.setSize(300, 75);
-				//Color returnBackgroundButton = Color.yellow;
-				//returnButtonGift.setBackground(returnBackgroundButton );
+
 				ListenForButton lForreturnButtonGift = new ListenForButton(); //Making object from within the object's class may be bad
 				returnButtonGift.addActionListener(lForreturnButtonGift);
 				cardSwipeWindow.getContentPane().add(returnButtonGift);
 				
 				
 				double printAmt = Customer.getAmountPaid();
-				amtPaidText = new JTextField("$" + Calculations.format(printAmt));				
-
-				//currencyField.setColumns(10); // Change the size of the text field
-				//currencyField.setText("New Text Here"); // Change the initial value of the text field
+				amtPaidText = new JTextField("$" + Calculations.format(printAmt));			
 				amtPaidText.setToolTipText("Amount paid"); // Change the tool tip for the text field
 				amtPaidText.setHorizontalAlignment(JLabel.CENTER);
 				amtPaidText.setLocation(50, 250);
 				amtPaidText.setSize(200, 25);
-				//currencyField.setEditable(false);
+			
 				cardSwipeWindow.getContentPane().add(amtPaidText);
 				
 				amtPaid = new JLabel("<html>Amount Paid:<html>");
@@ -242,17 +207,13 @@ public class CardSwipe extends JFrame
 				amtDueText.setHorizontalAlignment(JLabel.CENTER);
 				amtDueText.setLocation(290, 250);
 				amtDueText.setSize(200, 25);
-				//currencyField.setEditable(false);
+	
 				cardSwipeWindow.getContentPane().add(amtDueText);
-				/*
-				NumberFormat formatter = new DecimalFormat("#0.00");
-				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-				Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myRemBal));
-				*/
+
 			}
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
 			String totalAmountPaid = Double.toString(customer.getAmountPaid());
-			amtDueText.setText(Calculations.format(customer.myCart.myTaxTotal - customer.amountPaid));
+			//amtDueText.setText(Calculations.format(customer.getRemainingBalance() ) );
 			if(e.getSource() == fiveDollar )
 			{	
 				if( customer.amountPaid + 5.00 > customer.myCart.myTaxTotal )	
