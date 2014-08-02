@@ -181,14 +181,14 @@ public class CheckInsertion extends JFrame{
             	{
             	
             	try{
-            		if( Double.parseDouble(amount.getText()) == Customer.getRemainingBalance() )
+            		if( Double.parseDouble(amount.getText()) == customer.getRemainingBalance() )
             		{
             			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
 
-            			Display.checkInsertComplete.doClick();
+            			//Display.checkInsertComplete.doClick();
             			myInstance.dispose();
             			myInstance = null;
-            		} else if ( Double.parseDouble(amount.getText()) < Customer.getRemainingBalance() ) {
+            		} else if ( Double.parseDouble(amount.getText()) < customer.getRemainingBalance() ) {
             			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
             			Display.paymentSelection.doClick();
             			myInstance.dispose();
@@ -196,15 +196,21 @@ public class CheckInsertion extends JFrame{
             		}
             		else
             		{
-            			double changeDue = (Double.parseDouble( amount.getText()) - customer.getRemainingBalance());
-
-            			customer.paidCheck(Double.parseDouble( amount.getText()));
-            			customer.setChangeDue(changeDue);
-            			customer.setAmountReturned(changeDue);            			
-            			System.out.println("Change Due:   $" + customer.getChangeDue() + '\n');
-            			//System.out.println("")
-            			System.out.println("Cash Returned:   $" + Main.dailyTotalsSummary.getTotalCashReturned());
+            			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
             			Display.checkInsertComplete.doClick();
+            			DisplayCart.textArea1.append("Check payment:");
+        				DisplayCart.textArea2.append("$" + Calculations.format(customer.paidBy.getCheck()));
+        				//Display.currencyField.setText("$" + formatter.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows how much cash as been inserted as you insert it -Heath
+        				Display.changeDueField.setText("");
+        				Display.changeDueField.setText("$" + Calculations.format(Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid()))); //This is the field that shows change to be returned to customer -Heath
+        				
+        				double changeDue = Math.abs(customer.myCart.myTaxTotal - customer.getAmountPaid());
+        				customer.setChangeDue(changeDue);
+        				customer.setAmountReturned(changeDue);
+        				//Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
+        				//System.out.println("Change due:  $" + changeDue);
+        				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
+
             			myInstance.dispose();
             			myInstance = null;
             		}
@@ -290,7 +296,7 @@ public class CheckInsertion extends JFrame{
 		});
 	}
 	
-	public static void invalidAmount()
+	/*public static void invalidAmount()
 	{
 		JPanel errorPanel;
 		JLabel error;
@@ -329,7 +335,7 @@ public class CheckInsertion extends JFrame{
 				errorFrame.dispose();
 			}
 		});
-	}
+	}*/
 	
 	
 }

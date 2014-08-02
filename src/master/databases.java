@@ -72,6 +72,7 @@ public class databases extends JFrame{
 			if(e.getSource() == MAclose )
 			{	
 				F1.dispose();
+				F1 = null;
 				
 			}
 		}

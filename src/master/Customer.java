@@ -54,7 +54,7 @@ public class Customer {
 		//Customer.amountPaid += amountPaid;//took this out because coupons are discounts, not payments
 	}
 	
-	public static void paidCheck(double amountPaid) {
+	public void paidCheck(double amountPaid) {
 		paidBy.setCheck(amountPaid);
 		Customer.amountPaid += amountPaid ;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
