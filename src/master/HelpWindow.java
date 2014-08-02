@@ -2,14 +2,14 @@ package master;
 
 import javax.swing.*;
 
-import master.Display.ListenForButton;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HelpWindow extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
 	private static HelpWindow myInstance;
 	
 	public JLabel helpLabel;
@@ -69,8 +69,6 @@ public class HelpWindow extends JFrame {
 
         return myInstance;
     }
-    
-    
 }//End of HelpWindow class
 
 

@@ -3,14 +3,10 @@ package master;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-//import javax.swing.JTable;
 import javax.swing.JTextArea;
-
-//import master.Display.ListenForButton;
 
 public class DisplayCart extends Display {
 	/**
@@ -72,10 +68,6 @@ public class DisplayCart extends Display {
 		textArea2.append("$" + formattedTax + "\n");
 		//textArea2.append("$" + formattedTotal + "\n");
 
-		
-		
-		
-		
 		scrollPane1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane1.setLocation(100, 90); 
 		scrollPane1.setSize(175, 375);
@@ -83,10 +75,6 @@ public class DisplayCart extends Display {
 		scrollPane2 = new JScrollPane(textArea2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane2.setLocation(275, 90); 
 		scrollPane2.setSize(75, 375);
-		
-		
-
-		
 		
 		couponLabel = new JLabel("Do you have any coupons?");
 		couponLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -110,9 +98,5 @@ public class DisplayCart extends Display {
 		helpButton.setSize(100, 50);
 		ListenForButton lForHelpButton = new ListenForButton(); //Making object from within the object's class may be bad
 		helpButton.addActionListener(lForHelpButton);
-		
-
-		
-
 	}
 }

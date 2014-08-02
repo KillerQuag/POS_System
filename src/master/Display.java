@@ -1,7 +1,6 @@
 package master;
 
 //import javax.swing.JFrame;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
@@ -10,11 +9,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /**
  * @author Heath
@@ -27,10 +22,6 @@ public class Display extends JFrame {//extends POSRegister {
 	private static final long serialVersionUID = 1L; //Ignore
 	public ListenForButton lForButton;
 	public CardSwipe cardSwipeWindow;
-	
-	//Employee Mainframe Access Buttons and Window
-	//public static JButton mainframeAccess;
-	
 	
 	//Declarations for all buttons and labels for customer transaction main window
 	public static JButton startTransactionButton;
@@ -92,15 +83,10 @@ public class Display extends JFrame {//extends POSRegister {
 
 	public static JLabel background;
 	public static JLabel checkOverpayLabel;
-
 	
-	
-	
-	//Moved - AJV   //This will likely move to the main() function when removing the temp main() from this class
 	public static JTextArea textArea1;
 	public static JTextArea textArea2;
 	
-	//public static JTable textTable1;
 	public static JScrollPane scrollPane1;
 	public static JScrollPane scrollPane2;
 	
@@ -112,11 +98,6 @@ public class Display extends JFrame {//extends POSRegister {
 	
 	public static JPasswordField passwordField;
 	
-/*	public static JPanel background;
-	private BufferedImage bckgrnd;*/
-	
-
-	
 	public Display() { 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(800, 600); //Where this method is invoked relative to other matters
@@ -124,23 +105,7 @@ public class Display extends JFrame {//extends POSRegister {
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setLayout(null); 
-					   
-/*		background = new JPanel(){
-		 	@Override
-		 	public void paintComponent(Graphics g){
-		 		try {
-		 			bckgrnd= ImageIO.read(getClass().getResource("Images/SMartLight.png"));
-		 		} 
-		 		catch (IOException e) {
-		 			System.out.println("Display couldn't find SMartLight.png");
-		 			e.printStackTrace();
-		 		}
-		 		g.drawImage(bckgrnd, 0, 0, null);
-		 	}
-		 	 
-	 	};
-		*/ 	 
-	 	
+					   	 	
 		background = new JLabel(new ImageIcon(getClass().getResource("Images/SMartSmall.png")));
 		background.setSize(124,93);
 	 	background.setBounds(670, 0, 124, 93);
@@ -156,11 +121,6 @@ public class Display extends JFrame {//extends POSRegister {
 		welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 		welcomeLabel.setLocation(320, 150);
 		welcomeLabel.setSize(200, 100);
-		
-		//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
-		
-		
-		//Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
 						
 		startTransactionButton = new JButton("Start Transaction");
 		startTransactionButton.setLocation(400-100, 225);
@@ -213,7 +173,7 @@ public class Display extends JFrame {//extends POSRegister {
 
 				}//End of remove stuff logic block
 								
-				System.out.println(e.getSource());
+				//System.out.println(e.getSource());
 					
 				//Removing old transaction Swing components
 				Main.mainWindow.getContentPane().remove(scrollPane1); // OLD W/O scroll bars ->   mainWindow.getContentPane().add(textArea1);
@@ -227,10 +187,11 @@ public class Display extends JFrame {//extends POSRegister {
 				welcomeLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				welcomeLabel.setLocation(320, 150);
 				welcomeLabel.setSize(200, 100);
-				//setComponentZOrder(label1, 5); //An attempt to make the graphics go to background --- Deletion fodder 
+
 				Main.mainWindow.getContentPane().add(welcomeLabel);
 				
-				Main.mainWindow.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement //Can't get backDrop to appear if layout is set to null
+				Main.mainWindow.getContentPane().setLayout(null); //Setting Layout to null allows coordinate placement
+				//Can't get backDrop to appear if layout is set to null
 										
 				startTransactionButton = new JButton("Start Transaction");
 				startTransactionButton.setLocation(400-100, 225);
@@ -254,10 +215,6 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == yesButton) {				 
 				
-				////////////////////////////////////////////////////////////////////////////
-				//TODO We will need another window to pop up separately for coupon insertion
-				//CouponInsertion couponInsertionWindow = new CouponInsertion(); //Works, but not used so commented out because I don't like warnings
-				////////////////////////////////////////////////////////////////////////////
 				CouponInsertion.getInstance();		
 						
 				insertCouponLabel = new JLabel("<html>Please insert all coupons<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;into the reader<html>"); //HTML can be added to JLabels to edit formatting "&#160;" adds a space
@@ -284,11 +241,9 @@ public class Display extends JFrame {//extends POSRegister {
 			else if(e.getSource() == noButton || e.getSource() == proceedToCOButton || e.getSource() == paymentSelection
 					|| e.getSource() == altPaymentMethodButton || e.getSource() == CardSwipe.returnButton 
 					|| e.getSource() == CardSwipe.returnButtonGift || e.getSource() == CashInsertion.returnToPayMethods) {
-				
-				
+
 				//Clears proper labels and buttons
 				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-				//Laya's addition to set the total balance for POS Mainframe
 				
 				if (e.getSource() == noButton)
 					Main.dailyTotalsSummary.setTotalTransaction(Calculations.getTotalPriceWithTax(customer.myCart));
@@ -381,10 +336,6 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == cashButton) {	
 				
-				////////////////////////////////////////////////////////////////////////////
-				//TODO We will need another window to pop up separately for cash insertion
-				//CashInsertion cashInsertionWindow = new CashInsertion(); //Works, but not used so commented out because I don't like warnings
-				////////////////////////////////////////////////////////////////////////////
 				CashInsertion.getInstance();
 					
 				insertCashLabel = new JLabel("<html>Please insert cash now<html>");
@@ -397,7 +348,7 @@ public class Display extends JFrame {//extends POSRegister {
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
 					
-				//   NOT temporary code  - Don't need button on screen but still need button workings -Heath
+		
 				cashInsertComplete = new JButton("SEND PAID EVENT"); //Still need this line
 
 				ListenForButton lForCashInsertCompleteButton = new ListenForButton(); //Making object from within the object's class may be bad
@@ -415,10 +366,6 @@ public class Display extends JFrame {//extends POSRegister {
 				
 			} else if(e.getSource() == checkButton) {
 				
-				////////////////////////////////////////////////////////////////////////////
-				//TODO We will need another window to pop up separately for cash insertion
-				//CheckInsertion checkInsertionWindow = new CheckInsertion(); //Works, but not used so commented out because I don't like warnings
-				////////////////////////////////////////////////////////////////////////////
 				CheckInsertion.getInstance();
 				insertCheckLabel = new JLabel("<html>Please insert check now<html>");
 				insertCheckLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
@@ -429,7 +376,6 @@ public class Display extends JFrame {//extends POSRegister {
 				currencyField.setToolTipText("Amount paid"); // Change the tool tip for the text field
 				currencyField.setLocation(450, 200);
 				currencyField.setSize(200, 25);
-				//currencyField.setEditable(false);
 				
 				//Necessary code/////////
 				checkInsertComplete = new JButton("<html>SEND CHECK ACCEPTED<br> EVENT<html>");
@@ -453,11 +399,7 @@ public class Display extends JFrame {//extends POSRegister {
 				slideCardLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				slideCardLabel.setLocation(450, 50);
 				slideCardLabel.setSize(400, 150);
-				
-				////////////////////////////////////////////////////////////////////////////
-				//TODO We will need another window to pop up separately for simulating swiping a card 
-				//CardSwipe cardSwipeWindow = new CardSwipe(); //Works, but not used so commented out because I don't like warnings
-				////////////////////////////////////////////////////////////////////////////
+
 				CardSwipe.getInstance();	
 				
 				Main.mainWindow.remove(selectPaymentLabel);
@@ -493,10 +435,7 @@ public class Display extends JFrame {//extends POSRegister {
 
 				Main.mainWindow.getContentPane().add(cashCompletedPayment);
 				
-				
-				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(cashInsertComplete);
-				////////////////////////////
 				
 				Main.mainWindow.remove(insertCashLabel);
 				Main.mainWindow.remove(currencyField);
@@ -505,10 +444,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().add(changeDueField);
 				
 				Main.mainWindow.repaint();
-				
-				//cashCompletedPayment.doClick();
-				
-				
+								
 			} else if(e.getSource() == checkInsertComplete) {
 				
 				changeDueLabel = new JLabel("<html><div style=\"text-align: center;\">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Change due<html>");
@@ -523,11 +459,8 @@ public class Display extends JFrame {//extends POSRegister {
 				changeDueField.setLocation(450, 200);
 				changeDueField.setSize(200, 25);
 
-				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(checkInsertComplete);
-				////////////////////////////
-				
-				
+			
 				checkCompletedPayment = new JButton("Done"); //Still need this line
 				checkCompletedPayment.setLocation(515, 175+75+10);
 				checkCompletedPayment.setSize(100, 75);
@@ -554,11 +487,7 @@ public class Display extends JFrame {//extends POSRegister {
 				passwordField.setLocation(450, 200);
 				passwordField.setSize(225, 25);
 				passwordField.setHorizontalAlignment(JTextField.RIGHT);
-				
-				//in EnterButton listener 
-				//passwordField.getPassword();
-				//char[] mander;
-				
+								
 				enterButton2 = new JButton("Enter");
 				enterButton2.setLocation(600, 250);
 				enterButton2.setSize(75, 50);
@@ -570,8 +499,7 @@ public class Display extends JFrame {//extends POSRegister {
 				clearButton2.setSize(75, 50);
 				ListenForButton lForClearButton = new ListenForButton(); //Making object from within the object's class may be bad
 				clearButton2.addActionListener(lForClearButton);
-				
-				
+								
 				jButton0 = new JButton("0");
 				jButton1 = new JButton("1"); 
 				jButton2 = new JButton("2"); 
@@ -582,8 +510,7 @@ public class Display extends JFrame {//extends POSRegister {
 				jButton7 = new JButton("7"); 
 				jButton8 = new JButton("8"); 
 				jButton9 = new JButton("9");
-				 
-				
+				 				
 				jButton0.setLocation(550+50, 400-50);
 				jButton1.setLocation(400+50, 400-50);
 				jButton2.setLocation(450+50, 400-50);
@@ -594,8 +521,7 @@ public class Display extends JFrame {//extends POSRegister {
 				jButton7.setLocation(400+50, 300-50);
 				jButton8.setLocation(450+50, 300-50);
 				jButton9.setLocation(500+50, 300-50);
-				
-				
+							
 				jButton0.setSize(75, 50);
 				jButton1.setSize(50, 50);
 				jButton2.setSize(50, 50);
@@ -606,8 +532,7 @@ public class Display extends JFrame {//extends POSRegister {
 				jButton7.setSize(50, 50);
 				jButton8.setSize(50, 50);
 				jButton9.setSize(50, 50);
-				
-				
+								
 				ListenForButton lForNumberButton = new ListenForButton(); //Making object from within the object's class may be bad
 				jButton0.addActionListener(lForNumberButton);
 				jButton1.addActionListener(lForNumberButton);
@@ -619,8 +544,7 @@ public class Display extends JFrame {//extends POSRegister {
 				jButton7.addActionListener(lForNumberButton);
 				jButton8.addActionListener(lForNumberButton);
 				jButton9.addActionListener(lForNumberButton);
-				
-				
+								
 				Main.mainWindow.getContentPane().add(jButton0);
 				Main.mainWindow.getContentPane().add(jButton1);
 				Main.mainWindow.getContentPane().add(jButton2);
@@ -631,8 +555,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.getContentPane().add(jButton7);
 				Main.mainWindow.getContentPane().add(jButton8);
 				Main.mainWindow.getContentPane().add(jButton9);
-				
-				
+					
 				Main.mainWindow.getContentPane().add(passwordField);
 				Main.mainWindow.getContentPane().add(enterButton2);
 				Main.mainWindow.getContentPane().add(clearButton2);
@@ -640,12 +563,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.remove(slideCardLabel);
 				
 				Main.mainWindow.repaint();
-				
-/*				System.out.println("debit button pressed");
-				DisplayCart.textArea1.append("Debit payment:");
-				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-				DisplayCart.textArea2.append("$" + Calculations.format(customer.paidBy.getDebit()));*/
-				
+						
 			} else if(e.getSource() == CardSwipe.creditButton) { //From CardSwipe class
 				
 				creditLabel = new JLabel("<html><div style=\"text-align: center;\">Please provide signature <br> for transaction <html>");
@@ -653,17 +571,12 @@ public class Display extends JFrame {//extends POSRegister {
 				creditLabel.setLocation(450, 50);
 				creditLabel.setSize(400, 150);
 				
-				
 				signatureField = new JTextField(15);
-				//currencyField.setColumns(10); // Change the size of the text field
-				//currencyField.setText("New Text Here"); // Change the initial value of the text field
 				signatureField.setHorizontalAlignment(JLabel.CENTER);
 				signatureField.setToolTipText("Use your finger or the stylus"); // Change the tool tip for the text field
 				signatureField.setLocation(450, 200);
 				signatureField.setSize(200, 40);
-				
-				
-				
+								
 				enterButton1 = new JButton("Enter");
 				enterButton1.setLocation(450, 300);
 				enterButton1.setSize(75, 50);
@@ -685,61 +598,30 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-				System.out.println("credit button pressed");
+				//System.out.println("credit button pressed");
 				
 				
-			}// else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
-				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-			/*
-				if( customer.getAmountPaid() >= customer.myCart.myTaxTotal )
-				{
-					
-				giftLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction completed. <br> The remaining balance <br> on your gift card is: <html>");
-				giftLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				giftLabel.setLocation(450, 50);
-				giftLabel.setSize(400, 150);
-				
-				
-				giftCardBalanceLabel = new JLabel("$" + customer.getGiftCardBalance());
-				giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
-				giftCardBalanceLabel.setLocation(523, 175);
-				giftCardBalanceLabel.setSize(200, 25);
-				
-				Main.mainWindow.getContentPane().add(giftLabel);
-				Main.mainWindow.getContentPane().add(giftCardBalanceLabel);
-				Main.mainWindow.remove(slideCardLabel);
-				
-				Main.mainWindow.repaint();
-				}
-				*/
-				//System.out.println("Gift button pressed");
-				
-			//}
+			}
 		else if(e.getSource() == enterButton1) { //For credit
-
-				//If we want to implement a way to approve or decline credit payment
 				
-				System.out.println("enterButton1 button pressed");				
+				//System.out.println("enterButton1 button pressed");				
 
 				Main.mainWindow.repaint();
 				
 				if(signatureField.getText().equals("Rodion")) { //Credit Denied - Would query a big database IRL
 					
-					System.out.println("sig Rodion button pressed");
+					//System.out.println("sig Rodion button pressed");
 					
 					transactionDeniedLabel = new JLabel("<html><div style=\"text-align: center;\">Transaction has been denied. <br> Please choose a different <br> method of payment. <html>");
 					transactionDeniedLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					transactionDeniedLabel.setLocation(450, 50);
 					transactionDeniedLabel.setSize(400, 150);
-					
-					
+				
 					altPaymentMethodButton = new JButton("Ok");
 					altPaymentMethodButton.setLocation(515, 175+75+10);
 					altPaymentMethodButton.setSize(100, 75);
 					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
-					altPaymentMethodButton.addActionListener(lForAltButton);
-					
-					
+					altPaymentMethodButton.addActionListener(lForAltButton);	
 					
 					Main.mainWindow.remove(enterButton1);
 					Main.mainWindow.remove(clearButton1);
@@ -753,7 +635,7 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.repaint();
 					
 				} else { //Credit Approved
-					System.out.println("sig " +signatureField.getText()+ " pressed");
+					//System.out.println("sig " +signatureField.getText()+ " pressed");
 					
 					Customer.paidCredit(Customer.getRemainingBalance());
 					
@@ -762,14 +644,12 @@ public class Display extends JFrame {//extends POSRegister {
 					transactionApprovedLabel.setLocation(450, 50);
 					transactionApprovedLabel.setSize(400, 150);
 		
-					
 					Main.mainWindow.remove(enterButton1);
 					Main.mainWindow.remove(clearButton1);
 					Main.mainWindow.remove(signatureField);
 					Main.mainWindow.remove(creditLabel);
 					
 					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
-					
 					
 					creditCompletedPayment = new JButton("Done"); //Still need this line
 					creditCompletedPayment.setLocation(515, 175+75+10);
@@ -793,7 +673,7 @@ public class Display extends JFrame {//extends POSRegister {
 				String password = passwordField.getText();
 				//Wigmore function
 				if (password.length() != 0){
-				System.out.println(password);
+				//System.out.println(password);
 				char[] charArray = password.toCharArray();
 
 				//Below is the Wigmore function
@@ -870,10 +750,8 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.repaint();
 					
 				}
-				
-				
-				System.out.println(charArray[password.length()-1]);
-				System.out.println(password);
+				//System.out.println(charArray[password.length()-1]);
+				//System.out.println(password);
 				}
 			} else if(e.getSource() == clearButton2) {
 				
@@ -900,25 +778,11 @@ public class Display extends JFrame {//extends POSRegister {
 			} else if(e.getSource() == jButton9) {
 				passwordField.setText(passwordField.getText() + '9');
 			} 
-			
-			
-			
 		}
 		
 		// End of actionPerformed(ActionEvent e)
 	}// End of class ListenForButton
 	
-	/*public void paintComponent(Graphics g){
-		try {
-            background = ImageIO.read(getClass().getResource("Images/SMartLight.png"));
-        } 
-        catch (IOException e) {
-            System.out.println("Display couldn't find SMartLight.png");
-            e.printStackTrace();
-        }
-		g.drawImage(background, 0, 0, null);
-	}
-	*/
 	public void waitBob() {
 		try {
 		    Thread.sleep(3000);
@@ -934,25 +798,7 @@ public class Display extends JFrame {//extends POSRegister {
 	        end = new Date();
 	    }
 	}
-
-/*	class RemindTask extends TimerTask {
-
-        @Override
-        public synchronized void run() {
-            System.out.println("ReminderTask is completed by Java timer");
-            try {
-				timer.wait(5000);
-				timer.notify();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            timer.cancel(); //Not necessary because we call System.exit
-            //System.exit(0); //Stops the AWT thread (and everything else)
-        }
-    }*/
-
-	    
+    
 	    private class MyDispatcher implements KeyEventDispatcher {
 	        public boolean dispatchKeyEvent(KeyEvent e) {
 	            if (e.getID() == KeyEvent.KEY_PRESSED) {

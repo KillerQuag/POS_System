@@ -5,10 +5,6 @@ package master;
 
 import java.util.*;
 
-/**
- * @author John
- *
- */
 public class Cart {
 	
 

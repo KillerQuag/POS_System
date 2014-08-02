@@ -3,7 +3,6 @@
  */
 package master;
 /**
- * @author Leah
  * UI Element to select payment method
  * should call either MFScanner or CardProcessor to get funds applied.
  * should return amount paid to calling function.
@@ -38,7 +37,7 @@ public class PaymentMethod
 	public void setCash(double cash) {
 		Main.dailyTotalsSummary.setTotalCash(cash);
 		Cash += cash;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getCredit() {
@@ -48,9 +47,8 @@ public class PaymentMethod
 	public void setCredit(double credit) {
 		Main.dailyTotalsSummary.setTotalCredit(credit);
 		Credit += credit;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
-	
 
 	public double getDebit() {
 		return Debit;
@@ -59,7 +57,7 @@ public class PaymentMethod
 	public void setDebit(double debit) {
 		Main.dailyTotalsSummary.setTotalDebit(debit);
 		Debit += debit;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getCoupon() {
@@ -69,7 +67,7 @@ public class PaymentMethod
 	public void setCoupon(double coupon) {
 		Main.dailyTotalsSummary.setTotalCouponAmount(coupon);
 		Coupon += coupon;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getCheck() {
@@ -80,7 +78,7 @@ public class PaymentMethod
 		Main.dailyTotalsSummary.setTotalCheck(check);
 		
 		Check += check;		
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getTotalPayment() {
@@ -100,7 +98,7 @@ public class PaymentMethod
 		Main.dailyTotalsSummary.setTotalGiftCard(giftCard);
 	
 		GiftCard += giftCard;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
 
 	public double getCashReturned() {
@@ -111,8 +109,6 @@ public class PaymentMethod
 		Main.dailyTotalsSummary.setTotalCashReturned(cashReturned);
 		
 		CashReturned += cashReturned;
-		System.out.print(Main.dailyTotalsSummary);
+		//System.out.print(Main.dailyTotalsSummary);
 	}
-	
-	
 }

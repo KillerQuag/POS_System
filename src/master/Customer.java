@@ -3,8 +3,6 @@ package master;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-
-
 public class Customer {
 	
 	public static Cart myCart;
@@ -26,7 +24,7 @@ public class Customer {
 		paidBy.setCash(Calculations.round(amountPaid, 2));			
 		Customer.amountPaid += amountPaid ;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
-		System.out.println(getRemainingBalance());
+		//System.out.println(getRemainingBalance());
 	
 	}
 	
@@ -34,14 +32,14 @@ public class Customer {
 		paidBy.setCredit(Calculations.round(amountPaid, 2));
 		Customer.amountPaid += amountPaid ;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
-		System.out.println(getRemainingBalance());
+		//System.out.println(getRemainingBalance());
 		
 	}
 	public static void paidDebit(double amountPaid){
 		paidBy.setDebit(Calculations.round(amountPaid, 2));
 		Customer.amountPaid += amountPaid;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
-		System.out.println(getRemainingBalance());
+		//System.out.println(getRemainingBalance());
 		
 	}
 	
@@ -49,16 +47,14 @@ public class Customer {
 		paidBy.setCoupon(Calculations.round(amountPaid, 2));
 		//Customer.amountPaid += amountPaid;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
-		System.out.println(getRemainingBalance());
-	
-		//Customer.amountPaid += amountPaid;//took this out because coupons are discounts, not payments
+		//System.out.println(getRemainingBalance());
 	}
 	
 	public void paidCheck(double amountPaid) {
 		paidBy.setCheck(amountPaid);
 		Customer.amountPaid += amountPaid ;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
-		System.out.println(getRemainingBalance());
+		//System.out.println(getRemainingBalance());
 		
 	}
 	
@@ -66,7 +62,7 @@ public class Customer {
 		paidBy.setGiftCard(amountPaid);
 		Customer.amountPaid += amountPaid ;
 		Display.remainingBalanceText.setText(formatter.format(getRemainingBalance()));
-		System.out.println(getRemainingBalance());
+		//System.out.println(getRemainingBalance());
 		
 	}
 	

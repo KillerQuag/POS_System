@@ -9,10 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import master.CardSwipe.ListenForButton;
-
 /**
- * @author John
  *  Common database operations should go here.
  */
 public class databases extends JFrame{
@@ -25,7 +22,6 @@ public class databases extends JFrame{
 	public static JFrame F1;
 	public static JTextArea TA;
 	
-	
 	public void showMainframeDetails()
 	{	
 	F1 = new JFrame("POS Mainframe");
@@ -36,7 +32,6 @@ public class databases extends JFrame{
 	F1.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 	F1.setResizable(false);
 	F1.setVisible(true);
-	
 	
 	MAclose = new JButton("Return");
 	MAclose.setLocation(400, 200);	
@@ -73,13 +68,9 @@ public class databases extends JFrame{
 			{	
 				F1.dispose();
 				F1 = null;
-				
 			}
 		}
-	
-	
 	}
-
 }
 
 

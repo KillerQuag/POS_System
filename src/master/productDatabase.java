@@ -4,7 +4,6 @@ package master;
 import master.Items;
 
 /**
- * @author Matt
  * List of items currently available for sale.
  * Planning on increasing the list to 50+, 100+ if we have time.
  */

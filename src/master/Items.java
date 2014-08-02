@@ -1,6 +1,5 @@
 package master;
 
-//AJV
 //Creates the Items class for use throughout the rest of the program
 //Can be initialized on call.
 

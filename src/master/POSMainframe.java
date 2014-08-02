@@ -27,21 +27,6 @@ public class POSMainframe
 		totalGiftCard = 0;
 		totalCheck = 0;
 		checkTotalCalc = 0;
-		/*
-		Main.dailyTotalsSummary.totalTransaction$ = getTotalTransaction$();
-		Main.dailyTotalsSummary.numOfTransactions = getNumOfTransactions();
-		Main.dailyTotalsSummary.totalCouponAmount = getTotalCouponAmount();
-		Main.dailyTotalsSummary.totalCash = getTotalCash();
-		Main.dailyTotalsSummary.totalCredit = getTotalCredit();
-		Main.dailyTotalsSummary.totalGiftCard = getTotalGiftCard();
-		*/
-		
-		/*Main.database.totalTransaction = getTotalTransaction();
-		Main.database.numOfTransactions = getNumOfTransactions();
-		Main.database.totalCouponAmount = getTotalCouponAmount();
-		Main.database.totalCash = getTotalCash();
-		Main.database.totalCredit = getTotalCredit();
-		Main.database.totalGiftCard = getTotalGiftCard();*/
 	}
 	
 	public String toString()
@@ -62,7 +47,6 @@ public class POSMainframe
 					"---------------------------------------------------------------------------------------------------" + '\n' + 					
 					"Total Transactions:			$" + Calculations.format(this.totalTransaction) + '\n' +
 					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n';
-					//"Total Transactions Should Match:		$" + Calculations.format(this.checkTotalCalc) + '\n';
 		
 		return output;
 	}

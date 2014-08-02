@@ -1,9 +1,6 @@
 package master;
 
 import javax.swing.*;
-
-import master.Display.ListenForButton;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -201,7 +198,7 @@ public class CardSwipe extends JFrame
 
 				cardSwipeWindow.getContentPane().add(amtRemaining);				
 								
-				amtDueText = new JTextField("$" + Customer.getRemainingBalance());
+				amtDueText = new JTextField("$" + Calculations.format(Customer.getRemainingBalance() ));
 
 				amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 				amtDueText.setHorizontalAlignment(JLabel.CENTER);
@@ -212,16 +209,14 @@ public class CardSwipe extends JFrame
 
 			}
 			Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
-			String totalAmountPaid = Double.toString(customer.getAmountPaid());
-			//amtDueText.setText(Calculations.format(customer.getRemainingBalance() ) );
 			if(e.getSource() == fiveDollar )
 			{	
 				if( customer.amountPaid + 5.00 > customer.myCart.myTaxTotal )	
 				{
 					customer.giftCardBalance = (customer.getAmountPaid() + 5) - customer.myCart.myTaxTotal;
 					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()));	
-					System.out.println("Remaining Gift Card Balance:");
-					System.out.println(customer.getGiftCardBalance());
+					////System.out.println("Remaining Gift Card Balance:");
+					////System.out.println(customer.getGiftCardBalance());
 					
 					//
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
@@ -235,7 +230,7 @@ public class CardSwipe extends JFrame
 					Display.giftLabel.setSize(400, 150);
 					
 					NumberFormat formatter = new DecimalFormat("#0.00");
-					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
+					Display.giftCardBalanceLabel = new JLabel("$" + Calculations.format(customer.getGiftCardBalance()));
 					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					Display.giftCardBalanceLabel.setLocation(523, 175);
 					Display.giftCardBalanceLabel.setSize(200, 25);
@@ -274,8 +269,8 @@ public class CardSwipe extends JFrame
 				{
 					customer.giftCardBalance = (customer.getAmountPaid() + 10) - customer.myCart.myTaxTotal;
 					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()));
-					System.out.println("Remaining Gift Card Balance:");
-					System.out.println(customer.getGiftCardBalance());
+					//System.out.println("Remaining Gift Card Balance:");
+					//System.out.println(customer.getGiftCardBalance());
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Calculations.format(customer.amountPaid));
@@ -289,7 +284,7 @@ public class CardSwipe extends JFrame
 					
 					NumberFormat formatter = new DecimalFormat("#0.00");
 					customer.getGiftCardBalance();
-					Display.giftCardBalanceLabel = new JLabel("$" + formatter.format(customer.getGiftCardBalance()));
+					Display.giftCardBalanceLabel = new JLabel("$" + Calculations.format(customer.getGiftCardBalance()));
 					Display.giftCardBalanceLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 					Display.giftCardBalanceLabel.setLocation(523, 175);
 					Display.giftCardBalanceLabel.setSize(200, 25);
@@ -326,8 +321,8 @@ public class CardSwipe extends JFrame
 				{
 					customer.giftCardBalance = (customer.getAmountPaid() + 25) - customer.myCart.myTaxTotal;
 					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()) );
-					System.out.println("Remaining Gift Card Balance:");
-					System.out.println(customer.getGiftCardBalance());
+					//System.out.println("Remaining Gift Card Balance:");
+					//System.out.println(customer.getGiftCardBalance());
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Calculations.format(customer.amountPaid));
@@ -376,8 +371,8 @@ public class CardSwipe extends JFrame
 				{
 					customer.giftCardBalance = (customer.getAmountPaid() + 50) - customer.myCart.myTaxTotal;
 					customer.paidGiftCard((customer.myCart.myTaxTotal - customer.getAmountPaid()));	
-					System.out.println("Remaining Gift Card Balance:");
-					System.out.println(customer.getGiftCardBalance());
+					//System.out.println("Remaining Gift Card Balance:");
+					//System.out.println(customer.getGiftCardBalance());
 					
 					customer.myCart.myRemBal = customer.myCart.myTaxTotal - customer.amountPaid;
 					amtPaidText.setText(Calculations.format(customer.amountPaid));

@@ -1,21 +1,16 @@
 package master;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 //This class simulates the process of inserting coupons
 public class CouponInsertion extends Display {
-	
 
 	private static final long serialVersionUID = 1L;
-	
 	
 	private static CouponInsertion myInstance;
 
@@ -100,7 +95,7 @@ public class CouponInsertion extends Display {
 			else if(e.getSource() == fivePerOff){
 				
 				discount = 0.05;
-				System.out.print("Subtotal Price:  $" + customer.myCart.myPrice + '\n');
+				////System.out.print("Subtotal Price:  $" + customer.myCart.myPrice + '\n');
 				couponAmount = customer.myCart.myPrice * discount;
 				formattedTotal = formatter.format(customer.myCart.myTaxTotal  - couponAmount);				
 				DisplayCart.textArea1.append("Coupon - 5 Percent off:\n");
@@ -119,7 +114,7 @@ public class CouponInsertion extends Display {
 			}
 			else if(e.getSource() == fifteenPerOff){
 				discount = 0.15;
-				System.out.print(customer.myCart.myPrice);
+				//System.out.print(customer.myCart.myPrice);
 				couponAmount = customer.myCart.myPrice * discount;
 				formattedTotal = formatter.format(customer.myCart.myTaxTotal  - couponAmount);
 				DisplayCart.textArea1.append("Coupon - 15 Percent off:\n");
@@ -127,7 +122,6 @@ public class CouponInsertion extends Display {
 				DisplayCart.textArea2.append("$-" + formatter.format(couponAmount) + "\n");
 				DisplayCart.textArea2.append("$" + formattedTotal + "\n");				
 				
-				//Laya's addition to reflect the adjusted total amount to be paid.				
 				couponAmount = Math.round(couponAmount*100)/100.00;
 				roundTotal = Math.round((customer.myCart.myTaxTotal -= couponAmount)*100)/100.00;
 				Main.dailyTotalsSummary.setTotalTransaction(roundTotal);
@@ -138,15 +132,14 @@ public class CouponInsertion extends Display {
 			}
 			else if(e.getSource() == twentyfivePerOff){
 				discount = 0.25;
-				System.out.print(customer.myCart.myPrice);
+				//System.out.print(customer.myCart.myPrice);
 				couponAmount = customer.myCart.myPrice * discount;
 				formattedTotal = formatter.format(customer.myCart.myTaxTotal  - couponAmount);
 				DisplayCart.textArea1.append("Coupon - 25 Percent off:\n");
 				DisplayCart.textArea1.append("Total:\n");
 				DisplayCart.textArea2.append("$-" + formatter.format(couponAmount) + "\n");
 				DisplayCart.textArea2.append("$" + formattedTotal + "\n");				
-				
-				//Laya's addition to reflect the adjusted total amount to be paid.								
+							
 				couponAmount = Math.round(couponAmount*100)/100.00;
 				roundTotal = Math.round((customer.myCart.myTaxTotal -= couponAmount)*100)/100.00;
 				Main.dailyTotalsSummary.setTotalTransaction(roundTotal);

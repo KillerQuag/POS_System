@@ -2,7 +2,7 @@ package master;
 //random message to test push
 
 /**
- * @author John
+ * 
  * The amount of money paid should be in here at least via
  * the form of coupons, checks, and cash. 
  * 

@@ -1,10 +1,6 @@
 package master;
 
 import javax.swing.*;
-
-//import sun.awt.HorizBagLayout;
-import master.Display.ListenForButton;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -228,8 +224,8 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				myInstance = null;
 			}
 			else if(e.getSource() == hundredButton) {
-			//	System.out.println(customer.myCart.myTotalPrice);
-			//	System.out.println(Cart.myTotalPrice);
+			//	//System.out.println(customer.myCart.myTotalPrice);
+			//	//System.out.println(Cart.myTotalPrice);
 				customer.paidCash(100.00);
 				//customer.paidBy.setCash(100.00);
 				Main.mainWindow.currencyField.setText(formatter.format(Main.dailyTotalsSummary.getTotalCash())); //This line updates the currencyField on the register screen as you insert cash. -Leah
@@ -301,7 +297,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 				customer.setChangeDue(changeDue);
 				customer.setAmountReturned(changeDue);
 				//Main.dailyTotalsSummary.setTotalCashReturned(changeDue);
-				System.out.println("Change due:  $" + changeDue);
+				//System.out.println("Change due:  $" + changeDue);
 				//Display.currencyField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows how much cash as been inserted as you insert it -Heath
 				Display.changeDueField.setHorizontalAlignment(JLabel.CENTER); //This is the field that shows change to be returned to customer -Heath
 				//Main.mainWindow.remainingBalanceText.setText("$ 0.00");
