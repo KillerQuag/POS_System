@@ -197,6 +197,7 @@ public class CheckInsertion extends JFrame{
             		else
             		{
 <<<<<<< HEAD
+<<<<<<< HEAD
             			NumberFormat formatter = new DecimalFormat("#0.00");
             			double changeDue = (Double.parseDouble( amount.getText()) - customer.getRemainingBalance());
 
@@ -211,6 +212,8 @@ public class CheckInsertion extends JFrame{
             			
             			myInstance.dispose();            			
 =======
+=======
+>>>>>>> origin/master
             			customer.paidCheck(Double.parseDouble( amount.getText() ) ); 
             			Display.checkInsertComplete.doClick();
             			DisplayCart.textArea1.append("Check payment:");
@@ -228,6 +231,10 @@ public class CheckInsertion extends JFrame{
 
             			myInstance.dispose();
             			myInstance = null;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+
 >>>>>>> origin/master
             		}
             		
