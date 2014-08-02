@@ -112,4 +112,13 @@ public class Customer {
 	public Cart getCart(){
 		return this.myCart;
 	}
+	public void resetPayments(){
+		paidBy.Cash = 0;
+		paidBy.GiftCard = 0;
+		paidBy.Check = 0;
+		paidBy.Coupon = 0;
+		paidBy.Debit = 0;
+		paidBy.Credit = 0;
+		}
+
 }

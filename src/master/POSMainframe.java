@@ -61,8 +61,8 @@ public class POSMainframe
 					"Total Gift Card:				$" + Calculations.format(this.totalGiftCard) + '\n' + 
 					"---------------------------------------------------------------------------------------------------" + '\n' + 					
 					"Total Transactions:			$" + Calculations.format(this.totalTransaction) + '\n' +
-					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n' +
-					"Total Transactions Should Match:		$" + Calculations.format(this.checkTotalCalc) + '\n';
+					"---------------------------------------------------------------------------------------------------" + '\n' + '\n' + '\n';
+					//"Total Transactions Should Match:		$" + Calculations.format(this.checkTotalCalc) + '\n';
 		
 		return output;
 	}

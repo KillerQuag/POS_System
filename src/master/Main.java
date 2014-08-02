@@ -73,6 +73,7 @@ public class Main extends Display {
 		customer.amountReturned = 0;
 		
 		//Adds 1 transaction to POSMainframe
+		customer.resetPayments();
 		dailyTotalsSummary.setNumOfTransactions();
 		
 		Main.Customers.add(customer);

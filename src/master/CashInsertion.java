@@ -173,7 +173,7 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 		
 		double printAmt = Customer.getAmountPaid();
 		formatter.format(printAmt);
-		amtPaidText = new JTextField("$" + (formatter.format(printAmt)), 15);
+		amtPaidText = new JTextField("$" + Calculations.format(printAmt));
 		
 
 		//currencyField.setColumns(10); // Change the size of the text field
@@ -198,8 +198,8 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 		this.getContentPane().add(amtRemaining);
 		
 		formatter.format(Cart.myTaxTotal);
-		amtDueText = new JTextField("$" + customer.getRemainingBalance());
 		
+		amtDueText = new JTextField("$" + Calculations.format(customer.getRemainingBalance()));
 		amtDueText.setToolTipText("Balance Remaining"); // Change the tool tip for the text field
 		amtDueText.setHorizontalAlignment(JLabel.CENTER);
 		amtDueText.setLocation(300, 450);

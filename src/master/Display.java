@@ -641,7 +641,10 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				Main.mainWindow.repaint();
 				
-				System.out.println("debit button pressed");
+/*				System.out.println("debit button pressed");
+				DisplayCart.textArea1.append("Debit payment:");
+				Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+				DisplayCart.textArea2.append("$" + Calculations.format(customer.paidBy.getDebit()));*/
 				
 			} else if(e.getSource() == CardSwipe.creditButton) { //From CardSwipe class
 				
@@ -683,6 +686,7 @@ public class Display extends JFrame {//extends POSRegister {
 				Main.mainWindow.repaint();
 				
 				System.out.println("credit button pressed");
+				
 				
 			}// else if(e.getSource() == CardSwipe.giftButton) { //From CardSwipe class
 				//Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
@@ -773,22 +777,10 @@ public class Display extends JFrame {//extends POSRegister {
 					ListenForButton lForButton = new ListenForButton(); //Making object from within the object's class may be bad
 					creditCompletedPayment.addActionListener(lForButton); //Still need this line
 					Main.mainWindow.getContentPane().add(creditCompletedPayment);
-					
-					Main.mainWindow.repaint();
-					
-
-					//creditCompletedPayment.doClick();
-					
-					
-
-					/*
-					altPaymentMethodButton.setLocation(515, 175+75+10);
-					altPaymentMethodButton.setSize(100, 75);
-					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
-					altPaymentMethodButton.addActionListener(lForAltButton);
-					*/
-					//Main.mainWindow.waitBob();
-					
+					DisplayCart.textArea1.append("Credit payment:");
+					Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+					DisplayCart.textArea2.append("$" + Calculations.format(customer.paidBy.getCredit()));
+					Main.mainWindow.repaint();					
 				}
 				
 			} else if(e.getSource() == clearButton1) {
@@ -799,10 +791,11 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				//Submit data from field
 				String password = passwordField.getText();
-				
+				//Wigmore function
+				if (password.length() != 0){
+				System.out.println(password);
 				char[] charArray = password.toCharArray();
-				
-				
+
 				//Below is the Wigmore function
 				if(charArray[password.length()-1] == '0') { //Debit Denied //Would query a big database IRL
 					
@@ -817,7 +810,6 @@ public class Display extends JFrame {//extends POSRegister {
 					altPaymentMethodButton.setSize(100, 75);
 					ListenForButton lForAltButton = new ListenForButton(); //Making object from within the object's class may be bad
 					altPaymentMethodButton.addActionListener(lForAltButton);
-					
 					
 					Main.mainWindow.remove(debitLabel);
 					Main.mainWindow.remove(passwordField);
@@ -838,6 +830,7 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.getContentPane().add(altPaymentMethodButton);
 					
 					Main.mainWindow.repaint();
+				
 					
 				} else { //Debit Approved
 					
@@ -871,7 +864,9 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.remove(jButton9);
 					
 					Main.mainWindow.getContentPane().add(transactionApprovedLabel);
-					
+					DisplayCart.textArea1.append("Debit payment:");
+					Customer customer = (Customer)Main.Customers.get(Main.currentCustNum);
+					DisplayCart.textArea2.append("$" + Calculations.format(customer.paidBy.getDebit()));
 					Main.mainWindow.repaint();
 					
 				}
@@ -879,7 +874,7 @@ public class Display extends JFrame {//extends POSRegister {
 				
 				System.out.println(charArray[password.length()-1]);
 				System.out.println(password);
-				
+				}
 			} else if(e.getSource() == clearButton2) {
 				
 				passwordField.setText("");
