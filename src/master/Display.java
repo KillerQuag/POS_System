@@ -89,7 +89,10 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JLabel transactionApprovedLabel;
 	public static JLabel remainingBalanceLabel  = new JLabel("Remaining Balance:");
 	public static JLabel giftCardBalanceLabel;
+
 	public static JLabel background;
+	public static JLabel checkOverpayLabel;
+
 	
 	
 	
@@ -105,6 +108,7 @@ public class Display extends JFrame {//extends POSRegister {
 	public static JTextField currencyField;
 	public static JTextField changeDueField;
 	public static JTextField signatureField;
+	public static JTextField checkOverpayTextField;
 	
 	public static JPasswordField passwordField;
 	
@@ -205,6 +209,8 @@ public class Display extends JFrame {//extends POSRegister {
 					Main.mainWindow.remove(changeDueLabel);
 					Main.mainWindow.remove(changeDueField);
 					Main.mainWindow.remove(checkCompletedPayment);
+					Main.mainWindow.repaint();
+
 				}//End of remove stuff logic block
 								
 				System.out.println(e.getSource());
@@ -509,14 +515,14 @@ public class Display extends JFrame {//extends POSRegister {
 				changeDueLabel.setFont(new Font("Ariel", Font.PLAIN, 18));
 				changeDueLabel.setLocation(450, 50);
 				changeDueLabel.setSize(400, 150);
-				
+
 				changeDueField = new JTextField("$0.0", 15);
 				changeDueField.setText("$" + formatter.format(Math.abs(Customer.myCart.myTaxTotal - Customer.getAmountPaid())));
 				changeDueField.setHorizontalAlignment(JLabel.CENTER);
 				changeDueField.setToolTipText("Change to be returned to you"); // Change the tool tip for the text field
 				changeDueField.setLocation(450, 200);
 				changeDueField.setSize(200, 25);
-				
+
 				///TEMPORARY CODE///////////
 				Main.mainWindow.remove(checkInsertComplete);
 				////////////////////////////
@@ -529,9 +535,9 @@ public class Display extends JFrame {//extends POSRegister {
 				checkCompletedPayment.addActionListener(lForButton); //Still need this line
 				Main.mainWindow.getContentPane().add(checkCompletedPayment);
 				
-				
 				Main.mainWindow.getContentPane().add(changeDueLabel);
 				Main.mainWindow.getContentPane().add(changeDueField);
+
 				Main.mainWindow.remove(insertCheckLabel);
 				Main.mainWindow.remove(currencyField);
 								

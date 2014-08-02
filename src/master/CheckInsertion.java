@@ -213,6 +213,7 @@ public class CheckInsertion extends JFrame{
 
             			myInstance.dispose();
             			myInstance = null;
+
             		}
             		
             	}
