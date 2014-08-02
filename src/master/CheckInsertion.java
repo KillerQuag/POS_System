@@ -42,17 +42,7 @@ public class CheckInsertion extends JFrame{
 	boolean sub = false;
 	
 	private JDialog getAmount = null;
-	
-
-	/*public JLabel insertCheckLabel;
-	public JButton returnToPayMethods;
-	public JFrame insertCashFrame;
-	public static JLabel remainingBalance;
-	
-	public static JButton hundredButton;
-	public static JButton fiftyButton;
-	public static JButton twentyButton;*/
-	
+		
 	public CheckInsertion(){
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -60,25 +50,7 @@ public class CheckInsertion extends JFrame{
 		this.setLocationRelativeTo(null); //Centers frame in the middle of the screen
 		this.setResizable(false);
 		this.setVisible(true);
-
-		//this.getContentPane().setLayout(null);
-		
-/*		ImageIcon background = createImageIcon("images/BlankCheck.png", "A blank check");
-		JLabel theCheck = new JLabel("", background, JLabel.CENTER);
-
-		//this.setSize(label1.getWidth(), label1.getHeight()); 
-		
-		JPanel sig = new JPanel();
-		ImageIcon janeSig = createImageIcon("images/JaneDoe.png", "Jane's Signature");
-		JLabel janeSigLabel = new JLabel(janeSig);
-		janeSigLabel.setSize(275, 79);
-		janeSigLabel.setLocation(900, 300);
-		janeSigLabel.setOpaque(false);
-		sig.add(janeSigLabel);
-		*/
-		
-		//NEW CODE BY EDGAR
-		
+	
         try {
             bckgrnd = ImageIO.read(getClass().getResource("Images/BlankCheck.png"));
         } 
@@ -118,9 +90,6 @@ public class CheckInsertion extends JFrame{
         submitCheck.setBounds(5,5,20,20);
         submitCheck.setFocusPainted(false);  // Sets Focus off for the button
         submitCheck.setBorderPainted(false); // sets button boundaries off
-        
-           
-        
         
         /*
          * The action listener of the button creates new fields that are placed in the dialog
@@ -216,8 +185,7 @@ public class CheckInsertion extends JFrame{
             		
             	}
             	catch (NumberFormatException e){
-            		System.out.println("Empty string or non number, change check amount.");	
-            		
+            		System.out.println("Empty string or non number, change check amount.");		
             	}             	
             	
             	}
@@ -229,7 +197,6 @@ public class CheckInsertion extends JFrame{
             }                        
         }); 
 
-		
         this.getContentPane().add(amount);
         this.getContentPane().add(signatureBtn);
         this.getContentPane().add(payTo);
@@ -293,49 +260,6 @@ public class CheckInsertion extends JFrame{
 				errorFrame.dispose();
 			}
 		});
-	}
-	
-	/*public static void invalidAmount()
-	{
-		JPanel errorPanel;
-		JLabel error;
-		JButton close;
-		
-		errorFrame = new JFrame("Processing Error");
-        errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-        errorFrame.setSize(600, 200); 
-        errorFrame.setLocationRelativeTo(null); //Centers frame in the middle of the screen
-        errorFrame.setResizable(false);
-        errorFrame.setVisible(true);      
-        
-        errorPanel = new JPanel();
-        errorPanel.setSize(600, 200);
-        errorPanel.setBackground(Color.white);  
-        errorPanel.setLocation(0,0);
-        
-        error = new JLabel("<html>Check amount may not exceed the total balance due.<html>");
-        error.setFont(new Font("Ariel", Font.PLAIN, 18));
-        error.setLocation(90, 25);
-        error.setSize(600, 100);
-        errorFrame.add(error);
-        
-        close = new JButton("Close");        
-        close.setLocation(260, 140);  
-        close.setSize(75, 20);
-        close.setFocusPainted(false); // Sets Focus off for the button
-        close.setBorderPainted(false); // sets button boundaries off
-        errorFrame.add(close);
-        
-        errorFrame.add(errorPanel);
-        
-        close.addActionListener(new ActionListener() {			
-			public void actionPerformed(ActionEvent e) {
-				
-				errorFrame.dispose();
-			}
-		});
-	}*/
-	
-	
+	}	
 }
 	

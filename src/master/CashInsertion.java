@@ -218,11 +218,12 @@ public class CashInsertion extends JFrame { //Extending Display causes some issu
 			//So Main can Listen
 			Main.mainWindow.lForButton.actionPerformed(e);
 		   
+			
 			if(e.getSource() == returnToPayMethods) {
-				//cashThisTransaction = cashThisTransaction + customer.getAmountPaid();
-				DisplayCart.textArea1.append("Cash payment:\n");
-				DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.getCash()) + "\n");
-				//Main.mainWindow.remainingBalanceText.setText(formatter.format(customer.myCart.myTaxTotal- customer.getAmountPaid()));
+				if(customer.paidBy.getCash() > 0){
+					DisplayCart.textArea1.append("Total cash payments:\n");
+					DisplayCart.textArea2.append("$" + formatter.format(customer.paidBy.getCash()) + "\n");
+				}
 				insertCashFrame.dispose();
 				myInstance = null;
 			}
